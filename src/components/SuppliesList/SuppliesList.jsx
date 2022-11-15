@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import SuppliesListItem from '../SuppliesListItem/SuppliesListItem';
 
 
 
@@ -20,17 +21,14 @@ function SuppliesList() {
     }, [])
 
 
-
     return (<>
 
         <h2>This Is Where The List Will Go 📎</h2>
-
+        {/* //TODO-- CONSIDER USING A TABLE INSTEAD OF UL/LI */}
         <ul>
-            {supplies.map((supply) => {
-                return (
-                    <li key={supply.id}>{supply.color} {supply.name} <button>View</button> <button>Delete</button></li> 
-                    
-                )
+            {supplies.map((supply, i) => {
+
+                return <SuppliesListItem key={i} supply={supply} />
             })}
         </ul>
 
