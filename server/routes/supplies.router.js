@@ -10,12 +10,13 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     // GET route code here
-    console.log("I made it to the server");
+    console.log("I made it to the server", req.user.id);
     
-    const sqlText = `SELECT * FROM "supplies";`;
-    pool.query(sqlText)
+    const sqlText = `SELECT * FROM "supplies" WHERE "user_id" = $1;`;
+    
+    pool.query(sqlText, [req.user.id] )
     .then(dbRes=>{
         console.log(dbRes.rows)
         res.send(dbRes.rows); 

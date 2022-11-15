@@ -5,7 +5,7 @@ import axios from 'axios';
 function* fetchSupplies(){
     try{
         const supplies = yield axios.get('/api/supplies');
-        console.log('These are all of the supplies', supplies)
+        console.log('These are all of the supplies', supplies.data)
         yield put({type: 'SET_SUPPLIES', payload: supplies.data})
     }catch{
         console.log('get supplies failed');
