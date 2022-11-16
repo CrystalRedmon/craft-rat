@@ -21,6 +21,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import SuppliesDetails from '../SuppliesDetails/SuppliesDetails';
+import EditSupplies from '../EditSupplies/EditSupplies';
+import AddSuppliesForm from '../AddSuppliesForm/AddSuppliesForm';
 
 import './App.css';
 
@@ -71,11 +73,27 @@ function App() {
           </ProtectedRoute>
           
           <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/form"
+          >
+            <AddSuppliesForm />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
             // logged in shows supplies details based on supplies.id
             exact
             path="/details/:id"
           >
             <SuppliesDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // UNSURE IF A NEW ROUTE IS NEEDED SINCE ADD/EDIT/VIEW ARE ALL BASICALL THE SAME VIEW
+            exact
+            path="/edit/:id"
+          >
+            <EditSupplies />
           </ProtectedRoute>
 
           <Route

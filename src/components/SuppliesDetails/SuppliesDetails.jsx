@@ -166,7 +166,7 @@ function SuppliesDetails() {
 
                     <Button onClick={()=>history.push('/')}>Back To List</Button>
 
-                    <Button onClick={()=>history.push('/')}>Update</Button>
+                    <Button onClick={()=>history.push('/edit/:id')}>Update</Button>
 
                     <Button
                     >Cancel</Button>
