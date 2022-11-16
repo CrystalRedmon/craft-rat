@@ -11,11 +11,24 @@ function* fetchSupplies(){
         console.log('get supplies failed');
     }
 
+};
+
+function* fetchCurrentSupplies(action){
+
+    try{
+        const currentSupplies = yield axios.get(`/api/supplies/${action.payload}`);
+        console.log('This is the current item: ', currentSupplies.data);
+        yield put({type: 'SET_CURRENT_SUPPLIES', payload: currentSupplies.data})
+        
+    }catch{
+        console.log('fetchCurrentSupplies failed')
+    }
 }
 
 
 function* suppliesSaga(){
-    yield takeLatest('FETCH_SUPPLIES', fetchSupplies)
+    yield takeLatest('FETCH_SUPPLIES', fetchSupplies);
+    yield takeLatest('FETCH_CURRENT_SUPPLIES', fetchCurrentSupplies);
 }
 
 export default suppliesSaga;

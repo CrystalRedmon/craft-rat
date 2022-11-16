@@ -20,6 +20,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import SuppliesDetails from '../SuppliesDetails/SuppliesDetails';
 
 import './App.css';
 
@@ -67,6 +68,14 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            // logged in shows supplies details based on supplies.id
+            exact
+            path="/details/:id"
+          >
+            <SuppliesDetails />
           </ProtectedRoute>
 
           <Route
