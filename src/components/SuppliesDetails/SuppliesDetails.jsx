@@ -1,16 +1,20 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 /// MUI IMPORTS
-import { Button, Box, TextField, Select, MenuItem, InputLabel, FormControl, Switch, TextareaAutosize, Stack, Input, ButtonGroup, Typography } from '@mui/material';
+import { Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
 
 function SuppliesDetails() {
+    const dispatch = useDispatch();
+    const params = useParams();
+    const history = useHistory();
 
     const currentItem = useSelector(store => store.supplies.currentSupplies)
     const currentCategory = useSelector(store => store.categories.currentCategory)
-    const dispatch = useDispatch();
-    const params = useParams();
+
+
+
     console.log('This is my currentCategory: ', currentCategory);
     console.log('This is my currentItem', currentItem);
 
@@ -132,10 +136,10 @@ function SuppliesDetails() {
                     <Switch size='medium'></Switch>
 
                     <InputLabel>Notes</InputLabel>
-                    <Box style={{ width: 325, backgroundColor: 'white'}} >
-                    <Typography>
-                        {currentItem.notes}
-                    </Typography>
+                    <Box style={{ width: 325, backgroundColor: 'white' }} >
+                        <Typography>
+                            {currentItem.notes}
+                        </Typography>
                     </Box>
 
                 </Stack>
@@ -160,11 +164,9 @@ function SuppliesDetails() {
                     color={'secondary'}
                     size='large'>
 
-                    <Button
-                    >Back To List</Button>
+                    <Button onClick={()=>history.push('/')}>Back To List</Button>
 
-                    <Button
-                    >Update</Button>
+                    <Button onClick={()=>history.push('/')}>Update</Button>
 
                     <Button
                     >Cancel</Button>
