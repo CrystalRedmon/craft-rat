@@ -13,10 +13,21 @@ function* fetchCurrentCategory(action) {
     }
 }
 
+function* fetchCategories(){
+    try{
+        console.log('About to FetchCategories')
+        const categories = yield axios.get('/api/categories');
+        console.log(categories.data)
+        yield put({type: 'SET_CATEGORIES', payload: categories.data})
+    }catch{
+        console.log('GET all categories failed');
+    }
+}
 
 
 function* categoriesSaga() {
     yield takeLatest('FETCH_CURRENT_CATEGORY', fetchCurrentCategory);
+    yield takeLatest('FETCH_CATEGORIES', fetchCategories);
 }
 
 export default categoriesSaga;
