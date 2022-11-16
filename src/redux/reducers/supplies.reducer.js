@@ -11,4 +11,17 @@ const supplies = (state = [], action)=>{
 
 }
 
-export default supplies;
+const currentSupplies =(state = [], action)=>{
+    switch (action.type){
+        case 'SET_CURRENT_SUPPLIES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+
+export default combineReducers({
+    supplies,
+    currentSupplies
+});
