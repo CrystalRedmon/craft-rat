@@ -1,45 +1,89 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useHistory} from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import { Button, Menu, MenuItem } from '@mui/material'
+import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 
 function Nav() {
+  const history = useHistory();
   const user = useSelector((store) => store.user);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
+  const handleToAdd = () => {
+    setAnchorEl(null);
+    history.push('/form');
+  }
 
   return (
     <div className="nav">
+
+
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title">CraftRat</h2>
       </Link>
-      <div>
-        {/* If no user is logged in, show these links */}
-        {!user.id && (
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
+      <Button
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        <MenuTwoToneIcon  />
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleToAdd}>Add Items</MenuItem>
+        <MenuItem onClick={handleClose}>Saved Resources</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <div>
+          {/* If no user is logged in, show these links */}
+          {!user.id && (
+            // If there's no user, show login/registration links
+            <Link className="navLink" to="/login">
+              Login / Register
+            </Link>
+          )}
+
+          {/* If a user is logged in, show these links */}
+          {user.id && (
+            <>
+              <Link className="navLink" to="/user">
+                Home
+              </Link>
+
+              <Link className="navLink" to="/info">
+                Info Page
+              </Link>
+
+              <LogOutButton className="navLink" />
+            </>
+          )}
+
+          <Link className="navLink" to="/about">
+            About
           </Link>
-        )}
+        </div>
 
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
+      </Menu>
 
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-
-            <LogOutButton className="navLink" />
-          </>
-        )}
-
-        <Link className="navLink" to="/about">
-          About
-        </Link>
-      </div>
     </div>
   );
 }

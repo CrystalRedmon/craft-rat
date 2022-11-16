@@ -1,12 +1,12 @@
 
 
 
-function AddSuppliesForm(){
+function AddSuppliesForm() {
 
 
-    return(<>
+    return (<>
+        <h1>This is where you add items</h1>
 
-        
     </>)
 };
 
