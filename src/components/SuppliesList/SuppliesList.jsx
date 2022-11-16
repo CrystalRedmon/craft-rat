@@ -7,9 +7,10 @@ import SuppliesListItem from '../SuppliesListItem/SuppliesListItem';
 function SuppliesList() {
     const dispatch = useDispatch();
     // gets all supplies from redux store
-    const supplies = useSelector(store => store.supplies);
+    // consider renaming. supplies vs items. is another reducer needed?
+    const supplies = useSelector(store => store.supplies.supplies);
 
-    console.log('This is my supplies list: ', supplies);
+    console.log('This is my supplies list: ', supplies.supplies);
 
     /// useEFFECT WILL POPULATE THE SUPPLY LIST ON PAGE LOAD
     /// FETCH_SUPPLIES DISPATCH WILL GET STOPPED BY ROOTSAGA 
@@ -25,6 +26,8 @@ function SuppliesList() {
 
         <h2>This Is Where The List Will Go 📎</h2>
         {/* //TODO-- CONSIDER USING A TABLE INSTEAD OF UL/LI */}
+
+        
         <ul>
             {supplies.map((supply, i) => {
 
