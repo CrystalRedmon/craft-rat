@@ -8,9 +8,10 @@ import { Button, Box, TextField, Select, MenuItem, InputLabel, FormControl, Swit
 function SuppliesDetails() {
 
     const currentItem = useSelector(store => store.supplies.currentSupplies)
+    const currentCategory = useSelector(store => store.categories.currentCategory)
     const dispatch = useDispatch();
     const params = useParams();
-
+    console.log('This is my currentCategory: ', currentCategory);
     console.log('This is my currentItem', currentItem);
 
     useEffect(() => {
@@ -97,7 +98,7 @@ function SuppliesDetails() {
                     <InputLabel>Category</InputLabel>
                     <Box sx={{ width: '50%', backgroundColor: 'white' }}>
                         <Typography>
-                            {currentItem.category}
+                            {currentCategory}
                         </Typography>
                     </Box>
 

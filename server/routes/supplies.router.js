@@ -15,7 +15,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   console.log("I made it to the server", req.user.id);
 
   const sqlText = `SELECT * FROM "supplies" WHERE "user_id" = $1;`;
-
+  
   pool.query(sqlText, [req.user.id])
     .then(dbRes => {
       console.log(dbRes.rows)

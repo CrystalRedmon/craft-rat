@@ -1,6 +1,6 @@
+import { combineReducers } from "redux";
 
-
-const categories = (state =[], action)=>{
+const currentCategory = (state =[], action)=>{
     switch (action.type){
         case 'SET_CURRENT_CATEGORY':
             return action.payload;
@@ -10,3 +10,7 @@ const categories = (state =[], action)=>{
 
 
 }
+
+export default combineReducers ({
+    currentCategory,
+})
