@@ -10,21 +10,19 @@ function* fetchSupplies(){
     }catch{
         console.log('get supplies failed');
     }
-
 };
 
+/// THIS SAGA WILL GET THE DETAILS FOR THE CURRENT ITEM
 function* fetchCurrentSupplies(action){
-
     try{
+        console.log('fetchCurrentSupplies ', action.payload)
         const currentSupplies = yield axios.get(`/api/supplies/${action.payload}`);
         console.log('This is the current item: ', currentSupplies.data);
-        yield put({type: 'SET_CURRENT_SUPPLIES', payload: currentSupplies.data})
-        
+        yield put({type: 'SET_CURRENT_SUPPLIES', payload: currentSupplies.data}) 
     }catch{
         console.log('fetchCurrentSupplies failed')
     }
 }
-
 
 function* suppliesSaga(){
     yield takeLatest('FETCH_SUPPLIES', fetchSupplies);
