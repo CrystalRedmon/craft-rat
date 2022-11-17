@@ -27,14 +27,24 @@ function SuppliesList() {
         <h2>This Is Where The List Will Go 📎</h2>
         {/* //TODO-- CONSIDER USING A TABLE INSTEAD OF UL/LI */}
 
-        
-        <ul>
-            {supplies.map((supply, i) => {
 
-                return <SuppliesListItem key={i} supply={supply} />
-            })}
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <td>Item Description</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                
+                    {supplies.map((supply, i) => {
+                        return <tr><SuppliesListItem key={i} supply={supply} /></tr>
+                    })}
+                
+            </tbody>
 
+        </table>
 
 
 

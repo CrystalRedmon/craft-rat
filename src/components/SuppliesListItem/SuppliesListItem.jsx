@@ -1,5 +1,5 @@
-import {useHistory, Link} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -10,12 +10,12 @@ function SuppliesListItem({ supply }) {
 
 
     /// DIRECTS USER TO SPECIFIC SUPPLY DETAILS BASED ON SUPPLIES.ID
-    const handleClick = () =>{
+    const handleClick = () => {
         history.push(`/details/${supply.id}`);
     }
 
 
-    const handleDeleteItem = () =>{
+    const handleDeleteItem = () => {
 
         dispatch({
             type: 'DELETE_ITEM',
@@ -30,8 +30,14 @@ function SuppliesListItem({ supply }) {
 
         {/* //TODO-- CONSIDER USING A TABLE INSTEAD OF UL/LI */}
 
-        <li supply={supply}>{supply.color} {supply.name} <button onClick={handleClick}>View</button> 
-        <button onClick={handleDeleteItem}>Delete</button></li>
+        <td supply={supply}>{supply.color} {supply.name}</td>
+        <td><button onClick={handleClick}>View</button></td>
+        <td><button onClick={handleDeleteItem}>Delete</button></td>
+
+
+
+        {/* <li >{supply.color} {supply.name} <button onClick={handleClick}>View</button> 
+        <button onClick={handleDeleteItem}>Delete</button></li> */}
 
 
 
