@@ -1,5 +1,5 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 /// MUI IMPORTS
@@ -9,6 +9,9 @@ function SuppliesDetails() {
     const dispatch = useDispatch();
     const params = useParams();
     const history = useHistory();
+    const [update, setUpdate] = useState(false)
+
+
 
     const currentItem = useSelector(store => store.supplies.currentSupplies)
     const currentCategory = useSelector(store => store.categories.currentCategory)
@@ -37,117 +40,126 @@ function SuppliesDetails() {
         <Box className="main-container, grid-col_12"
         >
 
-            <Stack id='form-container'
-                direction={{ xs: 'column', sm: 'row' }}
-                spacing={{ xs: 1, sm: 2, md: 4 }}
-                justifyContent="center"
-                alignItems="center"
-                sx={{ backgroundColor: 'lightgray' }}
-            >
 
-                <Stack id='left-inner-container'
-                    p={3}
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: 500,
-                        height: 500,
-                        borderRadius: '3em'
-                    }}>
 
-                    {/* DISPLAY IMAGE */}
-                    <Box
-                        m={'auto'}
+            {!update ?
+                // UPDATE DEFAULT FALSE. DEFAULT TO VIEW ONLY
+                <Stack id='form-container'
+                    direction={{ xs: 'column', sm: 'row' }}
+                    spacing={{ xs: 1, sm: 2, md: 4 }}
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{ backgroundColor: 'lightgray' }}
+                >
+
+                    <Stack id='left-inner-container'
+                        p={3}
                         sx={{
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            width: 350,
-                            height: 350,
-                            backgroundColor: 'white',
-                            borderRadius: '.5em'
-                        }}><img src={currentItem.image} alt="" />
+                            width: 500,
+                            height: 500,
+                            borderRadius: '3em'
+                        }}>
 
+                        {/* DISPLAY IMAGE */}
                         <Box
-                            variant='filled'
-                            sx={{ width: '50%', backgroundColor: 'white' }}
-                            type="url"
-                            placeholder='Image URL'
-                        />
+                            m={'auto'}
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: 350,
+                                height: 350,
+                                backgroundColor: 'white',
+                                borderRadius: '.5em'
+                            }}><img src={currentItem.image} alt="" />
 
-                    </Box>
+                            <Box
+                                variant='filled'
+                                sx={{ width: '50%', backgroundColor: 'white' }}
+                                type="url"
+                                placeholder='Image URL'
+                            />
 
-                    <InputLabel>Item Details</InputLabel>
-                    <Box minrows={5} style={{ width: 325, backgroundColor: 'white' }}>
-                        {currentItem.product_details}
-                    </Box>
+                        </Box>
+
+                        <InputLabel>Item Details</InputLabel>
+                        <Box minrows={5} style={{ width: 325, backgroundColor: 'white' }}>
+                            {currentItem.product_details}
+                        </Box>
+
+                    </Stack>
+
+                    <Stack id='right-inner-container'
+                        p={3}
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            width: 500,
+                            height: 500,
+                            borderRadius: '3em'
+                        }}>
+
+                        <InputLabel>Category</InputLabel>
+                        <Box sx={{ width: '50%', backgroundColor: 'white' }}>
+                            <Typography>
+                                {currentCategory}
+                            </Typography>
+                        </Box>
+
+
+                        <InputLabel>Color</InputLabel>
+                        <Box sx={{ width: '50%', backgroundColor: 'white' }}>
+                            <Typography>
+                                {currentItem.color}
+                            </Typography>
+                        </Box>
+
+                        <InputLabel>Item</InputLabel>
+                        <Box sx={{ width: '50%', backgroundColor: 'white' }}>
+                            <Typography>
+                                {currentItem.name}
+                            </Typography>
+                        </Box>
+
+                        <InputLabel>Quantity/Unit</InputLabel>
+                        <Box sx={{ width: '50%', backgroundColor: 'white' }}>
+                            <Typography>
+                                {currentItem.quantity}
+                            </Typography>
+                        </Box>
+
+                        {/* /// HOW TO HANDLE SWITCH BOOLEAN */}
+                        <InputLabel>Scraps</InputLabel>
+                        <Switch size='medium'></Switch>
+
+                        <InputLabel>Notes</InputLabel>
+                        <Box style={{ width: 325, backgroundColor: 'white' }} >
+                            <Typography>
+                                {currentItem.notes}
+                            </Typography>
+                        </Box>
+
+                    </Stack>
+
+
 
                 </Stack>
 
 
 
-
-                <Stack id='right-inner-container'
-                    p={3}
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: 500,
-                        height: 500,
-                        borderRadius: '3em'
-                    }}>
-
-                    <InputLabel>Category</InputLabel>
-                    <Box sx={{ width: '50%', backgroundColor: 'white' }}>
-                        <Typography>
-                            {currentCategory}
-                        </Typography>
-                    </Box>
+                :
+                // onCLICK OF EDIT, CHANGE TO EDIT FIELDS
 
 
-                    <InputLabel>Color</InputLabel>
-                    <Box sx={{ width: '50%', backgroundColor: 'white' }}>
-                        <Typography>
-                            {currentItem.color}
-                        </Typography>
-                    </Box>
+                <h1>This isn't so great</h1>
 
-                    <InputLabel>Item</InputLabel>
-                    <Box sx={{ width: '50%', backgroundColor: 'white' }}>
-                        <Typography>
-                            {currentItem.name}
-                        </Typography>
-                    </Box>
+            }
 
-                    <InputLabel>Quantity/Unit</InputLabel>
-                    <Box sx={{ width: '50%', backgroundColor: 'white' }}>
-                        <Typography>
-                            {currentItem.quantity}
-                        </Typography>
-                    </Box>
-
-
-
-
-                    {/* /// HOW TO HANDLE SWITCH BOOLEAN */}
-                    <InputLabel>Scraps</InputLabel>
-                    <Switch size='medium'></Switch>
-
-                    <InputLabel>Notes</InputLabel>
-                    <Box style={{ width: 325, backgroundColor: 'white' }} >
-                        <Typography>
-                            {currentItem.notes}
-                        </Typography>
-                    </Box>
-
-                </Stack>
-
-
-
-            </Stack>
-
+                {/* ///BOX FOR NAVIGATION */}
             <Box
                 mt={3}
                 display='flex'
@@ -164,9 +176,16 @@ function SuppliesDetails() {
                     color={'secondary'}
                     size='large'>
 
-                    <Button onClick={()=>history.push('/')}>Back To List</Button>
+                    <Button onClick={() => history.push('/')}>Back To List</Button>
+                    <Button onClick={() => setUpdate(!update)}>{update ?
+                        // Button default to "Edit" FOR VIEW DETAILS
+                        <p>Edit</p>
+                        :
+                        // onCLICK OF EDIT, CHANGE TO "Update"
+                        <p>Update</p>
 
-                    <Button onClick={()=>history.push('/edit/:id')}>Update</Button>
+                    }</Button>
+
 
                     <Button
                     >Cancel</Button>

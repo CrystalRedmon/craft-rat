@@ -23,11 +23,6 @@ function SuppliesList() {
 
 
     return (<>
-
-        <h2>This Is Where The List Will Go 📎</h2>
-        {/* //TODO-- CONSIDER USING A TABLE INSTEAD OF UL/LI */}
-
-
         <table>
             <thead>
                 <tr>
@@ -37,11 +32,11 @@ function SuppliesList() {
                 </tr>
             </thead>
             <tbody>
-                
-                    {supplies.map((supply, i) => {
-                        return <tr><SuppliesListItem key={i} supply={supply} /></tr>
-                    })}
-                
+
+                {supplies.map((supply, i) => {
+                    return <tr><SuppliesListItem key={i} supply={supply} /></tr>
+                })}
+
             </tbody>
 
         </table>
