@@ -106,9 +106,7 @@ function AddSuppliesForm() {
             type: 'ADD_NEW_ITEM',
             payload: newItem
         });
-        console.log('inside handleSubmit: ', newItem)
-
-
+        console.log('inside handleSubmit: ', newItem);
     }
 
 
