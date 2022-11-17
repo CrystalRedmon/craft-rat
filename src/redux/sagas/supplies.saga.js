@@ -1,5 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
+import { ContactPageSharp } from '@mui/icons-material';
 
 /// THIS SAGA WILL COMPLETE THE GET AXIOS FOR THE LIST VIEW
 function* fetchSupplies(){
@@ -24,9 +25,25 @@ function* fetchCurrentSupplies(action){
     }
 }
 
+
+function* addNewItem(action){
+    try{
+        console.log(action.payload);
+        yield axios.post('/api/supplies', {data: action.payload});
+        yield put({type: 'SET_NEW_ITEM', payload: action.payload })
+    }catch{
+
+    }
+
+
+
+}
+
+
 function* suppliesSaga(){
     yield takeLatest('FETCH_SUPPLIES', fetchSupplies);
     yield takeLatest('FETCH_CURRENT_SUPPLIES', fetchCurrentSupplies);
+    yield takeLatest('ADD_NEW_ITEM', addNewItem);
 }
 
 export default suppliesSaga;
