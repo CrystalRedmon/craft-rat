@@ -18,6 +18,7 @@ function AddSuppliesForm() {
     const dispatch = useDispatch();
     const categories = useSelector(store => store.categories.allCategories)
 
+
     console.log('adding supplies, all categories', categories);
 
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
@@ -107,6 +108,9 @@ function AddSuppliesForm() {
             payload: newItem
         });
         console.log('inside handleSubmit: ', newItem);
+        history.push('/');
+
+
     }
 
 
@@ -178,25 +182,24 @@ function AddSuppliesForm() {
                         }}>
 
 
-                        {/* <select
-                        required
-                        onChange={addMovieGenre}
-                        // VALUE WILL DISPLAY THE CHOSEN GENRE
-                        value={newMovie.genre}>
-                        <option name="dropFrom" value="" disabled>Select a category</option>
-                        {genres.map(genre => (
-                            <option key={genre.id} value={genre.id}>{genre.name}</option>
-                        ))}
-                    </select> */}
+                        <select
+                            required
+                            onChange={handleCategoryInput}
+                            value={newItem.category}>
+                            <option name="dropFrom" value="" disabled>Select a category</option>
+                            {categories.map(category => (
+                                <option key={category.id} value={category.id}>{category.name}</option>
+                            ))}
+                        </select>
 
 
 
 
                         {/* TODO--- POPULATE DROP DOWN USING CATEGORIES FROM DB. CATEGORIES ALREADY BROUGHT OVER FROM DB */}
-                        <InputLabel>Category</InputLabel>
+                        {/* <InputLabel>Category</InputLabel>
                         <FormControl sx={{ width: '50%' }}>
-                            <Select onChange={handleCategoryInput} sx={{ backgroundColor: 'white' }}>
-                                {/* required
+                            <Select onChange={handleCategoryInput} sx={{ backgroundColor: 'white' }}> */}
+                        {/* required
                             onChange={(event)=>setNewItem(event.target.value)}
                             value={newItem.category}
                         
@@ -204,12 +207,12 @@ function AddSuppliesForm() {
                             {categories.map(category => (
                                 <option key={category.id} value={category.id}>{category.name}</option>
                             ))} */}
-                                <MenuItem value={'needlework'} >Needlework</MenuItem>
+                        {/* <MenuItem value={categories.id} >Needlework</MenuItem>
                                 <MenuItem value={'sewing'}>Sewing</MenuItem>
                                 <MenuItem value={'cricuit'}>Cricut Crafts</MenuItem>
                                 <MenuItem value={'paper'}>Paper Crafts</MenuItem>
                             </Select>
-                        </FormControl>
+                        </FormControl> */}
 
                         <InputLabel>Color</InputLabel>
                         <FormControl sx={{ width: '50%' }}>
