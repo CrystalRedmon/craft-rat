@@ -56,7 +56,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   console.log(req.body.data, req.user.id);
 
   /// SENDS ALL INFO EXCEPT CATEGORY ID. 
@@ -83,25 +83,41 @@ router.post('/', (req, res) => {
   ];
 
   pool.query(sqlTxt, sqlParams)
-  .then(dbRes=>{
-    res.sendStatus(200);
-    console.log('New item Id: ', dbRes.rows[0].id);
-  })
-
-  /// 
-
-
-
-
-
-
-
-
-  .catch(error=>{
-    res.sendStatus(500);
-    console.log('Add newItem failed: ', error);
-  })
+    .then(dbRes => {
+      res.sendStatus(200);
+      console.log('New item Id: ', dbRes.rows[0].id);
+    })
+    .catch(error => {
+      res.sendStatus(500);
+      console.log('Add newItem failed: ', error);
+    })
 
 });
+
+
+router.delete('/:id', (req, res)=>{
+
+
+    const sqlTxt =`DELETE FROM "supplies"
+                    WHERE "id" = $1
+                    AND "user_id" = $2;`;
+
+    const sqlParams = [
+      req.params.id,
+      req.user.id
+    ];
+    
+    console.log('This is the sqlTex and sqlParams: ', sqlTxt, sqlParams);
+    
+    pool.query(sqlTxt, sqlParams)
+    .then(dbRes=>{
+      res.sendStatus(200);
+      console.log('Delete item successful');
+    })
+    .catch(error=>{
+      res.sendStatus(500);
+      console.log('Delete Item failed: ', error);
+    })
+})
 
 module.exports = router;
