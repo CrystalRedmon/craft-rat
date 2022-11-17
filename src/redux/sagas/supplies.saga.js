@@ -23,7 +23,7 @@ function* fetchCurrentSupplies(action){
     }catch{
         console.log('fetchCurrentSupplies failed')
     }
-}
+};
 
 
 function* addNewItem(action){
@@ -34,16 +34,30 @@ function* addNewItem(action){
     }catch{
 
     }
+};
 
+function* deleteItem(action){
+    console.log('inside deleteItem Saga', action.payload);
 
-
+    try{
+        
+        yield axios.delete(`/api/supplies/${action.payload}`);
+        // unsure if there should be a put to reducer since not adding anything. 
+        yield put({type: 'FETCH_SUPPLIES'})
+    }catch{
+        console.log('Inside delteItem Saga, delete failed');
+    }
 }
+
+
 
 
 function* suppliesSaga(){
     yield takeLatest('FETCH_SUPPLIES', fetchSupplies);
     yield takeLatest('FETCH_CURRENT_SUPPLIES', fetchCurrentSupplies);
     yield takeLatest('ADD_NEW_ITEM', addNewItem);
+    yield takeLatest('DELETE_ITEM', deleteItem);
+    
 }
 
 export default suppliesSaga;
