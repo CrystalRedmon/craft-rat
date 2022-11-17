@@ -109,6 +109,7 @@ function AddSuppliesForm() {
         });
         console.log('inside handleSubmit: ', newItem);
         history.push('/');
+        alert('New Item Successfully Added');
 
 
     }
