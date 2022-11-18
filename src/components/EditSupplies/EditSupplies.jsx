@@ -7,7 +7,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 
 ///MUI IMPORT COMPONENTS 
 import Button from '@mui/material/Button';
-import { Box, TextField, Select, MenuItem, InputLabel, FormControl, Switch, TextareaAutosize, Stack, Input, ButtonGroup, InputAdornment } from '@mui/material';
+import { Box, Typography, TextField, Select, MenuItem, InputLabel, FormControl, Switch, TextareaAutosize, Stack, Input, ButtonGroup, InputAdornment } from '@mui/material';
 import { borderRadius } from '@mui/system';
 import InsertPhotoTwoToneIcon from '@mui/icons-material/InsertPhotoTwoTone';
 
@@ -17,9 +17,9 @@ function EditSupplies() {
     const params = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
-    const categories = useSelector(store => store.categories.allCategories);
+    const categories = useSelector(store => store.categories.allCategories); // UNSURE IF THIS IS NEEDED
     const currentItem = useSelector(store => store.supplies.currentSupplies);
-    
+
 
     /// SHOULD 🛑 NOT USE BOTH USESTATE AND USESELECT. ONLY USESELECT 🛑
 
@@ -28,99 +28,37 @@ function EditSupplies() {
 
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
     const [scraps, setScraps] = useState(false);
-    const [updateItem, setUpdateItem] = useState({
-        notes: '',
-        scraps: false,
-        quantity: '',
-        id: currentItem.id,
-    })
 
-    console.log('Are these scraps? ', updateItem)
+    
+
     useEffect(() => {
+        // GET CURRENT ITEM FROM THE SERVER. ALLOWS INFO TO REMAIN POPULATED EVEN ON PAGE RELOAD.
+        if (params.id) {
+            dispatch({
+                type: 'FETCH_CURRENT_SUPPLIES',
+                payload: params.id
+            })
+        }
 
+        // // ⬇️ UNSURE IF THIS IS NEEDED SINCE USER WILL NOT HAVE THE OPTION TO CHANGE ITEM CATEGORY
         dispatch({
             type: 'FETCH_CATEGORIES'
         })
-    }, []);
-
-
-    // const handleImageInput = (event) => {
-    //     setUpdateItem({
-    //         ...updateItem,
-    //         image: event.target.value
-    //     });
-    //     console.log(updateItem);
-    // };
-
-    // const handleProductDetailsInput = (event) => {
-    //     setEditItem({
-    //         ...editItem,
-    //         product_details: event.target.value
-    //     });
-    //     console.log(editItem);
-    // };
-
-
-    // const handleCategoryInput = (event) => {
-    //     setEditItem({
-    //         ...editItem,
-    //         category: event.target.value
-    //     });
-    //     console.log(editItem);
-    // }
-
-    // const handleColorInput = (event) => {
-    //     setEditItem({
-    //         ...editItem,
-    //         color: event.target.value
-    //     })
-    //     console.log(editItem);
-    // }
-
-    // const handleNameInput = (event) => {
-    //     setEditItem({
-    //         ...editItem,
-    //         name: event.target.value
-    //     });
-    //     console.log(editItem);
-    // }
-
-    const handleQuantityInput = (event) => {
-        setUpdateItem({
-            ...updateItem,
-            quantity: event.target.value
-        });
-        console.log(updateItem);
-    }
-
-    /// TODO--- HOW TO HANDLE SCRAPS BOOLEAN IF TRUE WHEN NEW ITEM INPUT?????
-
-    const handleNotesInput = (event) => {
-        setUpdateItem({
-            ...updateItem,
-            notes: event.target.value
-        });
-        console.log(updateItem);
-    }
-
-
-    const handleScrapsInput = () =>{
-        setScraps(!scraps)
-    };
-
+    }, [params.id]);
 
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
-
+        // THIS SENDS INFO FROM UPDATED INFO FROM REDUX STORE TO DB
         dispatch({
-            type: 'UPDATE_ITEM',
-            payload: updateItem
+            type: 'SAVE_ITEM',
+            payload: currentItem
         });
         console.log('inside handleSubmit: ', updateItem);
-        history.push('/');
-        alert('Item Successfully Updated');
 
+        // ⬇️ UNCOMMENT ONCE PROJECT COMPLETE
+        // history.push('/');
+        // alert('Item Successfully Updated')
 
     }
 
@@ -128,6 +66,7 @@ function EditSupplies() {
     return (
         <Box className="main-container, grid-col_12"
         >
+
 
             <form onSubmit={handleOnSubmit}>
                 <Stack id='form-container'
@@ -159,21 +98,21 @@ function EditSupplies() {
                                 height: 350,
                                 backgroundColor: 'white',
                                 borderRadius: '.5em'
-                            }}>
+                            }}><img src={currentItem.image} alt="" />
 
-                            <Input
+                            <Box
                                 variant='filled'
                                 sx={{ width: '50%', backgroundColor: 'white' }}
                                 type="url"
                                 placeholder='Image URL'
-                                endAdornment={<InputAdornment>
-                                    <InsertPhotoTwoToneIcon /></InputAdornment>}
                             />
 
                         </Box>
 
-                        <InputLabel>Product Details</InputLabel>
-                        <TextareaAutosize minRows={5} style={{ width: 325 }} />
+                        <InputLabel>Item Details</InputLabel>
+                        <Box minrows={5} style={{ width: 325 }}>
+                            {currentItem.product_details}
+                        </Box>
 
                     </Stack>
 
@@ -191,10 +130,10 @@ function EditSupplies() {
                             borderRadius: '3em'
                         }}>
 
-
+                        {/* EDIT OPTION UNAVAILABLE FOR CATEGORY */}
                         <select
                             required
-                            value={updateItem.category}>
+                            value={currentItem.category}>
                             <option name="dropFrom" value="" disabled>Select a category</option>
                             {categories.map(category => (
                                 <option key={category.id} value={category.id}>{category.name}</option>
@@ -223,28 +162,48 @@ function EditSupplies() {
                             </Select>
                         </FormControl> */}
 
+
+                        {/* EDIT OPTION UNAVAILABLE FOR COLOR */}
                         <InputLabel>Color</InputLabel>
-                        <FormControl sx={{ width: '50%' }}>
-                            <Select sx={{ backgroundColor: 'white' }}>
-                                <MenuItem value={'red'}>Red</MenuItem>
-                                <MenuItem value={'yellow'}>Yellow</MenuItem>
-                                <MenuItem value={'orange'}>Orange</MenuItem>
-                                <MenuItem value={'green'}>green</MenuItem>
-                                <MenuItem value={'blue'}>blue</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <Box sx={{ width: '50%' }}>
+                            <Typography>
+                                {currentItem.color}
+                            </Typography>
+                        </Box>
 
-                        <InputLabel>Name</InputLabel>
-                        <TextField variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
+                        {/* EDIT OPTION UNAVAILABLE FOR ITEM */}
+                        <InputLabel>Item</InputLabel>
+                        <Box sx={{ width: '50%' }}>
+                            <Typography>
+                                {currentItem.name}
+                            </Typography>
+                        </Box>
 
+                        {/* /// QUANTITY IS EDITABLE */}
                         <InputLabel>Quantity/Unit</InputLabel>
-                        <TextField onChange={handleQuantityInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
+                        <TextField
+                            value={currentItem.quantity}
+                            onChange={(evt) => dispatch({
+                                type: 'UPDATE_EDIT_ITEM',
+                                payload: { property: 'quantity', value: evt.target.value }
+                            })}
+                            variant='filled'
+                            sx={{ width: '50%', backgroundColor: 'white' }} />
 
+                        {/* /// TODO ---- 🆘 SCRAPS IS EDITABLE BUT NOT FUNCTIONAL YET */}
                         <InputLabel>Scraps</InputLabel>
-                        <Switch onChange={handleScrapsInput}size='medium'></Switch>
+                        <Switch size='medium'></Switch>
 
+                        {/* /// NOTES ARE EDITABLE */}
                         <InputLabel>Notes</InputLabel>
-                        <TextareaAutosize onChange={handleNotesInput} minRows={5} style={{ width: 325 }} />
+                        <TextareaAutosize
+                            value={currentItem.notes}
+                            onChange={(evt) => dispatch({
+                                type: 'UPDATE_EDIT_ITEM',
+                                payload: { property: 'notes', value: evt.target.value }
+                            })}
+                            minRows={5}
+                            style={{ width: 325 }} />
 
                     </Stack>
 
@@ -272,8 +231,7 @@ function EditSupplies() {
 
                         <Button type='submit'>Update</Button>
 
-                        <Button
-                        >Cancel</Button>
+                        <Button onClick={() => history.push(`/details/${params.id}`)}>Cancel</Button>
 
                     </ButtonGroup>
 

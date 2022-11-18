@@ -121,7 +121,7 @@ router.delete('/:id', (req, res) => {
 })
 
 
-router.put('/', (req, res) => {
+router.put('/:id', (req, res) => {
   console.log('PUT req.body', req.body);
 
   const sqlTxt = `UPDATE "supplies"

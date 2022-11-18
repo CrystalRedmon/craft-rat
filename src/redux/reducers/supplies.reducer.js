@@ -15,6 +15,11 @@ const currentSupplies =(state = [], action)=>{
     switch (action.type){
         case 'SET_CURRENT_SUPPLIES':
             return action.payload;
+        case 'UPDATE_EDIT_ITEM':
+            return {
+                ...state,
+                ...action.payload
+            };
         default:
             return state;
     }

@@ -91,7 +91,7 @@ function App() {
           <ProtectedRoute
             // UNSURE IF A NEW ROUTE IS NEEDED SINCE ADD/EDIT/VIEW ARE ALL BASICALL THE SAME VIEW
             exact
-            path="/edit/:id"
+            path="/details/:id/edit"
           >
             <EditSupplies />
           </ProtectedRoute>
