@@ -10,7 +10,7 @@ function SuppliesDetails() {
     const dispatch = useDispatch();
     const params = useParams();
     const history = useHistory();
-    const [update, setUpdate] = useState(false)
+    const [updateBtn, setUpdateBtn] = useState(false)
 
 
 
@@ -43,8 +43,8 @@ function SuppliesDetails() {
         >
 
 
-            {!update ?
-                // If the user is logged in, show the protected component
+            
+               
                 <Stack id='form-container'
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -149,16 +149,8 @@ function SuppliesDetails() {
 
 
                 </Stack>
-                :
-                // Otherwise, redirect to the Loginpage
-                <EditSupplies/>
-            }
-
-
-
-
-
-
+                
+        
             {/* ///BOX FOR NAVIGATION */}
             <Box
                 mt={3}
@@ -177,31 +169,12 @@ function SuppliesDetails() {
                     size='large'>
 
                     <Button onClick={() => history.push('/')}>Back To List</Button>
+                    <Button onClick={() => history.push(`/edit/${params.id}`)}>Edit</Button>
+                    <Button>Cancel</Button>
 
+                </ButtonGroup>
 
-
-
-                    {!update ?
-                        // If the user is logged in, show the protected component
-
-                        <Button onClick={() => setUpdate(!update)}>Edit</Button>
-                        :
-
-                        // Otherwise, redirect to the Loginpage
-                        <Button onClick={() => setUpdate(!update)}>Update</Button>
-                    }
-
-
-
-              
-
-
-                <Button
-                >Cancel</Button>
-
-            </ButtonGroup>
-
-        </Box>
+            </Box>
 
         </Box >
     );

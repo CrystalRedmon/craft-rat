@@ -52,7 +52,7 @@ function* deleteItem(action){
 function* updateItem(action){
     console.log('inside updateItem Saga', action);
     try{ 
-        yield axios.put(`/api/supplies/`, {data: 'this is it'})
+        yield axios.put(`/api/supplies/`, {data: action.payload})
         yield put({type: 'FETCH_SUPPLIES'})
     }catch{
         console.log('updateItem failed')

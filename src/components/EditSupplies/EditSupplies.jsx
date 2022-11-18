@@ -16,23 +16,23 @@ import InsertPhotoTwoToneIcon from '@mui/icons-material/InsertPhotoTwoTone';
 function EditSupplies() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const categories = useSelector(store => store.categories.allCategories)
+    const categories = useSelector(store => store.categories.allCategories);
+    const currentItem = useSelector(store => store.supplies.currentSupplies);
+    
 
-
-    console.log('adding supplies, all categories', categories);
+    console.log('Let us edit', currentItem);
+    console.log('adding supplies, all categories', currentItem.id);
 
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
-    const [editItem, setEditItem] = useState({
-        category: '',
-        color: '',
-        name: '',
-        product_details: '',
+    const [scraps, setScraps] = useState(false);
+    const [updateItem, setUpdateItem] = useState({
         notes: '',
         scraps: false,
         quantity: '',
-        image: '',
+        id: currentItem.id,
     })
 
+    console.log('Are these scraps? ', updateItem)
     useEffect(() => {
 
         dispatch({
@@ -41,75 +41,82 @@ function EditSupplies() {
     }, []);
 
 
-    const handleImageInput = (event) => {
-        setEditItem({
-            ...editItem,
-            image: event.target.value
-        });
-        console.log(editItem);
-    };
+    // const handleImageInput = (event) => {
+    //     setUpdateItem({
+    //         ...updateItem,
+    //         image: event.target.value
+    //     });
+    //     console.log(updateItem);
+    // };
 
-    const handleProductDetailsInput = (event) => {
-        setEditItem({
-            ...editItem,
-            product_details: event.target.value
-        });
-        console.log(editItem);
-    };
+    // const handleProductDetailsInput = (event) => {
+    //     setEditItem({
+    //         ...editItem,
+    //         product_details: event.target.value
+    //     });
+    //     console.log(editItem);
+    // };
 
 
-    const handleCategoryInput = (event) => {
-        setEditItem({
-            ...editItem,
-            category: event.target.value
-        });
-        console.log(editItem);
-    }
+    // const handleCategoryInput = (event) => {
+    //     setEditItem({
+    //         ...editItem,
+    //         category: event.target.value
+    //     });
+    //     console.log(editItem);
+    // }
 
-    const handleColorInput = (event) => {
-        setEditItem({
-            ...editItem,
-            color: event.target.value
-        })
-        console.log(editItem);
-    }
+    // const handleColorInput = (event) => {
+    //     setEditItem({
+    //         ...editItem,
+    //         color: event.target.value
+    //     })
+    //     console.log(editItem);
+    // }
 
-    const handleNameInput = (event) => {
-        setEditItem({
-            ...editItem,
-            name: event.target.value
-        });
-        console.log(editItem);
-    }
+    // const handleNameInput = (event) => {
+    //     setEditItem({
+    //         ...editItem,
+    //         name: event.target.value
+    //     });
+    //     console.log(editItem);
+    // }
 
     const handleQuantityInput = (event) => {
-        setEditItem({
-            ...editItem,
+        setUpdateItem({
+            ...updateItem,
             quantity: event.target.value
         });
-        console.log(editItem);
+        console.log(updateItem);
     }
 
     /// TODO--- HOW TO HANDLE SCRAPS BOOLEAN IF TRUE WHEN NEW ITEM INPUT?????
 
     const handleNotesInput = (event) => {
-        setEditItem({
-            ...editItem,
+        setUpdateItem({
+            ...updateItem,
             notes: event.target.value
         });
-        console.log(editItem);
+        console.log(updateItem);
     }
+
+
+    const handleScrapsInput = () =>{
+        setScraps(!scraps)
+    };
+
+
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
 
         dispatch({
-            type: 'EDIT_ITEM',
-            payload: editItem
+            type: 'UPDATE_ITEM',
+            payload: updateItem
         });
-        console.log('inside handleSubmit: ', editItem);
+        console.log('inside handleSubmit: ', updateItem);
         history.push('/');
-        alert('New Item Successfully Added');
+        alert('Item Successfully Updated');
 
 
     }
@@ -152,7 +159,6 @@ function EditSupplies() {
                             }}>
 
                             <Input
-                                onChange={handleImageInput}
                                 variant='filled'
                                 sx={{ width: '50%', backgroundColor: 'white' }}
                                 type="url"
@@ -164,7 +170,7 @@ function EditSupplies() {
                         </Box>
 
                         <InputLabel>Product Details</InputLabel>
-                        <TextareaAutosize onChange={handleProductDetailsInput} minRows={5} style={{ width: 325 }} />
+                        <TextareaAutosize minRows={5} style={{ width: 325 }} />
 
                     </Stack>
 
@@ -185,8 +191,7 @@ function EditSupplies() {
 
                         <select
                             required
-                            onChange={handleCategoryInput}
-                            value={editItem.category}>
+                            value={updateItem.category}>
                             <option name="dropFrom" value="" disabled>Select a category</option>
                             {categories.map(category => (
                                 <option key={category.id} value={category.id}>{category.name}</option>
@@ -217,7 +222,7 @@ function EditSupplies() {
 
                         <InputLabel>Color</InputLabel>
                         <FormControl sx={{ width: '50%' }}>
-                            <Select onChange={handleColorInput} sx={{ backgroundColor: 'white' }}>
+                            <Select sx={{ backgroundColor: 'white' }}>
                                 <MenuItem value={'red'}>Red</MenuItem>
                                 <MenuItem value={'yellow'}>Yellow</MenuItem>
                                 <MenuItem value={'orange'}>Orange</MenuItem>
@@ -227,13 +232,13 @@ function EditSupplies() {
                         </FormControl>
 
                         <InputLabel>Name</InputLabel>
-                        <TextField onChange={handleNameInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
+                        <TextField variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
 
                         <InputLabel>Quantity/Unit</InputLabel>
                         <TextField onChange={handleQuantityInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
 
                         <InputLabel>Scraps</InputLabel>
-                        <Switch size='medium'></Switch>
+                        <Switch onChange={handleScrapsInput}size='medium'></Switch>
 
                         <InputLabel>Notes</InputLabel>
                         <TextareaAutosize onChange={handleNotesInput} minRows={5} style={{ width: 325 }} />
@@ -254,7 +259,7 @@ function EditSupplies() {
                     }}
                 >
 
-                    {/* <ButtonGroup
+                    <ButtonGroup
 
                         variant='contained'
                         color={'secondary'}
@@ -267,7 +272,7 @@ function EditSupplies() {
                         <Button
                         >Cancel</Button>
 
-                    </ButtonGroup> */}
+                    </ButtonGroup>
 
                 </Box>
             </form>

@@ -121,19 +121,23 @@ router.delete('/:id', (req, res) => {
 })
 
 
-router.put('/:id', (req, res) => {
+router.put('/', (req, res) => {
   console.log('PUT req.body', req.body);
 
   const sqlTxt = `UPDATE "supplies"
                     SET "quantity" = $1,
-                    "notes" = $2
-                    WHERE "id" = $3;`;
+                    "scraps" = $2,
+                    "notes" = $3
+                    WHERE "id" = $4;`;
 
   const sqlParams = [
-    req.body.quantity,
-    req.body.notes,
-    req.body.id ///maybe req.params.id
+    req.body.data.quantity,
+    req.body.data.scraps,
+    req.body.data.notes,
+    req.body.data.id ///maybe req.params.id
   ];
+
+    console.log('these are my sqlParams: ', sqlParams);
 
   pool.query(sqlTxt, sqlParams)
   .then(dbRes=>{
