@@ -1,6 +1,7 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import EditSupplies from '../EditSupplies/EditSupplies';
 
 /// MUI IMPORTS
 import { Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
@@ -13,8 +14,9 @@ function SuppliesDetails() {
 
 
 
-    const currentItem = useSelector(store => store.supplies.currentSupplies)
-    const currentCategory = useSelector(store => store.categories.currentCategory)
+    const currentItem = useSelector(store => store.supplies.currentSupplies);
+    const currentCategory = useSelector(store => store.categories.currentCategory);
+
 
 
 
@@ -41,9 +43,8 @@ function SuppliesDetails() {
         >
 
 
-
             {!update ?
-                // UPDATE DEFAULT FALSE. DEFAULT TO VIEW ONLY
+                // If the user is logged in, show the protected component
                 <Stack id='form-container'
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -148,18 +149,17 @@ function SuppliesDetails() {
 
 
                 </Stack>
-
-
-
                 :
-                // onCLICK OF EDIT, CHANGE TO EDIT FIELDS
-
-
-                <h1>This isn't so great</h1>
-
+                // Otherwise, redirect to the Loginpage
+                <EditSupplies/>
             }
 
-                {/* ///BOX FOR NAVIGATION */}
+
+
+
+
+
+            {/* ///BOX FOR NAVIGATION */}
             <Box
                 mt={3}
                 display='flex'
@@ -177,24 +177,33 @@ function SuppliesDetails() {
                     size='large'>
 
                     <Button onClick={() => history.push('/')}>Back To List</Button>
-                    <Button onClick={() => setUpdate(!update)}>{update ?
-                        // Button default to "Edit" FOR VIEW DETAILS
-                        <p>Edit</p>
+
+
+
+
+                    {!update ?
+                        // If the user is logged in, show the protected component
+
+                        <Button onClick={() => setUpdate(!update)}>Edit</Button>
                         :
-                        // onCLICK OF EDIT, CHANGE TO "Update"
-                        <p>Update</p>
 
-                    }</Button>
+                        // Otherwise, redirect to the Loginpage
+                        <Button onClick={() => setUpdate(!update)}>Update</Button>
+                    }
 
 
-                    <Button
-                    >Cancel</Button>
 
-                </ButtonGroup>
+              
 
-            </Box>
+
+                <Button
+                >Cancel</Button>
+
+            </ButtonGroup>
 
         </Box>
+
+        </Box >
     );
 }
 

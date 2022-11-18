@@ -95,29 +95,59 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 
-router.delete('/:id', (req, res)=>{
+router.delete('/:id', (req, res) => {
 
 
-    const sqlTxt =`DELETE FROM "supplies"
+  const sqlTxt = `DELETE FROM "supplies"
                     WHERE "id" = $1
                     AND "user_id" = $2;`;
 
-    const sqlParams = [
-      req.params.id,
-      req.user.id
-    ];
-    
-    console.log('This is the sqlTex and sqlParams: ', sqlTxt, sqlParams);
-    
-    pool.query(sqlTxt, sqlParams)
-    .then(dbRes=>{
+  const sqlParams = [
+    req.params.id,
+    req.user.id
+  ];
+
+  console.log('This is the sqlTex and sqlParams: ', sqlTxt, sqlParams);
+
+  pool.query(sqlTxt, sqlParams)
+    .then(dbRes => {
       res.sendStatus(200);
       console.log('Delete item successful');
     })
-    .catch(error=>{
+    .catch(error => {
       res.sendStatus(500);
       console.log('Delete Item failed: ', error);
     })
 })
+
+
+router.put('/:id', (req, res) => {
+  console.log('PUT req.body', req.body);
+
+  const sqlTxt = `UPDATE "supplies"
+                    SET "quantity" = $1,
+                    "notes" = $2
+                    WHERE "id" = $3;`;
+
+  const sqlParams = [
+    req.body.quantity,
+    req.body.notes,
+    req.body.id ///maybe req.params.id
+  ];
+
+  pool.query(sqlTxt, sqlParams)
+  .then(dbRes=>{
+    console.log('PUT successful');
+    res.sendStatus(201);
+  })
+  .catch(error=>{
+    console.log('PUT failed. Error: ', error);
+    res.sendStatus(500);
+  });
+
+});
+
+
+
 
 module.exports = router;

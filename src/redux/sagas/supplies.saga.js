@@ -49,6 +49,15 @@ function* deleteItem(action){
     }
 }
 
+function* updateItem(action){
+    console.log('inside updateItem Saga', action);
+    try{ 
+        yield axios.put(`/api/supplies/`, {data: 'this is it'})
+        yield put({type: 'FETCH_SUPPLIES'})
+    }catch{
+        console.log('updateItem failed')
+    }
+}
 
 
 
@@ -57,6 +66,7 @@ function* suppliesSaga(){
     yield takeLatest('FETCH_CURRENT_SUPPLIES', fetchCurrentSupplies);
     yield takeLatest('ADD_NEW_ITEM', addNewItem);
     yield takeLatest('DELETE_ITEM', deleteItem);
+    yield takeLatest('UPDATE_ITEM', updateItem);
     
 }
 
