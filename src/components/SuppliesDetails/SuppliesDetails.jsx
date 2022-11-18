@@ -1,7 +1,7 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import EditSupplies from '../EditSupplies/EditSupplies';
+
 
 /// MUI IMPORTS
 import { Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
@@ -33,8 +33,8 @@ function SuppliesDetails() {
             type: 'FETCH_CURRENT_CATEGORY',
             payload: `${params.id}`
         })
-
-    }, [])
+        console.log(`Is this supposed to be a string ${params.id}`)
+    }, [params.id])
 
 
 
@@ -42,9 +42,6 @@ function SuppliesDetails() {
         <Box className="main-container, grid-col_12"
         >
 
-
-            
-               
                 <Stack id='form-container'
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={{ xs: 1, sm: 2, md: 4 }}

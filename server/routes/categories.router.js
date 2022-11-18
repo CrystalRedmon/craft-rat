@@ -32,11 +32,11 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
                     FROM "categories" 
                     JOIN "supplies"
                     ON "supplies".categories_id = "categories".id
-                    WHERE "categories".id = $1;`;
+                    WHERE "supplies".id = $1;`;
    
     pool.query(sqlTxt, [req.params.id])
     .then(dbRes=>{
-        console.log('Current category from DB: ', dbRes.rows[0].name);
+        console.log('blah blah response', dbRes.rows[0].name)
         res.send(dbRes.rows[0].name);
     })
     .catch(error=>{

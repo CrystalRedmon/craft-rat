@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // CUSTOM COMPONENTS
@@ -14,11 +14,14 @@ import InsertPhotoTwoToneIcon from '@mui/icons-material/InsertPhotoTwoTone';
 
 
 function EditSupplies() {
+    const params = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
     const categories = useSelector(store => store.categories.allCategories);
     const currentItem = useSelector(store => store.supplies.currentSupplies);
     
+
+    /// SHOULD 🛑 NOT USE BOTH USESTATE AND USESELECT. ONLY USESELECT 🛑
 
     console.log('Let us edit', currentItem);
     console.log('adding supplies, all categories', currentItem.id);
