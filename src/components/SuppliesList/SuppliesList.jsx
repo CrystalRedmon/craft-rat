@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SuppliesListItem from '../SuppliesListItem/SuppliesListItem';
+import { Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
 
 
 
@@ -23,26 +24,34 @@ function SuppliesList() {
 
 
     return (<>
-        <table>
-            <thead>
-                <tr>
-                    <td>Item Description</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
+        <Box className="main-container, grid-col_12">
+        <Stack id='form-container'
+                direction={{ xs: 'column', sm: 'row' }}
+                spacing={{ xs: 1, sm: 2, md: 4 }}
+                justifyContent="center"
+                alignItems="center"
+                sx={{ backgroundColor: 'lightgray' }}
+            >
+            <table width={'50%'}>
+                <thead>
+                    <tr>
+                        <td>Item Description</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
 
-                {supplies.map((supply, i) => {
-                    return <tr><SuppliesListItem key={i} supply={supply} /></tr>
-                })}
+                    {supplies.map((supply, i) => {
+                        return <tr><SuppliesListItem key={i} supply={supply} /></tr>
+                    })}
 
-            </tbody>
+                </tbody>
 
-        </table>
+            </table>
 
-
-
+                    </Stack>
+        </Box>
     </>)
 }
 
