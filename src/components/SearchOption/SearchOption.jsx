@@ -12,7 +12,7 @@ function SearchOption(){
             <h2>Search Form</h2>
             <Stack id='search-container'
                 spacing={3}
-                sx={{ width: '75%', margin: 'auto' }}
+                sx={{ width: '100%', margin: 'auto' }}
 
             // TODO--- THIS SEARCH PAGE SHOULD LIKE SIMILAR TO THE ADD FORM WITH GRAY IN MIDDLE 
             >

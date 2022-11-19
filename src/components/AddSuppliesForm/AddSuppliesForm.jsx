@@ -218,11 +218,14 @@ function AddSuppliesForm() {
                         <InputLabel>Color</InputLabel>
                         <FormControl sx={{ width: '50%' }}>
                             <Select onChange={handleColorInput} sx={{ backgroundColor: 'white' }}>
-                                <MenuItem value={'red'}>Red</MenuItem>
-                                <MenuItem value={'yellow'}>Yellow</MenuItem>
-                                <MenuItem value={'orange'}>Orange</MenuItem>
-                                <MenuItem value={'green'}>green</MenuItem>
-                                <MenuItem value={'blue'}>blue</MenuItem>
+                                <MenuItem value={'Red'}>Red</MenuItem>
+                                <MenuItem value={'Yellow'}>Yellow</MenuItem>
+                                <MenuItem value={'Orange'}>Orange</MenuItem>
+                                <MenuItem value={'Green'}>Green</MenuItem>
+                                <MenuItem value={'Blue'}>Blue</MenuItem>
+                                <MenuItem value={'Black'}>Black</MenuItem>
+                                <MenuItem value={'White'}>White</MenuItem>
+                                <MenuItem value={'Multicolored'}>Multicolored</MenuItem>
                             </Select>
                         </FormControl>
 

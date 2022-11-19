@@ -81,13 +81,12 @@ function SuppliesDetails() {
                             alignItems: 'center',
                             width: 350,
                             height: 350,
-                            backgroundColor: 'white',
                             borderRadius: '.5em'
                         }}><img src={currentItem.image} alt="" />
 
                         <Box
                             variant='filled'
-                            sx={{ width: '50%', backgroundColor: 'white' }}
+                            sx={{ width: '50%'}}
                             type="url"
                             placeholder='Image URL'
                         />
@@ -95,7 +94,7 @@ function SuppliesDetails() {
                     </Box>
 
                     <InputLabel>Item Details</InputLabel>
-                    <Box minrows={5} style={{ width: 325, backgroundColor: 'white' }}>
+                    <Box minrows={5} style={{ width: 325}}>
                         {currentItem.product_details}
                     </Box>
 
@@ -113,7 +112,7 @@ function SuppliesDetails() {
                     }}>
 
                     <InputLabel>Category</InputLabel>
-                    <Box sx={{ width: '50%', backgroundColor: 'white' }}>
+                    <Box sx={{ width: '50%'}}>
                         <Typography>
                             {currentCategory}
                         </Typography>
@@ -121,21 +120,21 @@ function SuppliesDetails() {
 
 
                     <InputLabel>Color</InputLabel>
-                    <Box sx={{ width: '50%', backgroundColor: 'white' }}>
+                    <Box sx={{ width: '50%'}}>
                         <Typography>
                             {currentItem.color}
                         </Typography>
                     </Box>
 
                     <InputLabel>Item</InputLabel>
-                    <Box sx={{ width: '50%', backgroundColor: 'white' }}>
+                    <Box sx={{ width: '50%'}}>
                         <Typography>
                             {currentItem.name}
                         </Typography>
                     </Box>
 
                     <InputLabel>Quantity/Unit</InputLabel>
-                    <Box sx={{ width: '50%', backgroundColor: 'white' }}>
+                    <Box sx={{ width: '50%'}}>
                         <Typography>
                             {currentItem.quantity}
                         </Typography>
@@ -151,7 +150,7 @@ function SuppliesDetails() {
 
 
                     <InputLabel>Notes</InputLabel>
-                    <Box style={{ width: 325, backgroundColor: 'white' }} >
+                    <Box style={{ width: 325}} >
                         <Typography>
                             {currentItem.notes}
                         </Typography>
