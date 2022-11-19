@@ -19,17 +19,20 @@ function EditSupplies() {
     const dispatch = useDispatch();
     const categories = useSelector(store => store.categories.allCategories); // UNSURE IF THIS IS NEEDED
     const currentItem = useSelector(store => store.supplies.currentSupplies);
+    const [scraps, setScraps] = useState(currentItem.scraps);
 
-
-    /// SHOULD 🛑 NOT USE BOTH USESTATE AND USESELECT. ONLY USESELECT 🛑
 
     console.log('Let us edit', currentItem);
+    console.log('this is my scrap status', currentItem.scraps);
+    /// SHOULD 🛑 NOT USE BOTH USESTATE AND USESELECT. ONLY USESELECT 🛑
+
+    
     console.log('adding supplies, all categories', currentItem.id);
 
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
-    const [scraps, setScraps] = useState(false);
-
     
+
+
 
     useEffect(() => {
         // GET CURRENT ITEM FROM THE SERVER. ALLOWS INFO TO REMAIN POPULATED EVEN ON PAGE RELOAD.
@@ -54,7 +57,7 @@ function EditSupplies() {
             type: 'SAVE_ITEM',
             payload: currentItem
         });
-        console.log('inside handleSubmit: ', updateItem);
+        console.log('inside handleSubmit: ', currentItem);
 
         // ⬇️ UNCOMMENT ONCE PROJECT COMPLETE
         // history.push('/');
@@ -191,8 +194,27 @@ function EditSupplies() {
                             sx={{ width: '50%', backgroundColor: 'white' }} />
 
                         {/* /// TODO ---- 🆘 SCRAPS IS EDITABLE BUT NOT FUNCTIONAL YET */}
+
                         <InputLabel>Scraps</InputLabel>
-                        <Switch size='medium'></Switch>
+                        {currentItem.scraps=== true ?
+                            <Switch
+                                defaultChecked={currentItem.scraps}
+                                onChange={() => dispatch({
+                                    type: 'UPDATE_EDIT_ITEM',
+                                    payload: { property: 'scraps', value: false }
+                                })}
+                                size='medium'></Switch>
+                            :
+                            <Switch
+                                defaultChecked={currentItem.scraps}
+                                onChange={() => dispatch({
+                                    type: 'UPDATE_EDIT_ITEM',
+                                    payload: { property: 'scraps', value: true }
+                                })}
+                                size='medium'></Switch>
+                        }
+
+
 
                         {/* /// NOTES ARE EDITABLE */}
                         <InputLabel>Notes</InputLabel>

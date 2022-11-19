@@ -18,7 +18,7 @@ const currentSupplies =(state = [], action)=>{
         case 'UPDATE_EDIT_ITEM':
             return {
                 ...state,
-                ...action.payload
+                [action.payload.property]: action.payload.value
             };
         default:
             return state;
