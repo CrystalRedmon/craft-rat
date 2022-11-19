@@ -262,7 +262,7 @@ function AddSuppliesForm() {
 
                         <Button onClick={() => history.push('/')}>Back To List</Button>
 
-                        <Button type='submit'>Update</Button>
+                        <Button type='submit'>Add</Button>
 
                         <Button
                         >Cancel</Button>

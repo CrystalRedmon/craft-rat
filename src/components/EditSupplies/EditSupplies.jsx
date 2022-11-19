@@ -26,11 +26,11 @@ function EditSupplies() {
     console.log('this is my scrap status', currentItem.scraps);
     /// SHOULD 🛑 NOT USE BOTH USESTATE AND USESELECT. ONLY USESELECT 🛑
 
-    
+
     console.log('adding supplies, all categories', currentItem.id);
 
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
-    
+
 
 
 
@@ -58,10 +58,8 @@ function EditSupplies() {
             payload: currentItem
         });
         console.log('inside handleSubmit: ', currentItem);
-
-        // ⬇️ UNCOMMENT ONCE PROJECT COMPLETE
-        // history.push('/');
-        // alert('Item Successfully Updated')
+        history.push('/');
+        alert('Item Successfully Updated')
 
     }
 
@@ -196,7 +194,7 @@ function EditSupplies() {
                         {/* /// TODO ---- 🆘 SCRAPS IS EDITABLE BUT NOT FUNCTIONAL YET */}
 
                         <InputLabel>Scraps</InputLabel>
-                        {currentItem.scraps=== true ?
+                        {currentItem.scraps === true ?
                             <Switch
                                 defaultChecked={currentItem.scraps}
                                 onChange={() => dispatch({
