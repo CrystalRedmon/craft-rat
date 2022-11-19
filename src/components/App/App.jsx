@@ -23,6 +23,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import SuppliesDetails from '../SuppliesDetails/SuppliesDetails';
 import EditSupplies from '../EditSupplies/EditSupplies';
 import AddSuppliesForm from '../AddSuppliesForm/AddSuppliesForm';
+import SearchOption from '../SearchOption/SearchOption';
 
 import './App.css';
 

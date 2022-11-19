@@ -261,11 +261,12 @@ function AddSuppliesForm() {
                         size='large'>
 
                         <Button onClick={() => history.push('/')}>Back To List</Button>
-
                         <Button type='submit'>Add</Button>
 
-                        <Button
-                        >Cancel</Button>
+                        {/* /// TODO POSSIBLY CHANGE CANCEL BUTTON TO CLEAR 
+                        /// MAYBE CLEAR THE INPUT FIELDS
+                        /// CANCEL DOES NOT MAKE SENSE HERE */}
+                        <Button>Cancel</Button>
 
                     </ButtonGroup>
 

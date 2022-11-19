@@ -5,6 +5,7 @@ import { Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, 
 
 
 
+
 function SuppliesList() {
     const dispatch = useDispatch();
     // gets all supplies from redux store
@@ -25,6 +26,8 @@ function SuppliesList() {
 
     return (<>
         <Box className="main-container, grid-col_12">
+
+        
         <Stack id='form-container'
                 direction={{ xs: 'column', sm: 'row' }}
                 spacing={{ xs: 1, sm: 2, md: 4 }}
