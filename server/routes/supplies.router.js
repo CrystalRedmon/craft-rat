@@ -28,10 +28,44 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 
+router.get('/filter', (req, res)=>{
+  console.log('About to filter');
 
+  // 🛑 MAY REQUIRE AN IF STATEMENT IF ALL FILTER CATEGORIES ARE NOT CHOSEN
+  // EXAMPLE- IF USER ONLY WANTS TO FILTER BY CATEGORY NO MATTER THE COLOR
+  const sqlTxt=`SELECT * FROM "supplies"
+                WHERE "categories_id" = $1 
+                AND "color" = $2
+                AND "scraps" = $3
+                AND "user_id" = $4;`;
+
+  const sqlParams =[
+    req.body.data.categories_id,
+    req.body.data.color,
+    req.body.data.scraps,
+    req.user.id
+  ];
+
+  pool.query(sqlTxt, sqlParams)
+  .then(dbRes=>{
+    res.send(dbRes.rows);
+    console.log('Filter results: ', dbRes.rows);
+  })
+  .catch(error=>{
+    res.sendStatus(500);
+    console.log('Filter results failed: ', error);
+  })
+
+})
+
+
+
+
+
+/// GET CURRENT ITEM TO DETAILS VIEW
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log('I made it to the server: ', req.params.id);
-  const sqlText = `SELECT * FROM "supplies" 
+  const sqlTxt = `SELECT * FROM "supplies" 
                   WHERE "user_id" = $1
                   AND "supplies".id = $2;`;
 
@@ -40,7 +74,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     req.params.id
   ];
 
-  pool.query(sqlText, sqlParams)
+  pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       console.log('Here is the current item: ', dbRes.rows);
       res.send(dbRes.rows);
