@@ -15,14 +15,16 @@ const {
     // EXAMPLE- IF USER ONLY WANTS TO FILTER BY CATEGORY NO MATTER THE COLOR
                   // ⬇️ REMOVED TO TEST CATEGORY ALONE FIRST
                   // AND "color" = $2
-                  // AND "scraps" = $3
+                  // 
   
     const sqlTxt = `SELECT * FROM "supplies"
                   WHERE "categories_id" = $1 
-                  AND "user_id" = $2;`;
+                  AND "scraps" = $2
+                  AND "user_id" = $3;`;
   
     const sqlParams = [
       req.query.categories_id,
+      req.query.scraps,
       req.user.id
     ];
   

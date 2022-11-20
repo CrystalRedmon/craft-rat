@@ -27,7 +27,7 @@ function SearchOption() {
 
 
 
-    const handleSubmitFilter =(evt)=>{
+    const handleSubmitFilter = (evt) => {
         evt.preventDefault();
 
         dispatch({
@@ -84,23 +84,34 @@ function SearchOption() {
                                 <option key={category.id} value={category.id}>{category.name}</option>
                             ))}
                         </select>
-                     <button type="submit">Filter</button>
+                        <button type="submit">Filter</button>
+
+
+                        <InputLabel>Color</InputLabel>
+                        <FormControl sx={{ width: '25%' }}>
+                            <Select sx={{ backgroundColor: 'white' }}>
+                                <MenuItem value={'red'}>Red</MenuItem>
+                                <MenuItem value={'yellow'}>Yellow</MenuItem>
+                                <MenuItem value={'orange'}>Orange</MenuItem>
+                                <MenuItem value={'green'}>green</MenuItem>
+                            </Select>
+                        </FormControl>
+
+
+                        <InputLabel>Scraps</InputLabel>
+                        {filter.scraps === false ?
+                            <Switch
+                                defaultChecked={filter.scraps}
+                                onChange={() => setFilter({...filter, scraps: true})}
+                                size='medium'></Switch>
+                            :
+                            <Switch
+                                defaultChecked={filter.scraps}
+                                onChange={() => setFilter({...filter, scraps: false})}
+                                size='medium'></Switch>
+                        }
+
                     </form>
-
-                    <InputLabel>Color</InputLabel>
-                    <FormControl sx={{ width: '25%' }}>
-                        <Select sx={{ backgroundColor: 'white' }}>
-                            <MenuItem value={'red'}>Red</MenuItem>
-                            <MenuItem value={'yellow'}>Yellow</MenuItem>
-                            <MenuItem value={'orange'}>Orange</MenuItem>
-                            <MenuItem value={'green'}>green</MenuItem>
-                        </Select>
-                    </FormControl>
-
-
-                    <InputLabel>Scraps</InputLabel>
-                    <Switch size='medium'></Switch>
-
                     <Button
                         variant='contained'
                         color={'secondary'}
