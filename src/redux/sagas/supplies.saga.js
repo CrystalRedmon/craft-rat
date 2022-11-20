@@ -2,6 +2,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import { ContactPageSharp } from '@mui/icons-material';
 
+
 /// THIS SAGA WILL COMPLETE THE GET AXIOS FOR THE LIST VIEW
 function* fetchSupplies(){
     try{
@@ -59,6 +60,16 @@ function* saveItem(action){
     }
 }
 
+// GETS FILTERED LIST BASED ON USER INPUT TO CATEGORY, COLOR, AND/OR SCRAPS.
+function* fetchFilteredList(action){
+    try{
+        const filteredList = yield axios.get('/api/supplies/filtered', {data: action.payload});
+        console.log('filteredList results: ', filteredList.data);
+        yield put({type: 'SET_FILTERED_LIST', payload: filteredList.data});
+    }catch(error){
+        console.log('GET filteredList failed: ', error);
+    }
+}
 
 
 function* suppliesSaga(){
@@ -67,7 +78,7 @@ function* suppliesSaga(){
     yield takeLatest('ADD_NEW_ITEM', addNewItem);
     yield takeLatest('DELETE_ITEM', deleteItem);
     yield takeLatest('SAVE_ITEM', saveItem); /// SENDS EDIT UPDATES TO DB
-    
+    yield takeLatest('FETCH_FILTERED_LIST', fetchFilteredList);
 }
 
 export default suppliesSaga;

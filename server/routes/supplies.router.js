@@ -28,7 +28,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 
-router.get('/filter', (req, res)=>{
+router.get('/filtered', (req, res)=>{
   console.log('About to filter');
 
   // 🛑 MAY REQUIRE AN IF STATEMENT IF ALL FILTER CATEGORIES ARE NOT CHOSEN
