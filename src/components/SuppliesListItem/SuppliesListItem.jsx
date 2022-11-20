@@ -6,14 +6,11 @@ import { useDispatch } from 'react-redux';
 function SuppliesListItem({ supply }) {
     const history = useHistory();
     const dispatch = useDispatch();
-    console.log('this is supply', supply)
-
 
     /// DIRECTS USER TO SPECIFIC SUPPLY DETAILS BASED ON SUPPLIES.ID
     const handleClick = () => {
         history.push(`/details/${supply.id}`);
     }
-
 
     const handleDeleteItem = () => {
 

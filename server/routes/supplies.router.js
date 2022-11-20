@@ -18,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
   pool.query(sqlText, [req.user.id])
     .then(dbRes => {
-      console.log(dbRes.rows)
+
       res.send(dbRes.rows);
     })
     .catch(error => {
@@ -26,39 +26,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 
 });
-
-
-router.get('/filtered', (req, res)=>{
-  console.log('About to filter');
-
-  // 🛑 MAY REQUIRE AN IF STATEMENT IF ALL FILTER CATEGORIES ARE NOT CHOSEN
-  // EXAMPLE- IF USER ONLY WANTS TO FILTER BY CATEGORY NO MATTER THE COLOR
-  const sqlTxt=`SELECT * FROM "supplies"
-                WHERE "categories_id" = $1 
-                AND "color" = $2
-                AND "scraps" = $3
-                AND "user_id" = $4;`;
-
-  const sqlParams =[
-    req.body.data.categories_id,
-    req.body.data.color,
-    req.body.data.scraps,
-    req.user.id
-  ];
-
-  pool.query(sqlTxt, sqlParams)
-  .then(dbRes=>{
-    res.send(dbRes.rows);
-    console.log('Filter results: ', dbRes.rows);
-  })
-  .catch(error=>{
-    res.sendStatus(500);
-    console.log('Filter results failed: ', error);
-  })
-
-})
-
-
 
 
 
@@ -128,10 +95,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 });
 
-
+// TO DELETE AN ITEM 
 router.delete('/:id', (req, res) => {
-
-
   const sqlTxt = `DELETE FROM "supplies"
                     WHERE "id" = $1
                     AND "user_id" = $2;`;
@@ -154,7 +119,7 @@ router.delete('/:id', (req, res) => {
     })
 })
 
-
+/// TO UPDATE ITEM INFO 
 router.put('/:id', (req, res) => {
   console.log('PUT req.body', req.body);
 
@@ -171,17 +136,17 @@ router.put('/:id', (req, res) => {
     req.body.data.id ///maybe req.params.id
   ];
 
-    console.log('these are my sqlParams: ', sqlParams);
+  console.log('these are my sqlParams: ', sqlParams);
 
   pool.query(sqlTxt, sqlParams)
-  .then(dbRes=>{
-    console.log('PUT successful');
-    res.sendStatus(201);
-  })
-  .catch(error=>{
-    console.log('PUT failed. Error: ', error);
-    res.sendStatus(500);
-  });
+    .then(dbRes => {
+      console.log('PUT successful');
+      res.sendStatus(201);
+    })
+    .catch(error => {
+      console.log('PUT failed. Error: ', error);
+      res.sendStatus(500);
+    });
 
 });
 

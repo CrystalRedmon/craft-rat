@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const suppliesRouter = require('./routes/supplies.router');
 const categoriesRouter= require('./routes/categories.router');
+const filteredRouter=require('./routes/filtered.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -26,6 +27,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/supplies', suppliesRouter);
+app.use('/api/filtered', filteredRouter)
 app.use('/api/categories', categoriesRouter);
 
 // Serve static files

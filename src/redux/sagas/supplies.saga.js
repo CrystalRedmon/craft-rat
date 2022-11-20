@@ -63,9 +63,10 @@ function* saveItem(action){
 // GETS FILTERED LIST BASED ON USER INPUT TO CATEGORY, COLOR, AND/OR SCRAPS.
 function* fetchFilteredList(action){
     try{
-        const filteredList = yield axios.get('/api/supplies/filtered', {data: action.payload});
+        console.log('⭐', action.payload);
+        const filteredList = yield axios.get(`/api/filtered/`, {params: action.payload} );
         console.log('filteredList results: ', filteredList.data);
-        yield put({type: 'SET_FILTERED_LIST', payload: filteredList.data});
+        yield put({type: 'SET_SUPPLIES', payload: filteredList.data});
     }catch(error){
         console.log('GET filteredList failed: ', error);
     }
