@@ -20,11 +20,13 @@ const {
     const sqlTxt = `SELECT * FROM "supplies"
                   WHERE "categories_id" = $1 
                   AND "scraps" = $2
-                  AND "user_id" = $3;`;
+                  AND "color" = $3
+                  AND "user_id" = $4;`;
   
     const sqlParams = [
       req.query.categories_id,
       req.query.scraps,
+      req.query.color,
       req.user.id
     ];
   

@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const suppliesRouter = require('./routes/supplies.router');
 const categoriesRouter= require('./routes/categories.router');
 const filteredRouter=require('./routes/filtered.router')
+const colorsRouter=require('./routes/colors.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/supplies', suppliesRouter);
 app.use('/api/filtered', filteredRouter)
 app.use('/api/categories', categoriesRouter);
+app.use('/api/colors', colorsRouter)
 
 // Serve static files
 app.use(express.static('build'));

@@ -7,13 +7,16 @@ import { useEffect, useState } from 'react';
 function SearchOption() {
     const dispatch = useDispatch();
     const categories = useSelector(store => store.categories.allCategories);
+    const colors = useSelector(store => store.colors.allColors);
+
+
     const [filter, setFilter] = useState({
         "categories_id": 0,
         color: '',
         scraps: false,
     })
 
-    console.log('SEARCH. THESE ARE MY CATEGORIES: ', categories);
+
 
     console.log("I'm filtering now: ", filter);
 
@@ -23,6 +26,11 @@ function SearchOption() {
         dispatch({
             type: 'FETCH_CATEGORIES'
         })
+
+        dispatch({
+            type: 'FETCH_COLORS'
+        })
+
     }, []);
 
 
@@ -67,10 +75,11 @@ function SearchOption() {
                     </Button>
                 </Stack>
 
-                <Stack id='filter-options'
-                    direction={{ xs: 'column', sm: 'row' }}
-                    spacing={{ xs: 1, sm: 2, md: 4 }}>
-                    <form onSubmit={handleSubmitFilter}>
+                <form onSubmit={handleSubmitFilter}>
+                    <Stack id='filter-options'
+                        direction={{ xs: 'column', sm: 'row' }}
+                        spacing={{ xs: 1, sm: 2, md: 4 }}>
+
                         <InputLabel>Category</InputLabel>
                         {/* TODO---- CREATE FILTER SUBMIT BUTTON TO FETCH_FILTERED_LIST */}
 
@@ -84,46 +93,43 @@ function SearchOption() {
                                 <option key={category.id} value={category.id}>{category.name}</option>
                             ))}
                         </select>
-                        <button type="submit">Filter</button>
 
-
-                        <InputLabel>Color</InputLabel>
-                        <FormControl sx={{ width: '25%' }}>
-                            <Select sx={{ backgroundColor: 'white' }}>
-                                <MenuItem value={'red'}>Red</MenuItem>
-                                <MenuItem value={'yellow'}>Yellow</MenuItem>
-                                <MenuItem value={'orange'}>Orange</MenuItem>
-                                <MenuItem value={'green'}>green</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <InputLabel>Colors</InputLabel>
+                        <select
+                            required
+                            onChange={(evt) => setFilter({ ...filter, color: evt.target.value })}
+                            value={colors.name}
+                        >
+                            <option name="dropFrom" value="" disabled>Select a category</option>
+                            {colors.map(color => (
+                                <option key={color.id} value={color.id}>{color.name}</option>
+                            ))}
+                        </select>
 
 
                         <InputLabel>Scraps</InputLabel>
                         {filter.scraps === false ?
                             <Switch
                                 defaultChecked={filter.scraps}
-                                onChange={() => setFilter({...filter, scraps: true})}
+                                onChange={() => setFilter({ ...filter, scraps: true })}
                                 size='medium'></Switch>
                             :
                             <Switch
                                 defaultChecked={filter.scraps}
-                                onChange={() => setFilter({...filter, scraps: false})}
+                                onChange={() => setFilter({ ...filter, scraps: false })}
                                 size='medium'></Switch>
                         }
 
-                    </form>
-                    <Button
-                        variant='contained'
-                        color={'secondary'}
-                        size='small'>
-                        Filter
-                    </Button>
+                        <Button
+                            type="submit"
+                            variant='contained'
+                            color={'secondary'}
+                            size='small'>
+                            Filter
+                        </Button>
 
-
-
-
-                </Stack>
-
+                    </Stack>
+                </form>
 
 
 

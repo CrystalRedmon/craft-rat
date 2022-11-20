@@ -10,19 +10,16 @@ const {
 
 
 router.get('/', rejectUnauthenticated, (req, res)=>{
+  
   const sqlTxt = `SELECT * FROM "categories";`;
 
   pool.query(sqlTxt)
   .then(dbRes=>{
-    console.log('All of the Categoroies from DB: ', dbRes.rows);
     res.send(dbRes.rows);
   })
   .catch(error=>{
-    console.log('DB req for all categories failed: ', error);
     res.sendStatus(500);
   })
-
-
 })
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
