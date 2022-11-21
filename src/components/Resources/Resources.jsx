@@ -1,5 +1,7 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Box, Stack} from '@mui/material';
+import ResourcesListItem from '../ResourcesListItem/ResourcesListItem';
 
 
 
@@ -44,7 +46,7 @@ function Resources(){
                 <tbody>
 
                 {resources.map((resource, i) => {
-                        return <tr><ResourcesListItem key={i} resource={resource} /></tr>
+                        return <tr key={i}><ResourcesListItem resource={resource} /></tr>
                     })}
 
 
