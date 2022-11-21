@@ -4,6 +4,7 @@ import user from './user.reducer';
 import supplies from './supplies.reducer';
 import categories from './categories.reducer';
 import colors from './colors.reducer';
+import resources from './resources.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   supplies,
   categories,
   colors,
+  resources,
 });
 
 export default rootReducer;

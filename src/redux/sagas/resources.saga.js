@@ -1,10 +1,10 @@
-import { takeLatest } from "redux-saga/effects";
-import {axios} from 'axios';
+import { put, takeLatest } from "redux-saga/effects";
+import axios from 'axios';
 
 
 function* fetchResources(){
     try{
-        const resources = yield get('/resources');
+        const resources = yield axios.get('/api/resources');
         console.log('Got all of the resources: ', resources.data);
         yield put({type: 'SET_RESOURCES', payload: resources.data})
     }catch(error){
