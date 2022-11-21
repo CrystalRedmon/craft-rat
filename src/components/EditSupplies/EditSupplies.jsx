@@ -17,7 +17,8 @@ function EditSupplies() {
     const params = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
-    const categories = useSelector(store => store.categories.allCategories); // UNSURE IF THIS IS NEEDED
+    const category = useSelector(store => store.categories.currentCategory); 
+    const color = useSelector(store => store.colors.currentColor); 
     const currentItem = useSelector(store => store.supplies.currentSupplies);
     const [scraps, setScraps] = useState(currentItem.scraps);
 
@@ -43,9 +44,9 @@ function EditSupplies() {
             })
         }
 
-        // // ⬇️ UNSURE IF THIS IS NEEDED SINCE USER WILL NOT HAVE THE OPTION TO CHANGE ITEM CATEGORY
+
         dispatch({
-            type: 'FETCH_CATEGORIES'
+            type: 'FETCH_CURRENT_CATEGORY'
         })
     }, [params.id]);
 
@@ -131,17 +132,13 @@ function EditSupplies() {
                             borderRadius: '3em'
                         }}>
 
-                        {/* EDIT OPTION UNAVAILABLE FOR CATEGORY */}
-                        <select
-                            required
-                            value={currentItem.category}>
-                            <option name="dropFrom" value="" disabled>Select a category</option>
-                            {categories.map(category => (
-                                <option key={category.id} value={category.id}>{category.name}</option>
-                            ))}
-                        </select>
 
-
+                        <InputLabel>Category</InputLabel>
+                        <Box sx={{ width: '50%' }}>
+                            <Typography>
+                                {category}
+                            </Typography>
+                        </Box>
 
 
                         {/* TODO--- POPULATE DROP DOWN USING CATEGORIES FROM DB. CATEGORIES ALREADY BROUGHT OVER FROM DB */}
@@ -168,7 +165,7 @@ function EditSupplies() {
                         <InputLabel>Color</InputLabel>
                         <Box sx={{ width: '50%' }}>
                             <Typography>
-                                {currentItem.color}
+                                {color}
                             </Typography>
                         </Box>
 
