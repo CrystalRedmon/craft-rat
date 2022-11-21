@@ -16,15 +16,17 @@ import InsertPhotoTwoToneIcon from '@mui/icons-material/InsertPhotoTwoTone';
 function AddSuppliesForm() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const categories = useSelector(store => store.categories.allCategories)
+    const categories = useSelector(store => store.categories.allCategories);
+    const colors = useSelector(store => store.colors.allColors);
 
 
+    console.log('adding supplies, all colors', colors);
     console.log('adding supplies, all categories', categories);
 
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
     const [newItem, setNewItem] = useState({
         category: '',
-        color: '',
+        color_id: 0,
         name: '',
         product_details: '',
         notes: '',
@@ -37,6 +39,10 @@ function AddSuppliesForm() {
 
         dispatch({
             type: 'FETCH_CATEGORIES'
+        })
+
+        dispatch({
+            type: 'FETCH_COLORS'
         })
     }, []);
 
@@ -215,19 +221,17 @@ function AddSuppliesForm() {
                             </Select>
                         </FormControl> */}
 
-                        <InputLabel>Color</InputLabel>
-                        <FormControl sx={{ width: '50%' }}>
-                            <Select onChange={handleColorInput} sx={{ backgroundColor: 'white' }}>
-                                <MenuItem value={'Red'}>Red</MenuItem>
-                                <MenuItem value={'Yellow'}>Yellow</MenuItem>
-                                <MenuItem value={'Orange'}>Orange</MenuItem>
-                                <MenuItem value={'Green'}>Green</MenuItem>
-                                <MenuItem value={'Blue'}>Blue</MenuItem>
-                                <MenuItem value={'Black'}>Black</MenuItem>
-                                <MenuItem value={'White'}>White</MenuItem>
-                                <MenuItem value={'Multicolored'}>Multicolored</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <InputLabel>Colors</InputLabel>
+                        <select
+                            required
+                            onChange={(evt) => setFilter({ ...filter, color: evt.target.value })}
+                            value={colors.name}
+                        >
+                            <option name="dropFrom" value="" disabled>Select a category</option>
+                            {colors.map(color => (
+                                <option key={color.id} value={color.id}>{color.name}</option>
+                            ))}
+                        </select>
 
                         <InputLabel>Name</InputLabel>
                         <TextField onChange={handleNameInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />

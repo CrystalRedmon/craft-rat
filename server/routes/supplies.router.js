@@ -63,19 +63,24 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   /// SENDS ALL INFO EXCEPT CATEGORY ID. 
   /// CATEGORY IS ADDED SEPARATELY
   const sqlTxt = `INSERT INTO "supplies"
-                      ("user_id", "categories_id", "color", "name", "product_details", "notes", "quantity", "image")
+                      ("user_id", "categories_id", "colors_id", "name", "product_details", "notes", "quantity", "image")
                       VALUES
                       ($1, $2, $3, $4, $5, $6, $7, $8)
                       RETURNING "id";`;
 
   const categories_id = req.body.data.category
+  const colors_id = req.body.data.color_id
 
   console.log('this is the category id', req.body.data.category)
   console.log('this is the real cat_id: ', Number(categories_id))
+
+  console.log('this is the colors id', req.body.data.color_id);
+  console.log(colors_id);
+
   const sqlParams = [
     req.user.id,
     categories_id,
-    req.body.data.color,
+    colors_id,
     req.body.data.name,
     req.body.data.product_details,
     req.body.data.notes,
