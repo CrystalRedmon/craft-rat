@@ -190,7 +190,10 @@ function AddSuppliesForm() {
                             required
                             onChange={handleCategoryInput}
                             value={newItem.category}>
-                            <option name="dropFrom" value="" disabled>Select a category</option>
+                            <option
+                                name="dropFrom"
+                                value=""
+                                disabled>Select a category</option>
                             {categories.map(category => (
                                 <option key={category.id} value={category.id}>{category.name}</option>
                             ))}

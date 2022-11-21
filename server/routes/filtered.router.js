@@ -20,7 +20,7 @@ const {
     const sqlTxt = `SELECT * FROM "supplies"
                   WHERE "categories_id" = $1 
                   AND "scraps" = $2
-                  AND "color" = $3
+                  AND "colors_id" = $3
                   AND "user_id" = $4;`;
   
     const sqlParams = [

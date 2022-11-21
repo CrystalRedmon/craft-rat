@@ -33,7 +33,7 @@ function SearchOption() {
 
     }, []);
 
-
+    
 
     const handleSubmitFilter = (evt) => {
         evt.preventDefault();
@@ -45,6 +45,8 @@ function SearchOption() {
 
 
     }
+
+    
 
     return (<>
 
@@ -81,14 +83,14 @@ function SearchOption() {
                         spacing={{ xs: 1, sm: 2, md: 4 }}>
 
                         <InputLabel>Category</InputLabel>
-                        {/* TODO---- CREATE FILTER SUBMIT BUTTON TO FETCH_FILTERED_LIST */}
-
                         <select
                             required
                             onChange={(evt) => setFilter({ ...filter, categories_id: evt.target.value })}
-                            value={categories.name}
-                        >
-                            <option name="dropFrom" value="" disabled>Select a category</option>
+                            value={categories.name}>
+                            <option
+                                name="dropFrom"
+                                value=""
+                                disabled>Select a category</option>
                             {categories.map(category => (
                                 <option key={category.id} value={category.id}>{category.name}</option>
                             ))}
