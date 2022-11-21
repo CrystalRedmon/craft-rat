@@ -16,6 +16,7 @@ function SuppliesDetails() {
 
     const currentItem = useSelector(store => store.supplies.currentSupplies);
     const currentCategory = useSelector(store => store.categories.currentCategory);
+    const currentColor = useSelector(store=> store.colors.currentColor)
 
 
 
@@ -33,6 +34,12 @@ function SuppliesDetails() {
             type: 'FETCH_CURRENT_CATEGORY',
             payload: `${params.id}`
         })
+
+        dispatch({
+            type: 'FETCH_CURRENT_COLOR',
+            payload: `${params.id}`
+
+        });
         console.log(`Is this supposed to be a string ${params.id}`)
     }, [params.id]);
 
@@ -122,7 +129,7 @@ function SuppliesDetails() {
                     <InputLabel>Color</InputLabel>
                     <Box sx={{ width: '50%'}}>
                         <Typography>
-                            {currentItem.color}
+                            {currentColor}
                         </Typography>
                     </Box>
 
