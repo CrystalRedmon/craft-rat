@@ -2,6 +2,7 @@ import { put, takeLatest } from "redux-saga/effects";
 import axios from 'axios';
 
 
+
 function* fetchResources(){
     try{
         const resources = yield axios.get('/api/resources');
@@ -22,18 +23,22 @@ function* deleteResource(action){
 }
 
 
+function* addResource(action){
+    try{
+        yield axios.post('/api/resources', {data: action.payload} );
+        yield put({type: 'FETCH_RESOURCES'});
+    }catch(error){
+        console.log('Add resource failed', error);
+    }
 
-//TODO--- ADD RESOURCES SAGA
-
-
-
-
+}
 
 
 
 function* resourcesSaga(){
     yield takeLatest('FETCH_RESOURCES', fetchResources);
     yield takeLatest('DELETE_RESOURCE', deleteResource);
+    yield takeLatest('ADD_RESOURCE', addResource);
 }
 
 export default resourcesSaga;

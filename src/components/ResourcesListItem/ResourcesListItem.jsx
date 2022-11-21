@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 
 
+
 function ResourcesListItem({ resource }) {
     const dispatch = useDispatch();
 
@@ -13,7 +14,6 @@ function ResourcesListItem({ resource }) {
         });
 
     }
-
 
     return (<>
 
