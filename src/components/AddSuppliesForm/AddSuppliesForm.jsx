@@ -26,7 +26,7 @@ function AddSuppliesForm() {
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
     const [newItem, setNewItem] = useState({
         category: '',
-        color_id: 0,
+        color_id: '',
         name: '',
         product_details: '',
         notes: '',
@@ -75,7 +75,7 @@ function AddSuppliesForm() {
     const handleColorInput = (event) => {
         setNewItem({
             ...newItem,
-            color: event.target.value
+            color_id: event.target.value
         })
         console.log(newItem);
     }
@@ -174,9 +174,6 @@ function AddSuppliesForm() {
 
                     </Stack>
 
-
-
-
                     <Stack id='right-inner-container'
                         p={3}
                         sx={{
@@ -188,7 +185,7 @@ function AddSuppliesForm() {
                             borderRadius: '3em'
                         }}>
 
-
+                        <InputLabel>Category</InputLabel>
                         <select
                             required
                             onChange={handleCategoryInput}
@@ -201,37 +198,17 @@ function AddSuppliesForm() {
 
 
 
-
-                        {/* TODO--- POPULATE DROP DOWN USING CATEGORIES FROM DB. CATEGORIES ALREADY BROUGHT OVER FROM DB */}
-                        {/* <InputLabel>Category</InputLabel>
-                        <FormControl sx={{ width: '50%' }}>
-                            <Select onChange={handleCategoryInput} sx={{ backgroundColor: 'white' }}> */}
-                        {/* required
-                            onChange={(event)=>setNewItem(event.target.value)}
-                            value={newItem.category}
-                        
-                            <option name="dropFrom" value="" disabled>Select a category</option>
-                            {categories.map(category => (
-                                <option key={category.id} value={category.id}>{category.name}</option>
-                            ))} */}
-                        {/* <MenuItem value={categories.id} >Needlework</MenuItem>
-                                <MenuItem value={'sewing'}>Sewing</MenuItem>
-                                <MenuItem value={'cricuit'}>Cricut Crafts</MenuItem>
-                                <MenuItem value={'paper'}>Paper Crafts</MenuItem>
-                            </Select>
-                        </FormControl> */}
-
                         <InputLabel>Colors</InputLabel>
                         <select
                             required
-                            onChange={(evt) => setFilter({ ...filter, color: evt.target.value })}
-                            value={colors.name}
-                        >
-                            <option name="dropFrom" value="" disabled>Select a category</option>
+                            onChange={handleColorInput}
+                            value={newItem.color_id}>
+                            <option name="dropFrom" value="" disabled>Select a color</option>
                             {colors.map(color => (
                                 <option key={color.id} value={color.id}>{color.name}</option>
                             ))}
                         </select>
+
 
                         <InputLabel>Name</InputLabel>
                         <TextField onChange={handleNameInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
