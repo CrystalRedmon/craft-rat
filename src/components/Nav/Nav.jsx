@@ -25,6 +25,11 @@ function Nav() {
     history.push('/form');
   }
 
+  const handleToResources = () =>{
+    setAnchorEl(null);
+    history.push('/resources');
+  }
+
   return (
     <div className="nav">
 
@@ -51,7 +56,7 @@ function Nav() {
         }}
       >
         <MenuItem onClick={handleToAdd}>Add Items</MenuItem>
-        <MenuItem onClick={handleClose}>Saved Resources</MenuItem>
+        <MenuItem onClick={handleToResources}>Saved Resources</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
         <div>
           {/* If no user is logged in, show these links */}

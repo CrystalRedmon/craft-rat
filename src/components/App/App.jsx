@@ -23,7 +23,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import SuppliesDetails from '../SuppliesDetails/SuppliesDetails';
 import EditSupplies from '../EditSupplies/EditSupplies';
 import AddSuppliesForm from '../AddSuppliesForm/AddSuppliesForm';
-import SearchOption from '../SearchOption/SearchOption';
+import SearchOption from '../SearchOption/SearchOption';  /// UNSURE IF I NEED THIS HERE. NOT CURRENTLY GETTING IT'S OWN ROUTE
+import Resources from '../Resources/Resources';
 
 import './App.css';
 
@@ -95,6 +96,14 @@ function App() {
             path="/details/:id/edit"
           >
             <EditSupplies />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // UNSURE IF A NEW ROUTE IS NEEDED SINCE ADD/EDIT/VIEW ARE ALL BASICALL THE SAME VIEW
+            exact
+            path="/resources"
+          >
+            <Resources />
           </ProtectedRoute>
 
           <Route
