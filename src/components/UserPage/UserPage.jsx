@@ -20,7 +20,7 @@ function UserPage() {
             spacing={3}
             sx={{ width: '25%', margin: 'auto' }}>
             <h2>Welcome, {user.username}!</h2>
-            <p>Your ID is: {user.id}</p>
+            
           </Stack>
 
 

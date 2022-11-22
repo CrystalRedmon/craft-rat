@@ -58,9 +58,10 @@ router.post('/', (req, res) => {
                   ("user_id", "categories_id", "website", "description")
                   VALUES ($1, $2, $3, $4 );`;
 
+                  console.log(req.body)
   const sqlParams = [
     req.user.id,
-    req.body.data.categories_id,
+    req.body.data.category,
     req.body.data.website,
     req.body.data.description
   ];

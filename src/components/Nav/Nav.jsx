@@ -55,9 +55,9 @@ function Nav() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleToAdd}>Add Items</MenuItem>
-        <MenuItem onClick={handleToResources}>Saved Resources</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleToAdd}> <button className="navLink">Add Items</button> </MenuItem>
+        <MenuItem onClick={handleToResources} className="navLink"> <button className="navLink">Saved Resources </button> </MenuItem>
+        <MenuItem onClick={handleClose}><LogOutButton className="navLink" /></MenuItem>
         <div>
           {/* If no user is logged in, show these links */}
           {!user.id && (
@@ -67,7 +67,7 @@ function Nav() {
             </Link>
           )}
 
-          {/* If a user is logged in, show these links */}
+          {/* If a user is logged in, show these links
           {user.id && (
             <>
               <Link className="navLink" to="/user">
@@ -84,7 +84,7 @@ function Nav() {
 
           <Link className="navLink" to="/about">
             About
-          </Link>
+          </Link> */}
         </div>
 
       </Menu>

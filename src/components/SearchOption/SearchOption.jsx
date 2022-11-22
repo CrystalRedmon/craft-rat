@@ -86,7 +86,7 @@ function SearchOption() {
                         <select
                             required
                             onChange={(evt) => setFilter({ ...filter, categories_id: evt.target.value })}
-                            value={categories.name}>
+                            value={filter.category}>
                             <option
                                 name="dropFrom"
                                 value=""
