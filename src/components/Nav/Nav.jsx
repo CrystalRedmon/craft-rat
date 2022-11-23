@@ -4,11 +4,11 @@ import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Menu, MenuItem } from '@mui/material'
+import { Button, Menu, MenuItem, Grid } from '@mui/material'
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 
 function Nav() {
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((store) => store.user);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -31,7 +31,7 @@ function Nav() {
     history.push('/resources');
   }
 
-  const handleLogout =()=>{
+  const handleLogout = () => {
     dispatch({
       type: 'LOGOUT'
     })
@@ -42,48 +42,58 @@ function Nav() {
   return (
     <div className="nav">
 
+      <Grid container>
 
-      <Link to="/home">
-        <h2 className="nav-title">CraftRat</h2>
-      </Link>
+        <Grid item xs={5}>
+          <Link to="/home">
+            <h2 className="nav-title">CraftRat</h2>
+          </Link>
+        </Grid>
 
 
-      {user.username ?
-        <h2>Welcome, {user.username}!</h2>
-        :
-        <h2>Hey, Crafter</h2>}
+        <Grid item xs={6.5}>
 
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        <MenuTwoToneIcon />
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <MenuItem onClick={handleToAdd}> <button className="navLink">Add Items</button> </MenuItem>
-        <MenuItem onClick={handleToResources}> <button className="navLink">Saved Resources </button> </MenuItem>
-        <MenuItem onClick={handleLogout}><button className="navLink">Logout</button ></MenuItem>
-        <div>
-          {/* If no user is logged in, show these links */}
-          {!user.id && (
-            // If there's no user, show login/registration links
-            <Link className="navLink" to="/login">
-              Login / Register
-            </Link>
-          )}
+          {user.username ?
+            <h2 class='nav-title'>Welcome, {user.username}!</h2>
+            :
+            <h2 class='greeting'>Hey, Crafter</h2>}
 
-          {/* If a user is logged in, show these links
+        </Grid>
+
+        <Grid item xs={.5} mt={1}>
+          <Button
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+          >
+            <MenuTwoToneIcon />
+          </Button>
+
+          <Menu
+            
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={handleToAdd}> <button className="navLink">Add Items</button> </MenuItem>
+            <MenuItem onClick={handleToResources}> <button className="navLink">Saved Resources </button> </MenuItem>
+            <MenuItem onClick={handleLogout}><button className="navLink">Logout</button ></MenuItem>
+            <div>
+              {/* If no user is logged in, show these links */}
+              {!user.id && (
+                // If there's no user, show login/registration links
+                <Link className="navLink" to="/login">
+                  Login / Register
+                </Link>
+              )}
+
+              {/* If a user is logged in, show these links
           {user.id && (
             <>
               <Link className="navLink" to="/user">
@@ -101,9 +111,15 @@ function Nav() {
           <Link className="navLink" to="/about">
             About
           </Link> */}
-        </div>
+            </div>
 
-      </Menu>
+          </Menu>
+
+        </Grid>
+
+
+      </Grid>
+
 
     </div>
   );
