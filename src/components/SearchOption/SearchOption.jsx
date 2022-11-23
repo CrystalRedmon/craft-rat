@@ -1,4 +1,4 @@
-import { Box, TextField, Select, MenuItem, InputLabel, FormControl, Switch, TextareaAutosize, Stack, Input, Button, ButtonGroup, InputAdornment, Checkbox } from '@mui/material';
+import { Box, TextField, Select, MenuItem, InputLabel, FormControl, FormGroup, Switch, TextareaAutosize, Stack, Input, Button, ButtonGroup, InputAdornment, Checkbox } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -82,7 +82,7 @@ function SearchOption() {
                         direction={{ xs: 'column', sm: 'row' }}
                         spacing={{ xs: 1, sm: 2, md: 4 }}>
 
-                        <InputLabel>Category</InputLabel>
+                        <label>Category</label>
                         <select
                             required
                             onChange={(evt) => setFilter({ ...filter, categories_id: evt.target.value })}
@@ -96,7 +96,7 @@ function SearchOption() {
                             ))}
                         </select>
 
-                        <InputLabel>Colors</InputLabel>
+                        <label>Colors</label>
                         <select
                             required
                             onChange={(evt) => setFilter({ ...filter, color: evt.target.value })}
@@ -109,7 +109,7 @@ function SearchOption() {
                         </select>
 
 
-                        <InputLabel>Scraps</InputLabel>
+                        <label>Scraps</label>
                         {filter.scraps === false ?
                             <Switch
                                 defaultChecked={filter.scraps}
