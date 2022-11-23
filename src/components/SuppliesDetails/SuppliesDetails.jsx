@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 /// MUI IMPORTS
-import { Grid, Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
+import { Grid, Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography, Paper, Label } from '@mui/material';
 
 function SuppliesDetails() {
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function SuppliesDetails() {
 
     const currentItem = useSelector(store => store.supplies.currentSupplies);
     const currentCategory = useSelector(store => store.categories.currentCategory);
-    const currentColor = useSelector(store=> store.colors.currentColor)
+    const currentColor = useSelector(store => store.colors.currentColor)
 
 
 
@@ -57,145 +57,93 @@ function SuppliesDetails() {
 
 
     return (
-        <Grid 
-        container
-        // className="main-container, grid-col_12"
-        >
+        <Grid container spacing={3}>
 
-            <Stack id='form-container'
-                direction={{ xs: 'column', sm: 'row' }}
-                spacing={{ xs: 1, sm: 2, md: 4 }}
-                justifyContent="center"
-                alignItems="center"
-                sx={{ backgroundColor: 'lightgray' }}
-            >
+            <Grid container>
 
-                <Stack id='left-inner-container'
-                    p={3}
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: 500,
-                        height: 500,
-                        borderRadius: '3em'
-                    }}>
+                {/* DISPLAY IMAGE */}
 
-                    {/* DISPLAY IMAGE */}
+                <Grid item xs={2}></Grid>
+                <Grid item xs={5} >
                     <Box
-                        m={'auto'}
                         sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
                             width: 350,
-                            height: 350,
-                            borderRadius: '.5em'
-                        }}><img src={currentItem.image} alt="" />
-
-                        <Box
-                            variant='filled'
-                            sx={{ width: '50%'}}
-                            type="url"
-                            placeholder='Image URL'
-                        />
-
+                            height: 350
+                        }}>
+                        <img src={currentItem.image} alt="" />
                     </Box>
+                </Grid>
 
-                    <InputLabel>Item Details</InputLabel>
-                    <Box minrows={5} style={{ width: 325}}>
-                        {currentItem.product_details}
-                    </Box>
+                <Grid item xs={3} pt={15} >
 
-                </Stack>
+                    <Typography sx={{ lineHeight: '1rem' }}>
+                        <p>Category: <span>{currentCategory}</span></p>
+                        <p>Color: {currentColor}</p>
+                        <p>Item: {currentItem.name}</p>
+                        <p>Quantity/Unit: {currentItem.quantity}</p>
+                    </Typography>
 
-                <Stack id='right-inner-container'
-                    p={3}
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: 500,
-                        height: 500,
-                        borderRadius: '3em'
-                    }}>
-
-                    <InputLabel>Category</InputLabel>
-                    <Box sx={{ width: '50%'}}>
-                        <Typography>
-                            {currentCategory}
-                        </Typography>
-                    </Box>
-
-
-                    <InputLabel>Color</InputLabel>
-                    <Box sx={{ width: '50%'}}>
-                        <Typography>
-                            {currentColor}
-                        </Typography>
-                    </Box>
-
-                    <InputLabel>Item</InputLabel>
-                    <Box sx={{ width: '50%'}}>
-                        <Typography>
-                            {currentItem.name}
-                        </Typography>
-                    </Box>
-
-                    <InputLabel>Quantity/Unit</InputLabel>
-                    <Box sx={{ width: '50%'}}>
-                        <Typography>
-                            {currentItem.quantity}
-                        </Typography>
-                    </Box>
 
                     {/* // CONDITIONAL STATEMENT TO ADDRESS SWITCH BETWEEN SCRAPS/CHECKED AND !SCRAPS/UNCHECKED */}
-                    <InputLabel>Scraps</InputLabel>
-                    {currentItem.scraps ?
+                    Scraps: {currentItem.scraps ?
                         <Switch checked size='medium'></Switch>
                         :
                         <Switch size='medium'></Switch>
                     }
+                </Grid>
+                <Grid item xs={4}></Grid>
+
+            </Grid>
+
+            <Grid item xs={12}></Grid>
+            <Grid item xs={12}></Grid>
+            <Grid item xs={12}></Grid>
+            <Grid item xs={12}></Grid>
+
+            <Grid container>
+
+                <Grid item xs={2}></Grid>
+
+                <Grid item xs={5} >
+                    <InputLabel>Item Details</InputLabel>
+                    <Box sx={{ width: 325, height:100, border: 'gray solid 1px', borderRadius: '5px', p: '5px'}}>
+                        {currentItem.product_details}
+                    </Box>
+                </Grid>
 
 
+                <Grid item xs={4}>
                     <InputLabel>Notes</InputLabel>
-                    <Box style={{ width: 325}} >
+                    <Box sx={{ width: 325, height:100, border: 'gray solid 1px', borderRadius: '5px', p: '5px'}} >
                         <Typography>
                             {currentItem.notes}
                         </Typography>
                     </Box>
-
-                </Stack>
-
-
-
-            </Stack>
+                </Grid>
+                <Grid item xs={1}></Grid>
+            </Grid>
 
 
-            {/* ///BOX FOR NAVIGATION */}
-            <Box
-                mt={3}
-                display='flex'
-                sx={{
-                    backgroundColor: 'white',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-            >
+          
+            <Grid item xs={12}></Grid>
 
-                <ButtonGroup
 
-                    variant='contained'
-                    color={'secondary'}
-                    size='large'>
 
-                    <Button onClick={() => history.push('/')}>Back To List</Button>
-                    <Button onClick={() => history.push(`/details/${params.id}/edit`)}>Edit</Button>
-                    <Button onClick={handleDeleteItem}>Delete</Button>
-                   
-                </ButtonGroup>
 
-            </Box>
+            <Grid container>
+                <Grid item xs={4.5}></Grid>
+                <Grid item xs={3}>
+                    <ButtonGroup
+                        variant='contained'
+                        color={'secondary'}
+                        size='medium'>
+                        <Button onClick={() => history.push('/')}>Back To List</Button>
+                        <Button onClick={() => history.push(`/details/${params.id}/edit`)}>Edit</Button>
+                        <Button onClick={handleDeleteItem}>Delete</Button>
+                    </ButtonGroup>
+                </Grid>
+                <Grid item xs={4.5}></Grid>
+            </Grid>
 
         </Grid >
     );

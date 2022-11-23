@@ -127,3 +127,12 @@ input {
     margin: auto;
     padding-bottom: 2rem;
 }
+
+
+.textbox{
+  width: 325px;
+  height: 100px;
+  border: gray solid 1px;
+  border-radius: 5px;
+  padding: 5px;
+}

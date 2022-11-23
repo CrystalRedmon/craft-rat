@@ -7,7 +7,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 
 ///MUI IMPORT COMPONENTS 
 import Button from '@mui/material/Button';
-import { Box, Typography, TextField, Select, MenuItem, InputLabel, FormControl, Switch, TextareaAutosize, Stack, Input, ButtonGroup, InputAdornment } from '@mui/material';
+import { Grid, Box, Typography, TextField, Select, MenuItem, InputLabel, FormControl, FormGroup, Switch, TextareaAutosize, Stack, Input, ButtonGroup, InputAdornment } from '@mui/material';
 import { borderRadius } from '@mui/system';
 import InsertPhotoTwoToneIcon from '@mui/icons-material/InsertPhotoTwoTone';
 
@@ -17,8 +17,8 @@ function EditSupplies() {
     const params = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
-    const category = useSelector(store => store.categories.currentCategory); 
-    const color = useSelector(store => store.colors.currentColor); 
+    const category = useSelector(store => store.categories.currentCategory);
+    const color = useSelector(store => store.colors.currentColor);
     const currentItem = useSelector(store => store.supplies.currentSupplies);
     const [scraps, setScraps] = useState(currentItem.scraps);
 
@@ -66,195 +66,139 @@ function EditSupplies() {
 
 
     return (
-        <Box className="main-container, grid-col_12"
-        >
+        <Grid container spacing={3}>
 
+            <Grid container>
+                <Grid item xs={2}></Grid>
+
+
+                <Grid item xs={5} >
+                    <Box
+                        sx={{
+                            width: 350,
+                            height: 350
+                        }}>
+                        <img src={currentItem.image} alt="" />
+                    </Box>
+                </Grid>
+
+                <Grid item xs={3} pt={15}>
+                     <Typography sx={{ lineHeight: '1rem' }}>
+
+
+                    </Typography>
+
+                </Grid>
+
+
+
+
+            </Grid>
+
+
+
+
+
+            <InputLabel>Category</InputLabel>
+            <Box sx={{ width: '50%' }}>
+                <Typography>
+                    {category}
+                </Typography>
+            </Box>
+
+
+
+            {/* EDIT OPTION UNAVAILABLE FOR COLOR */}
+            <InputLabel>Color</InputLabel>
+            <Box sx={{ width: '50%' }}>
+                <Typography>
+                    {color}
+                </Typography>
+            </Box>
+
+            {/* EDIT OPTION UNAVAILABLE FOR ITEM */}
+            <InputLabel>Item</InputLabel>
+            <Box sx={{ width: '50%' }}>
+                <Typography>
+                    {currentItem.name}
+                </Typography>
+            </Box>
 
             <form onSubmit={handleOnSubmit}>
-                <Stack id='form-container'
-                    direction={{ xs: 'column', sm: 'row' }}
-                    spacing={{ xs: 1, sm: 2, md: 4 }}
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{ backgroundColor: 'lightgray' }}
-                >
+                {/* /// QUANTITY IS EDITABLE */}
 
-                    <Stack id='left-inner-container'
-                        p={3}
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: 500,
-                            height: 500,
-                            borderRadius: '3em'
-                        }}>
-
-                        <Box
-                            m={'auto'}
-                            sx={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                width: 350,
-                                height: 350,
-                                backgroundColor: 'white',
-                                borderRadius: '.5em'
-                            }}><img src={currentItem.image} alt="" />
-
-                            <Box
-                                variant='filled'
-                                sx={{ width: '50%', backgroundColor: 'white' }}
-                                type="url"
-                                placeholder='Image URL'
-                            />
-
-                        </Box>
-
-                        <InputLabel>Item Details</InputLabel>
-                        <Box minrows={5} style={{ width: 325 }}>
-                            {currentItem.product_details}
-                        </Box>
-
-                    </Stack>
+                <InputLabel>Quantity/Unit</InputLabel>
+                <TextField
+                    value={currentItem.quantity}
+                    onChange={(evt) => dispatch({
+                        type: 'UPDATE_EDIT_ITEM',
+                        payload: { property: 'quantity', value: evt.target.value }
+                    })}
+                    variant='filled'
+                    sx={{ width: '50%', backgroundColor: 'white' }} />
 
 
 
-
-                    <Stack id='right-inner-container'
-                        p={3}
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: 500,
-                            height: 500,
-                            borderRadius: '3em'
-                        }}>
-
-
-                        <InputLabel>Category</InputLabel>
-                        <Box sx={{ width: '50%' }}>
-                            <Typography>
-                                {category}
-                            </Typography>
-                        </Box>
-
-
-                        {/* TODO--- POPULATE DROP DOWN USING CATEGORIES FROM DB. CATEGORIES ALREADY BROUGHT OVER FROM DB */}
-                        {/* <InputLabel>Category</InputLabel>
-                        <FormControl sx={{ width: '50%' }}>
-                            <Select onChange={handleCategoryInput} sx={{ backgroundColor: 'white' }}> */}
-                        {/* required
-                            onChange={(event)=>setNewItem(event.target.value)}
-                            value={newItem.category}
-                        
-                            <option name="dropFrom" value="" disabled>Select a category</option>
-                            {categories.map(category => (
-                                <option key={category.id} value={category.id}>{category.name}</option>
-                            ))} */}
-                        {/* <MenuItem value={categories.id} >Needlework</MenuItem>
-                                <MenuItem value={'sewing'}>Sewing</MenuItem>
-                                <MenuItem value={'cricuit'}>Cricut Crafts</MenuItem>
-                                <MenuItem value={'paper'}>Paper Crafts</MenuItem>
-                            </Select>
-                        </FormControl> */}
-
-
-                        {/* EDIT OPTION UNAVAILABLE FOR COLOR */}
-                        <InputLabel>Color</InputLabel>
-                        <Box sx={{ width: '50%' }}>
-                            <Typography>
-                                {color}
-                            </Typography>
-                        </Box>
-
-                        {/* EDIT OPTION UNAVAILABLE FOR ITEM */}
-                        <InputLabel>Item</InputLabel>
-                        <Box sx={{ width: '50%' }}>
-                            <Typography>
-                                {currentItem.name}
-                            </Typography>
-                        </Box>
-
-                        {/* /// QUANTITY IS EDITABLE */}
-                        <InputLabel>Quantity/Unit</InputLabel>
-                        <TextField
-                            value={currentItem.quantity}
-                            onChange={(evt) => dispatch({
-                                type: 'UPDATE_EDIT_ITEM',
-                                payload: { property: 'quantity', value: evt.target.value }
-                            })}
-                            variant='filled'
-                            sx={{ width: '50%', backgroundColor: 'white' }} />
-
-                        {/* /// TODO ---- 🆘 SCRAPS IS EDITABLE BUT NOT FUNCTIONAL YET */}
-
-                        <InputLabel>Scraps</InputLabel>
-                        {currentItem.scraps === true ?
-                            <Switch
-                                defaultChecked={currentItem.scraps}
-                                onChange={() => dispatch({
-                                    type: 'UPDATE_EDIT_ITEM',
-                                    payload: { property: 'scraps', value: false }
-                                })}
-                                size='medium'></Switch>
-                            :
-                            <Switch
-                                defaultChecked={currentItem.scraps}
-                                onChange={() => dispatch({
-                                    type: 'UPDATE_EDIT_ITEM',
-                                    payload: { property: 'scraps', value: true }
-                                })}
-                                size='medium'></Switch>
-                        }
+                <InputLabel>Scraps</InputLabel>
+                {currentItem.scraps === true ?
+                    <Switch
+                        defaultChecked={currentItem.scraps}
+                        onChange={() => dispatch({
+                            type: 'UPDATE_EDIT_ITEM',
+                            payload: { property: 'scraps', value: false }
+                        })}
+                        size='medium'></Switch>
+                    :
+                    <Switch
+                        defaultChecked={currentItem.scraps}
+                        onChange={() => dispatch({
+                            type: 'UPDATE_EDIT_ITEM',
+                            payload: { property: 'scraps', value: true }
+                        })}
+                        size='medium'></Switch>
+                }
 
 
 
-                        {/* /// NOTES ARE EDITABLE */}
-                        <InputLabel>Notes</InputLabel>
-                        <TextareaAutosize
-                            value={currentItem.notes}
-                            onChange={(evt) => dispatch({
-                                type: 'UPDATE_EDIT_ITEM',
-                                payload: { property: 'notes', value: evt.target.value }
-                            })}
-                            minRows={5}
-                            style={{ width: 325 }} />
-
-                    </Stack>
-
-
-
-                </Stack>
-
-                <Box
-                    mt={3}
-                    display='flex'
-                    sx={{
-                        backgroundColor: 'white',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                >
-
-                    <ButtonGroup
-
-                        variant='contained'
-                        color={'secondary'}
-                        size='large'>
-
-                        <Button onClick={() => history.push('/')}>Back To List</Button>
-
-                        <Button type='submit'>Update</Button>
-
-                        <Button onClick={() => history.push(`/details/${params.id}`)}>Cancel</Button>
-
-                    </ButtonGroup>
-
+                <InputLabel>Item Details</InputLabel>
+                <Box class="textbox">
+                    {currentItem.product_details}
                 </Box>
+
+                {/* /// NOTES ARE EDITABLE */}
+                <InputLabel>Notes</InputLabel>
+                <textarea
+                    class="textbox"
+                    value={currentItem.notes}
+                    onChange={(evt) => dispatch({
+                        type: 'UPDATE_EDIT_ITEM',
+                        payload: { property: 'notes', value: evt.target.value }
+                    })}
+                    minRows={5}
+                    style={{ width: 325 }} />
+
+
+
+
+
+                {/* </Stack> */}
+
+                <Grid container>
+                    <Grid item xs={5.5}></Grid>
+                    <Grid item xs={4}>
+                        <ButtonGroup
+                            variant='contained'
+                            color={'secondary'}
+                            size='medium'>
+                            <Button onClick={() => history.push('/')}>Back To List</Button>
+                            <Button type='submit'>Update</Button>
+                            <Button onClick={() => history.push(`/details/${params.id}`)}>Cancel</Button>
+                        </ButtonGroup>
+                    </Grid>
+                    <Grid item xs={2}></Grid>
+                </Grid>
             </form>
-        </Box>
+        </Grid>
 
     )
 }
