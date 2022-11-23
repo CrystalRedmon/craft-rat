@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link, useHistory} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Menu, MenuItem } from '@mui/material'
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 
 function Nav() {
+  const dispatch =useDispatch();
   const history = useHistory();
   const user = useSelector((store) => store.user);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,10 +26,18 @@ function Nav() {
     history.push('/form');
   }
 
-  const handleToResources = () =>{
+  const handleToResources = () => {
     setAnchorEl(null);
     history.push('/resources');
   }
+
+  const handleLogout =()=>{
+    dispatch({
+      type: 'LOGOUT'
+    })
+
+  }
+
 
   return (
     <div className="nav">
@@ -38,7 +47,12 @@ function Nav() {
         <h2 className="nav-title">CraftRat</h2>
       </Link>
 
-      <h2>Welcome, {user.username}!</h2>
+
+      {user.username ?
+        <h2>Welcome, {user.username}!</h2>
+        :
+        <h2>Hey, Crafter</h2>}
+
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -46,7 +60,7 @@ function Nav() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <MenuTwoToneIcon  />
+        <MenuTwoToneIcon />
       </Button>
       <Menu
         id="basic-menu"
@@ -58,8 +72,8 @@ function Nav() {
         }}
       >
         <MenuItem onClick={handleToAdd}> <button className="navLink">Add Items</button> </MenuItem>
-        <MenuItem onClick={handleToResources} className="navLink"> <button className="navLink">Saved Resources </button> </MenuItem>
-        <MenuItem onClick={handleClose}><LogOutButton className="navLink" /></MenuItem>
+        <MenuItem onClick={handleToResources}> <button className="navLink">Saved Resources </button> </MenuItem>
+        <MenuItem onClick={handleLogout}><button className="navLink">Logout</button ></MenuItem>
         <div>
           {/* If no user is logged in, show these links */}
           {!user.id && (
