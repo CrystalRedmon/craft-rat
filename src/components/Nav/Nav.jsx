@@ -42,7 +42,7 @@ function Nav() {
   return (
     <div className="nav">
 
-      <Grid container>
+      <Grid container className="container">
 
         <Grid item xs={5}>
           <Link to="/home">

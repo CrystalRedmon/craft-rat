@@ -21,10 +21,6 @@ function UserPage() {
         </Stack>
         
       </div>
-      <div>
-        <LogOutButton className="btn" />
-      </div>
-      
     </>
   );
 }
