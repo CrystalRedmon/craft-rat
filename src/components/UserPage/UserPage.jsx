@@ -12,23 +12,19 @@ function UserPage() {
     <>
 
 
-      <div className="container">
-        <Stack spacing={3}
+      <div className="container, homepage_container">
+        <Stack 
           sx={{ width: '75%', margin: 'auto' }}>
-
-          <Stack
-            spacing={3}
-            sx={{ width: '25%', margin: 'auto' }}>
-            <h2>Welcome, {user.username}!</h2>
-            
-          </Stack>
-
-
           <SearchOption />
           <SuppliesList />
-          <LogOutButton className="btn" />
+          
         </Stack>
+        
       </div>
+      <div>
+        <LogOutButton className="btn" />
+      </div>
+      
     </>
   );
 }

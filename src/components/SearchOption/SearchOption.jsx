@@ -60,10 +60,11 @@ function SearchOption() {
 
             // TODO--- THIS SEARCH PAGE SHOULD LIKE SIMILAR TO THE ADD FORM WITH GRAY IN MIDDLE 
             >
-                <Stack id='search-bar'
+                
+                {/* <Stack id='search-bar'
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={{ xs: 1, sm: 2, md: 4 }}>
-                    {/* <InputLabel>Input Description</InputLabel> */}
+                    <InputLabel>Input Description</InputLabel>
                     <TextField
                         sx={{ width: '75%', margin: 'auto' }}
                         placeholder='Input Description'
@@ -75,7 +76,7 @@ function SearchOption() {
                         color={'secondary'}
                         size='small'>Search
                     </Button>
-                </Stack>
+                </Stack> */}
 
                 <form onSubmit={handleSubmitFilter}>
                     <Stack id='filter-options'

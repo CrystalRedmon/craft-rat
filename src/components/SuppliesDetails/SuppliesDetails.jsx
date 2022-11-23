@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 /// MUI IMPORTS
-import { Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
+import { Grid, Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
 
 function SuppliesDetails() {
     const dispatch = useDispatch();
@@ -57,7 +57,9 @@ function SuppliesDetails() {
 
 
     return (
-        <Box className="main-container, grid-col_12"
+        <Grid 
+        container
+        // className="main-container, grid-col_12"
         >
 
             <Stack id='form-container'
@@ -195,7 +197,7 @@ function SuppliesDetails() {
 
             </Box>
 
-        </Box >
+        </Grid >
     );
 }
 

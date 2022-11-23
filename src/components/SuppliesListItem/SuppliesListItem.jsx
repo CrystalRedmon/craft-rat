@@ -1,6 +1,6 @@
 import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
+import TableCell from '@mui/material/TableCell';
 
 
 function SuppliesListItem({ supply }) {
@@ -27,9 +27,9 @@ function SuppliesListItem({ supply }) {
 
         {/* //TODO-- CONSIDER USING A TABLE INSTEAD OF UL/LI */}
 
-        <td supply={supply}>{supply.color} {supply.name}</td>
-        <td><button onClick={handleClick}>View</button></td>
-        <td><button onClick={handleDeleteItem}>Delete</button></td>
+        <TableCell supply={supply}>{supply.color} {supply.name}</TableCell>
+        <TableCell><button onClick={handleClick}>View</button><button onClick={handleDeleteItem}>Delete</button></TableCell>
+        
 
 
 

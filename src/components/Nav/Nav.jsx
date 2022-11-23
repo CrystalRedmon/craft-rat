@@ -37,6 +37,8 @@ function Nav() {
       <Link to="/home">
         <h2 className="nav-title">CraftRat</h2>
       </Link>
+
+      <h2>Welcome, {user.username}!</h2>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}

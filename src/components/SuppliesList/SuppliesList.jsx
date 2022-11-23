@@ -2,6 +2,13 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SuppliesListItem from '../SuppliesListItem/SuppliesListItem';
 import { Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 
 
@@ -27,33 +34,34 @@ function SuppliesList() {
     return (<>
         <Box className="main-container, grid-col_12">
 
-        
-        <Stack id='form-container'
-                direction={{ xs: 'column', sm: 'row' }}
-                spacing={{ xs: 1, sm: 2, md: 4 }}
-                justifyContent="center"
-                alignItems="center"
-                sx={{ backgroundColor: 'lightgray' }}
+
+            <TableContainer component={Paper}
+                sx={{minHeight: '45vh' }}
+                // id='form-container'
+                // direction={{ xs: 'column', sm: 'row' }}
+                // spacing={{ xs: 1, sm: 2, md: 4 }}
+                // justifyContent="center"
+                // alignItems="center"
+
             >
-            <table width={'50%'}>
-                <thead>
-                    <tr>
-                        <td>Item Description</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell colSpan={2}><h2>Current Inventory</h2></TableCell>
+                            
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
 
-                    {supplies.map((supply, i) => {
-                        return <tr><SuppliesListItem key={i} supply={supply} /></tr>
-                    })}
+                        {supplies.map((supply, i) => {
+                            return <TableRow><SuppliesListItem key={i} supply={supply} /></TableRow>
+                        })}
 
-                </tbody>
+                    </TableBody>
 
-            </table>
+                </Table>
 
-                    </Stack>
+            </TableContainer>
         </Box>
     </>)
 }
