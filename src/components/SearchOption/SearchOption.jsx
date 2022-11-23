@@ -51,7 +51,7 @@ function SearchOption() {
     return (<>
 
 
-        <Box className="main-container, grid-col_12">
+        <Box className="main-container, grid-col_12" mb={4}>
 
             <h2>Search Form</h2>
             <Stack id='search-container'

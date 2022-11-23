@@ -63,12 +63,13 @@ function SuppliesDetails() {
 
                 {/* DISPLAY IMAGE */}
 
-                <Grid item xs={2}></Grid>
-                <Grid item xs={5} >
+                <Grid item xs={3}></Grid>
+
+                <Grid item xs={4} pt={4}>
                     <Box
                         sx={{
-                            width: 350,
-                            height: 350
+                            width: 300,
+                            height: 300,
                         }}>
                         <img src={currentItem.image} alt="" />
                     </Box>
@@ -91,7 +92,7 @@ function SuppliesDetails() {
                         <Switch size='medium'></Switch>
                     }
                 </Grid>
-                <Grid item xs={4}></Grid>
+                <Grid item xs={5}></Grid>
 
             </Grid>
 
@@ -102,9 +103,9 @@ function SuppliesDetails() {
 
             <Grid container>
 
-                <Grid item xs={2}></Grid>
+                <Grid item xs={3}></Grid>
 
-                <Grid item xs={5} >
+                <Grid item xs={4} >
                     <InputLabel>Item Details</InputLabel>
                     <Box sx={{ width: 325, height:100, border: 'gray solid 1px', borderRadius: '5px', p: '5px'}}>
                         {currentItem.product_details}
