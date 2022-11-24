@@ -57,9 +57,9 @@ function SuppliesDetails() {
 
 
     return (
-        <Grid container spacing={3}>
+        <Grid container sx={8} spacing={3}>
 
-            <Grid container>
+            <Grid container >
 
                 {/* DISPLAY IMAGE */}
 
