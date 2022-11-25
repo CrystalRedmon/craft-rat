@@ -122,8 +122,7 @@ function AddSuppliesForm() {
 
 
     return (
-        <Box className="main-container, grid-col_12"
-        >
+        <Box>
 
             <form onSubmit={handleOnSubmit}>
                 <Stack id='form-container'
@@ -131,17 +130,13 @@ function AddSuppliesForm() {
                     spacing={{ xs: 1, sm: 2, md: 4 }}
                     justifyContent="center"
                     alignItems="center"
-                    sx={{ backgroundColor: 'lightgray' }}
                 >
 
                     <Stack id='left-inner-container'
                         p={3}
                         sx={{
-                            display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            width: 500,
-                            height: 500,
                             borderRadius: '3em'
                         }}>
 
@@ -151,8 +146,8 @@ function AddSuppliesForm() {
                                 display: 'flex',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                width: 350,
-                                height: 350,
+                                width: 300,
+                                height: 300,
                                 backgroundColor: 'white',
                                 borderRadius: '.5em'
                             }}>
@@ -168,9 +163,11 @@ function AddSuppliesForm() {
                             />
 
                         </Box>
+                        <Box mt={'3em'}>
+                            <InputLabel>Item Details</InputLabel>
+                            <TextareaAutosize onChange={handleProductDetailsInput} minRows={5} style={{ width: 325 }} />
+                        </Box>
 
-                        <InputLabel>Product Details</InputLabel>
-                        <TextareaAutosize onChange={handleProductDetailsInput} minRows={5} style={{ width: 325 }} />
 
                     </Stack>
 
@@ -178,52 +175,64 @@ function AddSuppliesForm() {
                         p={3}
                         sx={{
                             display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: 500,
-                            height: 500,
+                            alignItems: 'left',
                             borderRadius: '3em'
                         }}>
 
-                        <InputLabel>Category</InputLabel>
-                        <select
-                            required
-                            onChange={handleCategoryInput}
-                            value={newItem.category}>
-                            <option
-                                name="dropFrom"
-                                value=""
-                                disabled>Select a category</option>
-                            {categories.map(category => (
-                                <option key={category.id} value={category.id}>{category.name}</option>
-                            ))}
-                        </select>
+                        <p>Category:
+                            <select
+                                required
+                                onChange={handleCategoryInput}
+                                value={newItem.category}>
+                                <option
+                                    name="dropFrom"
+                                    value=""
+                                    disabled>Select a category</option>
+                                {categories.map(category => (
+                                    <option key={category.id} value={category.id}>{category.name}</option>
+                                ))}
+                            </select>
+                        </p>
 
 
 
-                        <InputLabel>Colors</InputLabel>
-                        <select
-                            required
-                            onChange={handleColorInput}
-                            value={newItem.color_id}>
-                            <option name="dropFrom" value="" disabled>Select a color</option>
-                            {colors.map(color => (
-                                <option key={color.id} value={color.id}>{color.name}</option>
-                            ))}
-                        </select>
+                        <p>Colors:
+                            <select
+                                required
+                                onChange={handleColorInput}
+                                value={newItem.color_id}>
+                                <option name="dropFrom" value="" disabled>Select a color</option>
+                                {colors.map(color => (
+                                    <option key={color.id} value={color.id}>{color.name}</option>
+                                ))}
+                            </select>
+                        </p>
+
+                        <p>Name:
+                            <TextareaAutosize
+                                onChange={handleNameInput} variant='filled'
+                                sx={{
+                                    width: 325, height: 100,
+                                    border: 'gray solid 1px', borderRadius: '5px', p: '5px'
+                                }} />
+                        </p>
+
+                        <p>Quantity/Unit:
+                            <TextareaAutosize onChange={handleQuantityInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
+                        </p>
+
+                        <p>
+                            Scraps:
+                            <Switch size='medium'></Switch>
+                        </p>
 
 
-                        <InputLabel>Name</InputLabel>
-                        <TextField onChange={handleNameInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
+                        <Box mt={7}>
+                            <InputLabel>Notes</InputLabel>
+                            <TextareaAutosize onChange={handleNotesInput} minRows={5} style={{ width: 325 }} />
 
-                        <InputLabel>Quantity/Unit</InputLabel>
-                        <TextField onChange={handleQuantityInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
+                        </Box>
 
-                        <InputLabel>Scraps</InputLabel>
-                        <Switch size='medium'></Switch>
-
-                        <InputLabel>Notes</InputLabel>
-                        <TextareaAutosize onChange={handleNotesInput} minRows={5} style={{ width: 325 }} />
 
                     </Stack>
 
@@ -235,7 +244,6 @@ function AddSuppliesForm() {
                     mt={3}
                     display='flex'
                     sx={{
-                        backgroundColor: 'white',
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
@@ -245,7 +253,7 @@ function AddSuppliesForm() {
 
                         variant='contained'
                         color={'secondary'}
-                        size='large'>
+                        size='medium'>
 
                         <Button onClick={() => history.push('/')}>Back To List</Button>
                         <Button type='submit'>Add</Button>
