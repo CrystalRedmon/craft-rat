@@ -78,7 +78,7 @@ function SuppliesDetails() {
                 <Grid item xs={3} pt={15} >
 
                     <Typography sx={{ lineHeight: '1rem' }}>
-                        <p>Category: <span>{currentCategory}</span></p>
+                        <p>Category:{currentCategory}</p>
                         <p>Color: {currentColor}</p>
                         <p>Item: {currentItem.name}</p>
                         <p>Quantity/Unit: {currentItem.quantity}</p>
@@ -93,7 +93,6 @@ function SuppliesDetails() {
                     }
                 </Grid>
                 <Grid item xs={5}></Grid>
-
             </Grid>
 
             <Grid item xs={12}></Grid>
@@ -124,12 +123,7 @@ function SuppliesDetails() {
                 <Grid item xs={1}></Grid>
             </Grid>
 
-
-          
             <Grid item xs={12}></Grid>
-
-
-
 
             <Grid container>
                 <Grid item xs={4.5}></Grid>
