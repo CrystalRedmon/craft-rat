@@ -36,14 +36,8 @@ function SuppliesList() {
 
 
             <TableContainer component={Paper}
-                sx={{minHeight: '45vh' }}
-                // id='form-container'
-                // direction={{ xs: 'column', sm: 'row' }}
-                // spacing={{ xs: 1, sm: 2, md: 4 }}
-                // justifyContent="center"
-                // alignItems="center"
-
-            >
+                sx={{minHeight: '45vh' }}>
+                    
                 <Table>
                     <TableHead>
                         <TableRow>

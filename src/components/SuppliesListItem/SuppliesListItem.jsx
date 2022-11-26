@@ -1,11 +1,35 @@
 import { useHistory, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TableCell from '@mui/material/TableCell';
+import { useEffect } from 'react'
+
 
 
 function SuppliesListItem({ supply }) {
     const history = useHistory();
     const dispatch = useDispatch();
+    const colors = useSelector(store => store.colors.allColors)
+
+
+    const colorName = () => {
+
+        for(let color of colors) {
+            if (color.id === supply.colors_id && color.id !== 0) {
+
+                return color.name
+            }
+        }
+    }
+
+    console.log('colorName=', colorName())
+
+
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_COLORS'
+        })
+    }, [])
+
 
     /// DIRECTS USER TO SPECIFIC SUPPLY DETAILS BASED ON SUPPLIES.ID
     const handleClick = () => {
@@ -19,25 +43,12 @@ function SuppliesListItem({ supply }) {
             payload: supply.id
         })
         alert('Item Successfully Deleted')
-
     }
 
     return (<>
 
-
-        {/* //TODO-- CONSIDER USING A TABLE INSTEAD OF UL/LI */}
-
-        <TableCell supply={supply}>{supply.color} {supply.name}</TableCell>
+        <TableCell supply={supply}>{colorName()} {supply.name}</TableCell>
         <TableCell><button onClick={handleClick}>View</button><button onClick={handleDeleteItem}>Delete</button></TableCell>
-        
-
-
-
-        {/* <li >{supply.color} {supply.name} <button onClick={handleClick}>View</button> 
-        <button onClick={handleDeleteItem}>Delete</button></li> */}
-
-
-
 
     </>)
 }
