@@ -91,7 +91,7 @@ function SearchOption() {
                             <option
                                 name="dropFrom"
                                 value=""
-                                disabled>Select a category</option>
+                                >Select a category</option>
                             {categories.map(category => (
                                 <option key={category.id} value={category.id}>{category.name}</option>
                             ))}
@@ -103,7 +103,7 @@ function SearchOption() {
                             onChange={(evt) => setFilter({ ...filter, color: evt.target.value })}
                             value={colors.name}
                         >
-                            <option name="dropFrom" value="" disabled>Select a category</option>
+                            <option name="dropFrom" value="" >Select a category</option>
                             {colors.map(color => (
                                 <option key={color.id} value={color.id}>{color.name}</option>
                             ))}
