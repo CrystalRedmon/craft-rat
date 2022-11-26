@@ -122,10 +122,12 @@ function AddSuppliesForm() {
 
 
     return (
+
         <Box>
 
             <form onSubmit={handleOnSubmit}>
-                <Stack id='form-container'
+
+                <Stack 
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={{ xs: 1, sm: 2, md: 4 }}
                     justifyContent="center"
@@ -163,15 +165,15 @@ function AddSuppliesForm() {
                             />
 
                         </Box>
+
                         <Box mt={'3em'}>
                             <InputLabel>Item Details</InputLabel>
                             <TextareaAutosize onChange={handleProductDetailsInput} minRows={5} style={{ width: 325 }} />
                         </Box>
-
-
                     </Stack>
 
-                    <Stack id='right-inner-container'
+                    <Stack
+                        id='right-inner-container'
                         p={3}
                         sx={{
                             display: 'flex',
@@ -179,60 +181,56 @@ function AddSuppliesForm() {
                             borderRadius: '3em'
                         }}>
 
-                        <p>Category:
-                            <select
-                                required
-                                onChange={handleCategoryInput}
-                                value={newItem.category}>
-                                <option
-                                    name="dropFrom"
-                                    value=""
-                                    disabled>Select a category</option>
-                                {categories.map(category => (
-                                    <option key={category.id} value={category.id}>{category.name}</option>
-                                ))}
-                            </select>
-                        </p>
+                            <p>Category:
+                                <select
+                                    required
+                                    onChange={handleCategoryInput}
+                                    value={newItem.category}>
+                                    <option
+                                        name="dropFrom"
+                                        value=""
+                                        disabled>Select a category</option>
+                                    {categories.map(category => (
+                                        <option key={category.id} value={category.id}>{category.name}</option>
+                                    ))}
+                                </select>
+                            </p>
+                            <p>Colors:
+                                <select
+                                    required
+                                    onChange={handleColorInput}
+                                    value={newItem.color_id}>
+                                    <option name="dropFrom" value="" disabled>Select a color</option>
+                                    {colors.map(color => (
+                                        <option key={color.id} value={color.id}>{color.name}</option>
+                                    ))}
+                                </select>
+                            </p>
+                            <p>Item:
+                                <TextareaAutosize
+                                    onChange={handleNameInput} variant='filled'
+                                    sx={{
+                                        width: 325, height: 100,
+                                        border: 'gray solid 1px', borderRadius: '5px', p: '5px'
+                                    }} />
+                            </p>
+
+                            <p>Quantity/Unit:
+                                <TextareaAutosize onChange={handleQuantityInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
+                            </p>
+
+                            <p>
+                                Scraps:
+                                <Switch size='medium'></Switch>
+                            </p>
 
 
+                            <Box mt={7}>
+                                <InputLabel>Notes</InputLabel>
+                                <TextareaAutosize onChange={handleNotesInput} minRows={5} style={{ width: 325 }} />
 
-                        <p>Colors:
-                            <select
-                                required
-                                onChange={handleColorInput}
-                                value={newItem.color_id}>
-                                <option name="dropFrom" value="" disabled>Select a color</option>
-                                {colors.map(color => (
-                                    <option key={color.id} value={color.id}>{color.name}</option>
-                                ))}
-                            </select>
-                        </p>
-
-                        <p>Name:
-                            <TextareaAutosize
-                                onChange={handleNameInput} variant='filled'
-                                sx={{
-                                    width: 325, height: 100,
-                                    border: 'gray solid 1px', borderRadius: '5px', p: '5px'
-                                }} />
-                        </p>
-
-                        <p>Quantity/Unit:
-                            <TextareaAutosize onChange={handleQuantityInput} variant='filled' sx={{ width: '50%', backgroundColor: 'white' }} />
-                        </p>
-
-                        <p>
-                            Scraps:
-                            <Switch size='medium'></Switch>
-                        </p>
-
-
-                        <Box mt={7}>
-                            <InputLabel>Notes</InputLabel>
-                            <TextareaAutosize onChange={handleNotesInput} minRows={5} style={{ width: 325 }} />
-
-                        </Box>
-
+                            </Box>
+                        
 
                     </Stack>
 
@@ -264,7 +262,6 @@ function AddSuppliesForm() {
                         <Button>Cancel</Button>
 
                     </ButtonGroup>
-
                 </Box>
             </form>
         </Box>

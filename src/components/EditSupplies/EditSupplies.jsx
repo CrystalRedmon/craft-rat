@@ -7,7 +7,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 
 ///MUI IMPORT COMPONENTS 
 import Button from '@mui/material/Button';
-import { Grid, Typography, TextField, Select, MenuItem, InputLabel, FormControl, Switch, TextareaAutosize, Stack, Input, ButtonGroup, InputAdornment, FormGroup } from '@mui/material';
+import { Box, Grid, Typography, TextField, Select, MenuItem, InputLabel, FormControl, Switch, TextareaAutosize, Stack, Input, ButtonGroup, InputAdornment, FormGroup } from '@mui/material';
 import { borderRadius } from '@mui/system';
 import InsertPhotoTwoToneIcon from '@mui/icons-material/InsertPhotoTwoTone';
 
@@ -69,48 +69,78 @@ function EditSupplies() {
 
     return (
         //grid for the entire page
-        <Grid container sx={8} spacing={3}>
+        <Box>
 
-            
-                {/* //This this the top row. contains picture, colors, cat, etc */}
-                
-                <Grid container>
+            <form onSubmit={handleOnSubmit}>
 
+                <Stack
+                    direction={{ xs: 'column', sm: 'row' }}
+                    spacing={{ xs: 1, sm: 2, md: 4 }}
+                    justifyContent="center"
+                    alignItems="center"
+                >
 
-                    <Grid item xs={3}></Grid>
-
-
-                    <Grid item sx={4} pt={4}>
-                        <Stack
+                    <Stack
+                        id='left-inner-container'
+                        p={3}
+                        sx={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderRadius: '3em'
+                        }}>
+                        <Box
+                            m={'auto'}
                             sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 width: 300,
-                                height: 300
+                                height: 300,
+                                backgroundColor: 'white',
+                                borderRadius: '.5em'
                             }}>
                             <img src={currentItem.image} alt="" />
-                        </Stack>
-                    </Grid>
-                    <Grid item xs={1.5}></Grid>
-                    <Grid item xs={3} pt={15}>
-                        <Stack>
+                        </Box>
+
+                        <Box mt={'3em'}>
+                            <InputLabel>Item Details</InputLabel>
+                            <Box sx={{
+                                width: 325, height: 100,
+                                border: 'gray solid 1px', borderRadius: '5px', p: '5px'
+                            }}>
+                                {currentItem.product_details}
+                            </Box>
+                        </Box>
+                    </Stack>
 
 
-                            <Typography sx={{ lineHeight: '1rem' }}>
-                                <p>Category: {category} </p>
-                                <p>Color: {color}</p>
-                                <p>Item: {currentItem.name}</p>
 
-                                <p>Quantity/Unit: <input
-                                    value={currentItem.quantity}
-                                    onChange={(evt) => dispatch({
-                                        type: 'UPDATE_EDIT_ITEM',
-                                        payload: { property: 'quantity', value: evt.target.value }
-                                    })}
-                                    variant='filled'
-                                    sx={{ width: '50%', backgroundColor: 'white' }} /></p>
 
-                            </Typography>
-                        </Stack>
-                        <Stack>
+
+                    <Stack
+                        id='right-inner-container'
+                        p={3}
+                        sx={{
+                            width: '25%',
+                            alignItems: 'left',
+                            borderRadius: '3em'
+                        }}>
+
+                        <Box>Category: {category} </Box>
+                        <Box>Color: {color}</Box>
+                        <Box>Item: {currentItem.name}</Box>
+
+                        <Box>Quantity/Unit: <input
+                            value={currentItem.quantity}
+                            onChange={(evt) => dispatch({
+                                type: 'UPDATE_EDIT_ITEM',
+                                payload: { property: 'quantity', value: evt.target.value }
+                            })}
+                            variant='filled'
+                            sx={{ width: '50%', backgroundColor: 'white' }} /></Box>
+
+
+                        <Box>
                             Scraps: {currentItem.scraps === true ?
                                 <Switch
                                     defaultChecked={currentItem.scraps}
@@ -128,35 +158,10 @@ function EditSupplies() {
                                     })}
                                     size='medium'></Switch>
                             }
-                        </Stack>
-                    </Grid>
-                    <Grid item xs={1}></Grid>
-                </Grid>
+                        </Box>
 
-                <Grid item xs={12}></Grid>
-                <Grid item xs={12}></Grid>
-                <Grid item xs={12}></Grid>
-                <Grid item xs={12}></Grid>
-
-                <Grid container>
-                    <Grid item xs={3}></Grid>
-                    <Grid item xs={4}>
-                        <InputLabel>Item Details</InputLabel>
-                        <Stack
-                            sx={{
-                                width: 325, height: 100,
-                                border: 'gray solid 1px', borderRadius: '5px', p: '5px'
-                            }}
-                        >
-                            {currentItem.product_details}
-                        </Stack>
-
-                    </Grid>
-
-                    <Grid item xs={4}>
-
-                        <InputLabel>Notes</InputLabel>
-                        <Stack>
+                        <Box mt={'12em'}>
+                            <InputLabel>Notes</InputLabel>
                             <TextareaAutosize
                                 sx={{
                                     width: 325, height: 100,
@@ -172,35 +177,33 @@ function EditSupplies() {
                                     payload: { property: 'notes', value: evt.target.value }
                                 })}
                             />
-                        </Stack>
-                    </Grid>
-                    <Grid item xs={1}></Grid>
-                </Grid>
+                        </Box>
+                    </Stack>
 
-                <Grid item xs={12}></Grid>
+                </Stack>
 
-                <Grid container>
-                    <Grid item xs={4.5}></Grid>
-                    <Grid item xs={3}>
-                        <Stack>
-                            <ButtonGroup
-                                variant='contained'
-                                color={'secondary'}
-                                size='medium'>
+                <Box
+                    mt={3}
+                    display='flex'
+                    sx={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
 
-                                <Button onClick={() => history.push('/')}>Back To List</Button>
+                    <ButtonGroup
+                        variant='contained'
+                        color={'secondary'}
+                        size='medium'>
 
-                                <Button type='submit'>Update</Button>
+                        <Button onClick={() => history.push('/')}>Back To List</Button>
 
-                                <Button onClick={() => history.push(`/details/${params.id}`)}>Cancel</Button>
-                            </ButtonGroup>
-                        </Stack>
-                    </Grid>
-                    <Grid item xs={4.5}></Grid>
-                </Grid>
-                
-            
-        </Grid>
+                        <Button type='submit'>Update</Button>
+
+                        <Button onClick={() => history.push(`/details/${params.id}`)}>Cancel</Button>
+                    </ButtonGroup>
+                </Box>
+            </form>
+        </Box>
     )
 }
 
