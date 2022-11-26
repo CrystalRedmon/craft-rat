@@ -107,7 +107,7 @@ function SuppliesDetails() {
                     }}>
 
 
-                    <p>Category:{currentCategory}</p>
+                    <p>Category: {currentCategory}</p>
                     <p>Color: {currentColor}</p>
                     <p>Item: {currentItem.name}</p>
                     <p>Quantity/Unit: {currentItem.quantity}</p>
