@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 /// MUI IMPORTS
-import { Grid, Button, Box, Select, MenuItem, InputLabel, Switch, Stack, ButtonGroup, Typography, Paper, Label } from '@mui/material';
+import { Button, Box, InputLabel, Switch, Stack, ButtonGroup, Typography} from '@mui/material';
 
 function SuppliesDetails() {
     const dispatch = useDispatch();
@@ -57,15 +57,27 @@ function SuppliesDetails() {
 
 
     return (
-        <Grid container sx={8} spacing={3}>
+        <Box>
 
-            <Grid container >
 
-                {/* DISPLAY IMAGE */}
 
-                <Grid item xs={3}></Grid>
+            <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                spacing={{ xs: 1, sm: 2, md: 4 }}
+                justifyContent="center"
+                alignItems="left"
+                pt={3}
+            >
 
-                <Grid item xs={4} pt={4}>
+                <Stack
+                    id='left-inner-container'
+                    pr={3}
+                    sx={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: '3em'
+                    }}>
+
                     <Box
                         sx={{
                             width: 300,
@@ -73,61 +85,63 @@ function SuppliesDetails() {
                         }}>
                         <img src={currentItem.image} alt="" />
                     </Box>
-                </Grid>
 
-                <Grid item xs={3} pt={15} >
+                    <Box mt={'2.5em'}>
+                        <InputLabel>Item Details</InputLabel>
+                        <Box sx={{ width: 325, height: 75, border: 'gray solid 1px', borderRadius: '5px', p: '5px' }}>
 
-                    <Typography sx={{ lineHeight: '1rem' }}>
-                        <p>Category:{currentCategory}</p>
-                        <p>Color: {currentColor}</p>
-                        <p>Item: {currentItem.name}</p>
-                        <p>Quantity/Unit: {currentItem.quantity}</p>
-                    </Typography>
-
-
-                    {/* // CONDITIONAL STATEMENT TO ADDRESS SWITCH BETWEEN SCRAPS/CHECKED AND !SCRAPS/UNCHECKED */}
-                    Scraps: {currentItem.scraps ?
-                        <Switch checked size='medium'></Switch>
-                        :
-                        <Switch size='medium'></Switch>
-                    }
-                </Grid>
-                <Grid item xs={5}></Grid>
-            </Grid>
-
-            <Grid item xs={12}></Grid>
-            <Grid item xs={12}></Grid>
-            <Grid item xs={12}></Grid>
-            <Grid item xs={12}></Grid>
-
-            <Grid container>
-
-                <Grid item xs={3}></Grid>
-
-                <Grid item xs={4} >
-                    <InputLabel>Item Details</InputLabel>
-                    <Box sx={{ width: 325, height:100, border: 'gray solid 1px', borderRadius: '5px', p: '5px'}}>
-                        {currentItem.product_details}
+                            {currentItem.product_details}
+                        </Box>
                     </Box>
-                </Grid>
+                </Stack>
 
 
-                <Grid item xs={4}>
-                    <InputLabel>Notes</InputLabel>
-                    <Box sx={{ width: 325, height:100, border: 'gray solid 1px', borderRadius: '5px', p: '5px'}} >
-                        <Typography>
-                            {currentItem.notes}
-                        </Typography>
+
+                <Stack
+                    id='right-inner-container'
+                    pl={'1em'}
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'left',
+                        borderRadius: '3em'
+                    }}>
+
+
+                    <p>Category:{currentCategory}</p>
+                    <p>Color: {currentColor}</p>
+                    <p>Item: {currentItem.name}</p>
+                    <p>Quantity/Unit: {currentItem.quantity}</p>
+
+
+
+                    <Box>
+                        Scraps: {currentItem.scraps ?
+                            <Switch checked size='medium'></Switch>
+                            :
+                            <Switch size='medium'></Switch>
+                        }
                     </Box>
-                </Grid>
-                <Grid item xs={1}></Grid>
-            </Grid>
 
-            <Grid item xs={12}></Grid>
+                    <Box mt={'6em'}>
+                        <InputLabel>Notes</InputLabel>
+                        <Box sx={{ width: 325, height: 75, border: 'gray solid 1px', borderRadius: '5px', p: '5px' }} >
+                            <Typography>
+                                {currentItem.notes}
+                            </Typography>
+                        </Box>
+                    </Box>
+                </Stack>
+            </Stack>
 
-            <Grid container>
-                <Grid item xs={4.5}></Grid>
-                <Grid item xs={3}>
+
+            <Box
+                mt={6.5}
+                display='flex'
+                sx={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+
                     <ButtonGroup
                         variant='contained'
                         color={'secondary'}
@@ -136,11 +150,8 @@ function SuppliesDetails() {
                         <Button onClick={() => history.push(`/details/${params.id}/edit`)}>Edit</Button>
                         <Button onClick={handleDeleteItem}>Delete</Button>
                     </ButtonGroup>
-                </Grid>
-                <Grid item xs={4.5}></Grid>
-            </Grid>
-
-        </Grid >
+            </Box>
+        </Box >
     );
 }
 

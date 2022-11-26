@@ -7,9 +7,8 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 
 ///MUI IMPORT COMPONENTS 
 import Button from '@mui/material/Button';
-import { Box, Grid, Typography, TextField, Select, MenuItem, InputLabel, FormControl, Switch, TextareaAutosize, Stack, Input, ButtonGroup, InputAdornment, FormGroup } from '@mui/material';
-import { borderRadius } from '@mui/system';
-import InsertPhotoTwoToneIcon from '@mui/icons-material/InsertPhotoTwoTone';
+import { Box, InputLabel, Switch, TextareaAutosize, Stack, Input, ButtonGroup, } from '@mui/material';
+
 
 
 
@@ -179,7 +178,6 @@ function EditSupplies() {
                             />
                         </Box>
                     </Stack>
-
                 </Stack>
 
                 <Box
