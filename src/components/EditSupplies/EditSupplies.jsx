@@ -77,12 +77,15 @@ function EditSupplies() {
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={{ xs: 1, sm: 2, md: 4 }}
                     justifyContent="center"
-                    alignItems="center"
+                    alignItems="left"
+                    pt={3}
                 >
 
                     <Stack
                         id='left-inner-container'
-                        p={3}
+                        pr={3}
+                        
+                        
                         sx={{
                             justifyContent: 'center',
                             alignItems: 'center',
@@ -94,18 +97,16 @@ function EditSupplies() {
                                 display: 'flex',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                width: 300,
-                                height: 300,
                                 backgroundColor: 'white',
                                 borderRadius: '.5em'
                             }}>
                             <img src={currentItem.image} alt="" />
                         </Box>
 
-                        <Box mt={'3em'}>
+                        <Box mt={'2.5em'}>
                             <InputLabel>Item Details</InputLabel>
                             <Box sx={{
-                                width: 325, height: 100,
+                                width: 325, height: 75,
                                 border: 'gray solid 1px', borderRadius: '5px', p: '5px'
                             }}>
                                 {currentItem.product_details}
@@ -119,25 +120,25 @@ function EditSupplies() {
 
                     <Stack
                         id='right-inner-container'
-                        p={3}
+                        pl={'1em'}
                         sx={{
-                            width: '25%',
+                            display: 'flex',
                             alignItems: 'left',
                             borderRadius: '3em'
                         }}>
 
-                        <Box>Category: {category} </Box>
-                        <Box>Color: {color}</Box>
-                        <Box>Item: {currentItem.name}</Box>
+                        <p>Category: {category} </p>
+                        <p>Color: {color}</p>
+                        <p>Item: {currentItem.name}</p>
 
-                        <Box>Quantity/Unit: <input
+                        <p>Quantity/Unit: <input
                             value={currentItem.quantity}
                             onChange={(evt) => dispatch({
                                 type: 'UPDATE_EDIT_ITEM',
                                 payload: { property: 'quantity', value: evt.target.value }
                             })}
                             variant='filled'
-                            sx={{ width: '50%', backgroundColor: 'white' }} /></Box>
+                            sx={{ width: '50%', backgroundColor: 'white' }} /></p>
 
 
                         <Box>
@@ -160,14 +161,13 @@ function EditSupplies() {
                             }
                         </Box>
 
-                        <Box mt={'12em'}>
+                        <Box mt={'5em'}>
                             <InputLabel>Notes</InputLabel>
                             <TextareaAutosize
                                 sx={{
                                     width: 325, height: 100,
                                     border: 'gray solid 1px', borderRadius: '5px', p: '5px'
                                 }}
-                                p={0}
                                 minRows={5}
                                 style={{ width: 325 }}
 
@@ -183,7 +183,7 @@ function EditSupplies() {
                 </Stack>
 
                 <Box
-                    mt={3}
+                    mt={6.5}
                     display='flex'
                     sx={{
                         justifyContent: 'center',

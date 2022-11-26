@@ -244,21 +244,17 @@ function AddSuppliesForm() {
                     sx={{
                         justifyContent: 'center',
                         alignItems: 'center',
-                    }}
-                >
+                    }}>
 
                     <ButtonGroup
-
                         variant='contained'
                         color={'secondary'}
                         size='medium'>
 
                         <Button onClick={() => history.push('/')}>Back To List</Button>
-                        <Button type='submit'>Add</Button>
 
-                        {/* /// TODO POSSIBLY CHANGE CANCEL BUTTON TO CLEAR 
-                        /// MAYBE CLEAR THE INPUT FIELDS
-                        /// CANCEL DOES NOT MAKE SENSE HERE */}
+                        <Button type='submit'>Add</Button>
+                        
                         <Button>Cancel</Button>
 
                     </ButtonGroup>
