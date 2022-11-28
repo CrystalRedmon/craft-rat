@@ -31,12 +31,21 @@ function Nav() {
     history.push('/resources');
   }
 
+const handleToAbout =() =>{
+  setAnchorEl(null);
+  history.push('./about')
+
+}
+
   const handleLogout = () => {
     dispatch({
       type: 'LOGOUT'
     })
 
   }
+
+
+
 
 
   return (
@@ -82,7 +91,8 @@ function Nav() {
             }}
           >
             <MenuItem onClick={handleToAdd}> <button className="navLink">Add Items</button> </MenuItem>
-            <MenuItem onClick={handleToResources}> <button className="navLink">Saved Resources </button> </MenuItem>
+            {/* <MenuItem onClick={handleToResources}> <button className="navLink">Saved Resources </button> </MenuItem> */}
+            <MenuItem onClick={handleToAbout}> <button className="navLink">About</button> </MenuItem>
             <MenuItem onClick={handleLogout}><button className="navLink">Logout</button ></MenuItem>
             <div>
               {/* If no user is logged in, show these links */}

@@ -48,7 +48,7 @@ function SuppliesListItem({ supply }) {
     return (<>
 
         <TableCell supply={supply}>{colorName()} {supply.name}</TableCell>
-        <TableCell><button onClick={handleClick}>View</button><button onClick={handleDeleteItem}>Delete</button></TableCell>
+        <TableCell align='right'><button onClick={handleClick}>View</button><button onClick={handleDeleteItem}>Delete</button></TableCell>
 
     </>)
 }

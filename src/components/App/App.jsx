@@ -26,6 +26,7 @@ import AddSuppliesForm from '../AddSuppliesForm/AddSuppliesForm';
 import SearchOption from '../SearchOption/SearchOption';  /// UNSURE IF I NEED THIS HERE. NOT CURRENTLY GETTING IT'S OWN ROUTE
 import Resources from '../Resources/Resources';
 
+
 import './App.css';
 
 function App() {

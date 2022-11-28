@@ -16,12 +16,6 @@ function SearchOption() {
         scraps: false,
     })
 
-
-
-    console.log("I'm filtering now: ", filter);
-
-
-
     useEffect(() => {
         dispatch({
             type: 'FETCH_CATEGORIES'
@@ -32,8 +26,6 @@ function SearchOption() {
         })
 
     }, []);
-
-    
 
     const handleSubmitFilter = (evt) => {
         evt.preventDefault();
