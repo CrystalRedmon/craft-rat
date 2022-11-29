@@ -19,6 +19,8 @@ function SuppliesList() {
     // consider renaming. supplies vs items. is another reducer needed?
     const supplies = useSelector(store => store.supplies.supplies);
 
+    
+
     console.log('This is my supplies list: ', supplies.supplies);
 
     /// useEFFECT WILL POPULATE THE SUPPLY LIST ON PAGE LOAD
