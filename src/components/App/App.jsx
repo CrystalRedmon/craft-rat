@@ -25,6 +25,7 @@ import EditSupplies from '../EditSupplies/EditSupplies';
 import AddSuppliesForm from '../AddSuppliesForm/AddSuppliesForm';
 import SearchOption from '../SearchOption/SearchOption';  /// UNSURE IF I NEED THIS HERE. NOT CURRENTLY GETTING IT'S OWN ROUTE
 import Resources from '../Resources/Resources';
+import Footer from '../Footer/Footer';
 
 
 import './App.css';
@@ -154,7 +155,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );
