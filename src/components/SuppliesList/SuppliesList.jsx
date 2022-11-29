@@ -49,7 +49,7 @@ function SuppliesList() {
 
 
             <TableContainer component={Paper}
-                sx={{ minHeight: '45vh', boxShadow: '10px 10px 5px gray'}} >
+                sx={{ minHeight: '45vh', boxShadow: '10px 10px 5px gray', backgroundColor: '#F0F0F0'}} >
 
                 <Table>
                     <TableHead>

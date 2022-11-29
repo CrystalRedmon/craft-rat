@@ -122,7 +122,7 @@ function AddSuppliesForm() {
 
     return (
 
-        <Box>
+        <Box sx={{backgroundColor: '#DCDCDC', width: '60%', boxShadow: '10px 10px 5px gray', margin: 'auto', borderRadius: '10px'}}>
 
             <form onSubmit={handleOnSubmit}>
 
