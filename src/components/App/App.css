@@ -141,3 +141,9 @@ input {
   border-radius: 5px;
   padding: 5px;
 }
+
+.background{
+  background-image: url('/public/shelves.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

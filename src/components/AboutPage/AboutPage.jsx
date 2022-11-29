@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Box, Card, CardContent, Stack, Typography } from '@mui/material';
-
+import image1 from '../../images/linkedin.jpeg';
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -39,44 +39,48 @@ function AboutPage() {
                 </Typography>
               </Box>
 
-              <Box>
+              <Box sx={{ width: '10%' }}></Box>
+
+              <Box alignItems={'center'}>
                 <Typography>
                   Let's Connect!
                 </Typography>
-
-                <img src='' alt='linkedIn QR code' width='50px'></img>
-
-                <Typography>
-                  <a href='https://github.com/CrystalRedmon'>GitHub</a>
-                </Typography>
+                <img src={image1} alt='linkedIn QR code' style={{ width: 200, height: 200 }}></img>
               </Box>
             </Stack>
 
             <Stack direction={'rows'}>
-              <Typography>
-                <Box sx={{ width: '50%' }}>
 
-                  <Box sx={{ height: '50%', marginBottom: '20px' }}>
-                    <Typography>
-                      Future versions
-                    </Typography>
-                    <Typography>
-                      Future versions will integrate a calendar to alert multicrafters of upcoming events such as birthdays.
-                    </Typography>
-                  </Box>
+              <Box sx={{ width: '50%' }}>
 
-                  <Box sx={{ height: '50%' }}>
-                    <Typography>
-                      Thank you...
-                    </Typography>
-                    <Typography>
-                      Thank you to Prime, the Ramirez cohort, and, our instructor, Edan.
-                      Special thanks to my family for their support.
-                    </Typography>
-                  </Box>
-
+                <Box sx={{ height: '50%', marginBottom: '20px' }}>
+                  <Typography>
+                    Future versions
+                  </Typography><br/>
+                  <Typography>
+                    Future versions will integrate a calendar to alert multicrafters of upcoming events such as birthdays.
+                  </Typography>
                 </Box>
-              </Typography>
+
+                <Box sx={{ height: '50%' }}>
+                  <Typography>
+                    Thank you...
+                  </Typography><br />
+                  <Typography>
+                    Thank you to Prime, the Ramirez cohort, and, our instructor, Edan.
+                    Special thanks to my family for their support.
+                  </Typography>
+                </Box>
+
+
+              </Box>
+              <Box sx={{width: '10%'}}></Box>
+              <Box mt={5}>
+                <Typography>
+                  Check out my <a href='https://github.com/CrystalRedmon'>GitHub</a>
+                </Typography>
+              </Box>
+
 
             </Stack>
 
