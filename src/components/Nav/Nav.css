@@ -62,5 +62,6 @@
 }
 
 .container{
-  background-color: ;
+  background-image: url('/src/images/yellowcrafts.jpg');
+  background-size: cover;
 }
