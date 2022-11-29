@@ -52,10 +52,10 @@ function SuppliesList() {
                         })}
 
                     </TableBody>
-
                 </Table>
 
             </TableContainer>
+            
         </Box>
     </>)
 }

@@ -53,14 +53,14 @@ const handleToAbout =() =>{
 
       <Grid container className="container">
 
-        <Grid item xs={5}>
+        <Grid item xs={3.5}>
           <Link to="/home">
             <h2 className="nav-title">CraftRat</h2>
           </Link>
         </Grid>
 
 
-        <Grid item xs={6.5}>
+        <Grid item xs={5} sx={{textAlign: 'center'}}>
 
           {user.username ?
             <h2 class='nav-title'>Welcome, {user.username}!</h2>
@@ -69,7 +69,7 @@ const handleToAbout =() =>{
 
         </Grid>
 
-        <Grid item xs={.5} mt={1}>
+        <Grid item xs={3.5} mt={1} sx={{textAlign: 'right'}}>
           <Button
             id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}

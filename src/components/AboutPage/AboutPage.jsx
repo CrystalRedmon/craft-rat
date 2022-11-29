@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, Card, CardContent, Stack, Typography } from '@mui/material';
+import { Grid, Box, Card, CardContent, Typography } from '@mui/material';
 import image1 from '../../images/linkedin.jpeg';
 
 // This is one of our simplest components

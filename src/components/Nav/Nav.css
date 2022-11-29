@@ -6,9 +6,10 @@
   margin: 0 0 30px;
   background-color: #00acb0;
   overflow: hidden;
-  font-family: 'Gloria Hallelujah', cursive;
-  background-image: url('/public/coloryarn-background.avif');
+  font-family: 'Lemon', cursive;
+  background-image: url('/src/images/yellowcrafts.jpg');
   position: relative;
+  background-size: cover;
   
   
 
@@ -21,7 +22,7 @@
   right: 0px;
   bottom: 0px;
   left: 0px;
-  background-color: rgba(0,0,0,0.25);
+  background-color: rgba(0,0,0,0.05);
 }
 
 
@@ -38,7 +39,7 @@
 .nav-title, .greeting {
   font-size: 40px;
   font-weight: 700;
-  color: #F0FAEF;
+  color: white;
   margin: 0;
 }
 
@@ -61,7 +62,4 @@
   background-color: #008183;
 }
 
-.container{
-  background-image: url('/src/images/yellowcrafts.jpg');
-  background-size: cover;
-}
+
