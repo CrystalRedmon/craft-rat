@@ -45,7 +45,7 @@ function SearchOption() {
 
         <Box className="main-container, grid-col_12" mb={4}>
 
-            <h2>Search Form</h2>
+            <h2>Filter Supplies</h2>
             <Stack id='search-container'
                 spacing={3}
                 sx={{ width: '100%', margin: 'auto' }}

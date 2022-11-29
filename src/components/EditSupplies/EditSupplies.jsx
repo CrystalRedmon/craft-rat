@@ -68,7 +68,7 @@ function EditSupplies() {
 
     return (
         //grid for the entire page
-        <Box>
+        <Box sx={{backgroundColor: '#DCDCDC', width: '60%', boxShadow: '10px 10px 5px gray', margin: 'auto'}}>
 
             <form onSubmit={handleOnSubmit}>
 
