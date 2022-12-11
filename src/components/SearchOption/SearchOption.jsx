@@ -8,6 +8,7 @@ function SearchOption() {
     const dispatch = useDispatch();
     const categories = useSelector(store => store.categories.allCategories);
     const colors = useSelector(store => store.colors.allColors);
+    const [search, setSearch] = useState("");
 
 
     const [filter, setFilter] = useState({
@@ -38,7 +39,15 @@ function SearchOption() {
 
     }
 
-    
+    console.log(search);
+
+    const handleSearchBar = (evt) => {
+        evt.preventDefault();
+        dispatch({
+            type: "SEARCH_SUPPLIES",
+            payload: search
+        })
+    }
 
     return (<>
 
@@ -52,23 +61,29 @@ function SearchOption() {
 
             // TODO--- THIS SEARCH PAGE SHOULD LIKE SIMILAR TO THE ADD FORM WITH GRAY IN MIDDLE 
             >
-                
-                <Stack id='search-bar'
-                    direction={{ xs: 'column', sm: 'row' }}
-                    spacing={{ xs: 1, sm: 2, md: 4 }}>
-                    <InputLabel>Input Description</InputLabel>
-                    <TextField
-                        sx={{ width: '75%', margin: 'auto' }}
-                        placeholder='Input Description'
-                        variant='outlined' />
+                <form onSubmit={handleSearchBar}>
+                    <Stack id='search-bar'
+                        direction={{ xs: 'column', sm: 'row' }}
+                        spacing={{ xs: 1, sm: 2, md: 4 }}>
+                        <InputLabel>Input Description</InputLabel>
+                        <TextField
+                            onChange={(event) => setSearch(event.target.value)}
+                            sx={{ width: '75%', margin: 'auto' }}
+                            placeholder='Input Description'
+                            variant='outlined' />
 
-                    <Button
-                        sx={{ width: '10%', margin: 'auto' }}
-                        variant='contained'
-                        color={'secondary'}
-                        size='small'>Search
-                    </Button>
-                </Stack>
+                        <Button
+                            type='submit'
+                            sx={{ width: '10%', margin: 'auto' }}
+                            variant='contained'
+                            color={'secondary'}
+                            size='small'>Search
+                        </Button>
+                    </Stack>
+                </form>
+
+
+
 
                 <form onSubmit={handleSubmitFilter}>
                     <Stack id='filter-options'
@@ -83,7 +98,7 @@ function SearchOption() {
                             <option
                                 name="dropFrom"
                                 value=""
-                                >Select a category</option>
+                            >Select a category</option>
                             {categories.map(category => (
                                 <option key={category.id} value={category.id}>{category.name}</option>
                             ))}

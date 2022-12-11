@@ -7,14 +7,16 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
+    console.log('REQ.USER', req.user);
+
  const sqlTxt = `SELECT *
                 FROM supplies
                 WHERE "name" % $1
                 AND "user_id" = $2;`;
 
 const sqlParams = [
-    'cardstock',
-    4
+    req.query,
+    req.user.id
 ]
 
     pool.query(sqlTxt, sqlParams)

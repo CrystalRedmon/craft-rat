@@ -68,6 +68,19 @@ function* fetchFilteredList(action){
 }
 
 
+function* searchSupplies(action){
+    try{
+        const searchList = yield axios.get(`/api/search/`, {params: action.payload});
+        yield put({ type: 'SET_SUPPLIES', payload: searchList.data});
+    }catch(error){
+        console.log("Search supplies failed: ", error);
+    }
+}
+
+
+
+
+
 function* suppliesSaga(){
     yield takeLatest('FETCH_SUPPLIES', fetchSupplies);
     yield takeLatest('FETCH_CURRENT_SUPPLIES', fetchCurrentSupplies);
@@ -75,6 +88,7 @@ function* suppliesSaga(){
     yield takeLatest('DELETE_ITEM', deleteItem);
     yield takeLatest('SAVE_ITEM', saveItem); /// SENDS EDIT UPDATES TO DB
     yield takeLatest('FETCH_FILTERED_LIST', fetchFilteredList);
+    yield takeLatest('SEARCH_SUPPLIES', searchSupplies);
 }
 
 export default suppliesSaga;
