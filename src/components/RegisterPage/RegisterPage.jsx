@@ -18,7 +18,7 @@ function RegisterPage() {
             history.push('/login');
           }}
         >
-          Login
+          Complete Registration 
         </button>
       </center>
     </div>

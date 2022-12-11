@@ -91,7 +91,6 @@ const handleToAbout =() =>{
             }}
           >
             <MenuItem onClick={handleToAdd}> <button className="navLink">Add Items</button> </MenuItem>
-            {/* <MenuItem onClick={handleToResources}> <button className="navLink">Saved Resources </button> </MenuItem> */}
             <MenuItem onClick={handleToAbout}> <button className="navLink">About</button> </MenuItem>
             <MenuItem onClick={handleLogout}><button className="navLink">Logout</button ></MenuItem>
             <div>
@@ -102,25 +101,6 @@ const handleToAbout =() =>{
                   Login / Register
                 </Link>
               )}
-
-              {/* If a user is logged in, show these links
-          {user.id && (
-            <>
-              <Link className="navLink" to="/user">
-                Home
-              </Link>
-
-              <Link className="navLink" to="/info">
-                Info Page
-              </Link>
-
-              <LogOutButton className="navLink" />
-            </>
-          )}
-
-          <Link className="navLink" to="/about">
-            About
-          </Link> */}
             </div>
 
           </Menu>

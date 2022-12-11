@@ -14,6 +14,7 @@ const categoriesRouter= require('./routes/categories.router');
 const filteredRouter=require('./routes/filtered.router');
 const colorsRouter=require('./routes/colors.router');
 const resourcesRouter=require('./routes/resources.router');
+const searchRouter=require('./routes/search.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -33,6 +34,7 @@ app.use('/api/filtered', filteredRouter)
 app.use('/api/categories', categoriesRouter);
 app.use('/api/colors', colorsRouter);
 app.use('/api/resources', resourcesRouter);
+app.use('/api/search', searchRouter)
 
 // Serve static files
 app.use(express.static('build'));
