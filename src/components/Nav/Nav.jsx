@@ -41,6 +41,7 @@ const handleToAbout =() =>{
     dispatch({
       type: 'LOGOUT'
     })
+    history.push('/')
 
   }
 
@@ -53,7 +54,7 @@ const handleToAbout =() =>{
 
       <Grid container className="container">
 
-        <Grid item xs={3.5}>
+        <Grid item xs={2}>
           <Link to="/home">
             <h2 className="nav-title">CraftRat</h2>
           </Link>
@@ -63,7 +64,7 @@ const handleToAbout =() =>{
         </Grid>
 
 
-        <Grid item xs={5} sx={{textAlign: 'center'}}>
+        <Grid item xs={9} sx={{textAlign: 'center'}}>
 
           {user.username ?
             <h2 class='nav-title'>Welcome, {user.username}!</h2>
@@ -72,7 +73,7 @@ const handleToAbout =() =>{
 
         </Grid>
 
-        <Grid item xs={3.5} mt={1} sx={{textAlign: 'right'}}>
+        <Grid item xs={1} mt={1} sx={{textAlign: 'right'}}>
           <Button
             id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
@@ -96,6 +97,7 @@ const handleToAbout =() =>{
             <MenuItem onClick={handleToAdd}> <button className="navLink">Add Items</button> </MenuItem>
             <MenuItem onClick={handleToAbout}> <button className="navLink">About</button> </MenuItem>
             <MenuItem onClick={handleLogout}><button className="navLink">Logout</button ></MenuItem>
+            
             <div>
               {/* If no user is logged in, show these links */}
               {!user.id && (

@@ -120,6 +120,11 @@ function AddSuppliesForm() {
     }
 
 
+    const clearFields =()=>{
+
+        
+    }
+
     return (
 
         <Box sx={{backgroundColor: '#DCDCDC', width: '60%', boxShadow: '10px 10px 5px gray', margin: 'auto', borderRadius: '10px'}}>
@@ -255,7 +260,7 @@ function AddSuppliesForm() {
 
                         <Button type='submit'>Add</Button>
 
-                        <Button>Cancel</Button>
+                        
 
                     </ButtonGroup>
                 </Box>
