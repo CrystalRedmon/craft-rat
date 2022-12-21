@@ -83,7 +83,7 @@ function Nav() {
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
           >
-            <MenuTwoToneIcon />
+            <MenuTwoToneIcon sx={{backgroundColor: 'white', borderRadius: 1}}/>
           </Button>
 
           <Menu
