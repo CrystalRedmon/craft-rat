@@ -21,7 +21,7 @@ function RegisterPage() {
             history.push('/login');
           }}
         >
-          Complete Registration 
+         Already a CraftRat? Log In
         </button>
       </center>
     </div>

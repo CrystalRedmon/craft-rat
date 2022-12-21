@@ -52,7 +52,7 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Complete Registration" />
+        <input className="btn" type="submit" name="submit" value="Register and Log In" />
       </div>
     </form>
   );

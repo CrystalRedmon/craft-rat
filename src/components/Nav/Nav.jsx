@@ -13,9 +13,13 @@ function Nav() {
   const user = useSelector((store) => store.user);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -38,15 +42,13 @@ function Nav() {
   }
 
   const handleLogout = () => {
+    setAnchorEl(null);
     dispatch({
       type: 'LOGOUT'
     })
-    history.push('/')
+    history.push('/login')
 
   }
-
-
-
 
 
   return (
@@ -103,20 +105,14 @@ function Nav() {
               :
               (
                 // If there's no user, show login/registration links
-                <MenuItem className="navLink" to="/login">
+                <MenuItem onClick={() => { history.push('/login'), setAnchorEl(null); }} className="navLink">
                   Login / Register
                 </MenuItem>
               )}
             <MenuItem onClick={handleToAbout}> <button className="navLink">About</button> </MenuItem>
 
             <div>
-              {/* If no user is logged in, show these links */}
-              {/* {!user.id && (
-                // If there's no user, show login/registration links
-                <Link className="navLink" to="/login">
-                  Login / Register
-                </Link>
-              )} */}
+
             </div>
 
           </Menu>
