@@ -39,9 +39,9 @@ height: 2.5rem; */
 
 .btn {
   height: 2.5rem;
-  position: absolute;
+  /* position: absolute; */
   margin: auto;
-  bottom: 2.5rem;
+  /* bottom: 2.5rem; */
   display: inline-block;
   padding: 10px 20px;
   border-color: #014041;
@@ -119,6 +119,7 @@ Form Treatment
   background-color: #efefef;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 input {

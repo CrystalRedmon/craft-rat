@@ -18,7 +18,7 @@ function LoginPage() {
 
         <button
           type="button"
-          className="btn"
+          className="btn btn_asLink"
           onClick={() => {
             history.push('/registration');
           }}

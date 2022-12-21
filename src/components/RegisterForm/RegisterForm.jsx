@@ -52,9 +52,7 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <button className="btn" type="submit" name="submit" >
-          Register and Log In
-        </button>
+        <input className="btn btn_asLink" type="submit" name="submit" value="Register and Log In"/>
       </div>
     </form>
   );
