@@ -31,11 +31,11 @@ function Nav() {
     history.push('/resources');
   }
 
-const handleToAbout =() =>{
-  setAnchorEl(null);
-  history.push('./about')
+  const handleToAbout = () => {
+    setAnchorEl(null);
+    history.push('./about')
 
-}
+  }
 
   const handleLogout = () => {
     dispatch({
@@ -64,7 +64,7 @@ const handleToAbout =() =>{
         </Grid>
 
 
-        <Grid item xs={9} sx={{textAlign: 'center'}}>
+        <Grid item xs={9} sx={{ textAlign: 'center' }}>
 
           {user.username ?
             <h2 class='nav-title'>Welcome, {user.username}!</h2>
@@ -73,7 +73,7 @@ const handleToAbout =() =>{
 
         </Grid>
 
-        <Grid item xs={1} mt={1} sx={{textAlign: 'right'}}>
+        <Grid item xs={1} mt={1} sx={{ textAlign: 'right' }}>
           <Button
             id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
@@ -85,7 +85,7 @@ const handleToAbout =() =>{
           </Button>
 
           <Menu
-            
+
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
@@ -94,18 +94,29 @@ const handleToAbout =() =>{
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleToAdd}> <button className="navLink">Add Items</button> </MenuItem>
+            {user.id ?
+              <>
+                <MenuItem onClick={handleToAdd}> <button className="navLink">Add Items</button> </MenuItem>
+                <MenuItem onClick={handleLogout}><button className="navLink">Logout</button ></MenuItem>
+
+              </>
+              :
+              (
+                // If there's no user, show login/registration links
+                <MenuItem className="navLink" to="/login">
+                  Login / Register
+                </MenuItem>
+              )}
             <MenuItem onClick={handleToAbout}> <button className="navLink">About</button> </MenuItem>
-            <MenuItem onClick={handleLogout}><button className="navLink">Logout</button ></MenuItem>
-            
+
             <div>
               {/* If no user is logged in, show these links */}
-              {!user.id && (
+              {/* {!user.id && (
                 // If there's no user, show login/registration links
                 <Link className="navLink" to="/login">
                   Login / Register
                 </Link>
-              )}
+              )} */}
             </div>
 
           </Menu>
