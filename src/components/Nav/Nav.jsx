@@ -57,6 +57,9 @@ const handleToAbout =() =>{
           <Link to="/home">
             <h2 className="nav-title">CraftRat</h2>
           </Link>
+
+
+
         </Grid>
 
 
