@@ -1,0 +1,6 @@
+@media (min-width: 900px)
+
+.css-1y50jm1-MuiStack-root>:not(style)+:not(style) {
+    margin: 0;
+    margin-left: auto;
+}

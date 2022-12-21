@@ -1,6 +1,9 @@
 import { Box, TextField, Select, MenuItem, InputLabel, FormControl, FormGroup, Switch, TextareaAutosize, Stack, Input, Button, ButtonGroup, InputAdornment, Checkbox } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import {useHistory} from 'react-router-dom'
+
+
 
 
 
@@ -9,6 +12,7 @@ function SearchOption() {
     const categories = useSelector(store => store.categories.allCategories);
     const colors = useSelector(store => store.colors.allColors);
     const [search, setSearch] = useState("");
+    const history = useHistory();
 
 
     const [filter, setFilter] = useState({
@@ -54,10 +58,10 @@ function SearchOption() {
 
         <Box className="main-container, grid-col_12" mb={4}>
 
-            <h2>Filter Supplies</h2>
+            <h2>Find Your Supplies</h2>
             <Stack id='search-container'
                 spacing={3}
-                sx={{ width: '100%', margin: 'auto' }}
+                sx={{ width: '100%', margin: 'auto', marginTop: 5 }}
 
             // TODO--- THIS SEARCH PAGE SHOULD LIKE SIMILAR TO THE ADD FORM WITH GRAY IN MIDDLE 
             >
@@ -65,12 +69,12 @@ function SearchOption() {
                     <Stack id='search-bar'
                         direction={{ xs: 'column', sm: 'row' }}
                         spacing={{ xs: 1, sm: 2, md: 4 }}>
-                        <InputLabel>Input Description</InputLabel>
-                        <TextField
+                        <label>Description: </label>
+                        <Input
                             onChange={(event) => setSearch(event.target.value)}
-                            sx={{ width: '75%', margin: 'auto' }}
+                            sx={{ width: '65%', margin: 'auto', backgroundColor: 'white' }}
                             placeholder='Input Description'
-                            variant='outlined' />
+                            variant='filled' />
 
                         <Button
                             type='submit'
@@ -82,60 +86,73 @@ function SearchOption() {
                     </Stack>
                 </form>
 
+            </Stack>
 
 
-
+            <Stack mt={5}>
                 <form onSubmit={handleSubmitFilter}>
                     <Stack id='filter-options'
                         direction={{ xs: 'column', sm: 'row' }}
                         spacing={{ xs: 1, sm: 2, md: 4 }}>
 
-                        <label>Category</label>
-                        <select
-                            required
-                            onChange={(evt) => setFilter({ ...filter, categories_id: evt.target.value })}
-                            value={filter.category}>
-                            <option
-                                name="dropFrom"
-                                value=""
-                            >Select a category</option>
-                            {categories.map(category => (
-                                <option key={category.id} value={category.id}>{category.name}</option>
-                            ))}
-                        </select>
-
-                        <label>Colors</label>
-                        <select
-                            required
-                            onChange={(evt) => setFilter({ ...filter, color: evt.target.value })}
-                            value={colors.name}
-                        >
-                            <option name="dropFrom" value="" >Select a category</option>
-                            {colors.map(color => (
-                                <option key={color.id} value={color.id}>{color.name}</option>
-                            ))}
-                        </select>
+                        <label>Category:
+                            <select
+                                required
+                                onChange={(evt) => setFilter({ ...filter, categories_id: evt.target.value })}
+                                value={filter.category}>
+                                <option
+                                    name="dropFrom"
+                                    value=""
+                                >Select a category</option>
+                                {categories.map(category => (
+                                    <option key={category.id} value={category.id}>{category.name}</option>
+                                ))}
+                            </select>
+                        </label>
 
 
-                        <label>Scraps</label>
-                        {filter.scraps === false ?
-                            <Switch
-                                defaultChecked={filter.scraps}
-                                onChange={() => setFilter({ ...filter, scraps: true })}
-                                size='medium'></Switch>
-                            :
-                            <Switch
-                                defaultChecked={filter.scraps}
-                                onChange={() => setFilter({ ...filter, scraps: false })}
-                                size='medium'></Switch>
-                        }
+                        <label>Colors:
+                            <select
+                                required
+                                onChange={(evt) => setFilter({ ...filter, color: evt.target.value })}
+                                value={colors.name}
+                            >
+                                <option name="dropFrom" value="" >Select a category</option>
+                                {colors.map(color => (
+                                    <option key={color.id} value={color.id}>{color.name}</option>
+                                ))}
+                            </select>
+                        </label>
 
+                        <label>Scraps:
+                            {filter.scraps === false ?
+                                <Switch
+                                    defaultChecked={filter.scraps}
+                                    onChange={() => setFilter({ ...filter, scraps: true })}
+                                    size='medium'
+                                    sx={{ marginTop: 0 }}></Switch>
+                                :
+                                <Switch
+                                    defaultChecked={filter.scraps}
+                                    onChange={() => setFilter({ ...filter, scraps: false })}
+                                    size='medium'
+                                    sx={{ marginTop: 0 }}></Switch>
+                            }
+                        </label>
                         <Button
                             type="submit"
                             variant='contained'
                             color={'secondary'}
                             size='small'>
                             Filter
+                        </Button>
+
+                        <Button
+                            onClick={()=>history.push('/home')}
+                            variant='contained'
+                            color={'secondary'}
+                            size='small'>
+                           Reset Results
                         </Button>
 
                     </Stack>
