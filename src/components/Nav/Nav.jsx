@@ -109,7 +109,7 @@ function Nav() {
                   Login / Register
                 </MenuItem>
               )}
-            <MenuItem onClick={handleToAbout}> <button className="navLink">About</button> </MenuItem>
+            <MenuItem onClick={handleToAbout}><button className="navLink">About</button> </MenuItem>
 
             <div>
 
