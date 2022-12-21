@@ -18,10 +18,16 @@ function LandingPage() {
 
 
       <div className="grid">
-        <div className="grid-col grid-col_4">
 
-        </div><h2>{heading}</h2>
-        <div className="grid-col grid-col_4">
+        <div className="grid-col grid-col_12">
+          <center>
+            <h2>{heading}</h2>
+          </center>
+          
+        </div>
+
+
+        <div className="grid-col grid-col_12">
 
           <RegisterForm />
 
