@@ -21,9 +21,6 @@ function SuppliesListItem({ supply }) {
         }
     }
 
-    console.log('colorName=', colorName())
-
-
     useEffect(() => {
         dispatch({
             type: 'FETCH_COLORS'

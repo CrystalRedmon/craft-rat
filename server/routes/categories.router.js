@@ -23,7 +23,6 @@ router.get('/', rejectUnauthenticated, (req, res)=>{
 })
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-    console.log('Inside categories router ', req.params.id)
 
     const sqlTxt = `SELECT DISTINCT "categories"."name" 
                     FROM "categories" 
@@ -33,11 +32,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
    
     pool.query(sqlTxt, [req.params.id])
     .then(dbRes=>{
-        console.log('blah blah response', dbRes.rows[0].name)
         res.send(dbRes.rows[0].name);
     })
     .catch(error=>{
-        console.log('Get current category from DB failed: ', error);
         res.sendStatus(500);
     })
   });

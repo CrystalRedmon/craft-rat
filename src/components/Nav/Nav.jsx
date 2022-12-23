@@ -69,9 +69,9 @@ function Nav() {
         <Grid item xs={9} sx={{ textAlign: 'center' }}>
 
           {user.username ?
-            <h2 class='nav-title'>Welcome, {user.username}!</h2>
+            <h2 className='nav-title'>Welcome, {user.username}!</h2>
             :
-            <h2 class='greeting'>Hey, Crafter</h2>}
+            <h2 className='greeting'>Hey, Crafter</h2>}
 
         </Grid>
 

@@ -9,7 +9,7 @@ import AddResourceForm from '../AddResourceForm/AddResourceForm';
 function Resources() {
     const dispatch = useDispatch();
     const resources = useSelector(store => store.resources.allResources);
-    console.log('ResourcesList 📰: ', resources)
+  
 
 
     useEffect(() => {

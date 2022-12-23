@@ -10,16 +10,14 @@ const router = express.Router();
 
 // GET ALL COLORS FROM DB TO POPULATE DROPDOWN
 router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log('inside colors router: ')
+  
   const sqlTxt = `SELECT * FROM "colors";`;
 
   pool.query(sqlTxt)
     .then(dbRes => {
-      console.log('All of the Colors from DB: ', dbRes.rows);
       res.send(dbRes.rows);
     })
     .catch(error => {
-      console.log('DB req for all Colors failed: ', error);
       res.sendStatus(500);
     })
 
@@ -27,7 +25,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  console.log('Colors in the server: ', req.params);
   const sqlTxt =  `SELECT DISTINCT "colors"."name" 
                     FROM "colors" 
                     JOIN "supplies"
@@ -37,11 +34,9 @@ router.get('/:id', (req, res) => {
   pool.query(sqlTxt, [req.params.id])
   .then(dbRes=>{
     res.send(dbRes.rows[0].name);
-    console.log(dbRes.rows[0].name);
   })
   .catch(error=>{
     res.sendStatus(500);
-    console.log('GET current color failed: ', error);
   })
 
 })

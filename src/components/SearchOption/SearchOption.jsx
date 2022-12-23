@@ -43,7 +43,7 @@ function SearchOption() {
 
     }
 
-    console.log(search);
+    
 
     const handleSearchBar = (evt) => {
         evt.preventDefault();

@@ -22,12 +22,6 @@ function EditSupplies() {
     const [scraps, setScraps] = useState(currentItem.scraps);
 
 
-    console.log('Let us edit', currentItem);
-    console.log('this is my scrap status', currentItem.scraps);
-    /// SHOULD 🛑 NOT USE BOTH USESTATE AND USESELECT. ONLY USESELECT 🛑
-
-
-    console.log('adding supplies, all categories', currentItem.id);
 
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
 
@@ -57,7 +51,6 @@ function EditSupplies() {
             type: 'SAVE_ITEM',
             payload: currentItem
         });
-        console.log('inside handleSubmit: ', currentItem);
         history.push('/');
         alert('Item Successfully Updated')
 

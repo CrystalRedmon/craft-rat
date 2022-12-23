@@ -11,18 +11,18 @@ const router = express.Router();
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log('Getting resouces');
+  
   const sqlTxt = `SELECT * FROM "resources"
     WHERE "user_id" = $1;`;
 
   pool.query(sqlTxt, [req.user.id])
     .then(dbRes => {
       res.send(dbRes.rows);
-      console.log('All of the resources: ', dbRes.rows);
+      
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('GET resources failed: ', error);
+     
     })
 });
 

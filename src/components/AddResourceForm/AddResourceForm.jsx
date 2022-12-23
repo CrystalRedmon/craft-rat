@@ -21,7 +21,7 @@ function AddResourceForm() {
     }, []);
 
 
-    console.log(newResource);
+
 
     const handleSubmit = (evt)=>{
         evt.preventDefault();

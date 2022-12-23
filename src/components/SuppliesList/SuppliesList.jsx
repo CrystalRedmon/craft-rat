@@ -22,7 +22,7 @@ function SuppliesList() {
 
     
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -34,12 +34,12 @@ function SuppliesList() {
     };
 
 
-    console.log('This is my supplies list: ', supplies.supplies);
+ 
 
     /// useEFFECT WILL POPULATE THE SUPPLY LIST ON PAGE LOAD
     /// FETCH_SUPPLIES DISPATCH WILL GET STOPPED BY ROOTSAGA 
     useEffect(() => {
-        console.log("Inside useEffect")
+      
         dispatch({
             type: 'FETCH_SUPPLIES'
         })

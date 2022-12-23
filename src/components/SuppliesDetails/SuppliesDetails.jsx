@@ -19,11 +19,6 @@ function SuppliesDetails() {
     const currentColor = useSelector(store => store.colors.currentColor)
 
 
-
-
-    console.log('This is my currentCategory: ', currentCategory);
-    console.log('This is my currentItem', currentItem);
-
     useEffect(() => {
         dispatch({
             type: 'FETCH_CURRENT_SUPPLIES',
@@ -40,7 +35,6 @@ function SuppliesDetails() {
             payload: `${params.id}`
 
         });
-        console.log(`Is this supposed to be a string ${params.id}`)
     }, [params.id]);
 
     const handleDeleteItem = () => {

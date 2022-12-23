@@ -19,9 +19,6 @@ function AddSuppliesForm() {
     const colors = useSelector(store => store.colors.allColors);
 
 
-    console.log('adding supplies, all colors', colors);
-    console.log('adding supplies, all categories', categories);
-
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
     const [newItem, setNewItem] = useState({
         category: '',
@@ -51,7 +48,7 @@ function AddSuppliesForm() {
             ...newItem,
             image: event.target.value
         });
-        console.log(newItem);
+        
     };
 
     const handleProductDetailsInput = (event) => {
@@ -59,7 +56,7 @@ function AddSuppliesForm() {
             ...newItem,
             product_details: event.target.value
         });
-        console.log(newItem);
+    
     };
 
 
@@ -68,7 +65,7 @@ function AddSuppliesForm() {
             ...newItem,
             category: event.target.value
         });
-        console.log(newItem);
+       
     }
 
     const handleColorInput = (event) => {
@@ -76,7 +73,7 @@ function AddSuppliesForm() {
             ...newItem,
             color_id: event.target.value
         })
-        console.log(newItem);
+       
     }
 
     const handleNameInput = (event) => {
@@ -84,7 +81,7 @@ function AddSuppliesForm() {
             ...newItem,
             name: event.target.value
         });
-        console.log(newItem);
+        
     }
 
     const handleQuantityInput = (event) => {
@@ -92,7 +89,7 @@ function AddSuppliesForm() {
             ...newItem,
             quantity: event.target.value
         });
-        console.log(newItem);
+        
     }
 
     /// TODO--- HOW TO HANDLE SCRAPS BOOLEAN IF TRUE WHEN NEW ITEM INPUT?????
@@ -102,7 +99,7 @@ function AddSuppliesForm() {
             ...newItem,
             notes: event.target.value
         });
-        console.log(newItem);
+        
     }
 
     const handleOnSubmit = (event) => {
@@ -112,7 +109,7 @@ function AddSuppliesForm() {
             type: 'ADD_NEW_ITEM',
             payload: newItem
         });
-        console.log('inside handleSubmit: ', newItem);
+        
         history.push('/');
         alert('New Item Successfully Added');
 

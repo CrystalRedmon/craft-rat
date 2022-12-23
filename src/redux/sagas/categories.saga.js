@@ -4,7 +4,7 @@ import axios from 'axios';
 function* fetchCurrentCategory(action) {
     try {
         const currentCategory = yield axios.get(`/api/categories/${action.payload}`);
-        console.log('getting current category: ', currentCategory.data);
+        
         yield put({ type: 'SET_CURRENT_CATEGORY', payload: currentCategory.data });
     } catch {
         console.log('get current category failed');
