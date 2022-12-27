@@ -21,10 +21,11 @@ else {
     pool = new pg.Pool({
         host: 'db.bit.io',
         port: 5432,
-        database: 'craft_rat', 
+        database: 'CrystalRedmon/CraftRat', 
     });
 }
 
 module.exports = pool;
 
 //localhost
+//db craft_rat
