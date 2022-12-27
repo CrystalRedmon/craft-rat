@@ -19,10 +19,12 @@ if (process.env.DATABASE_URL) {
 // also running on our computer (localhost)
 else {
     pool = new pg.Pool({
-        host: 'localhost',
+        host: 'db.bit.io',
         port: 5432,
         database: 'craft_rat', 
     });
 }
 
 module.exports = pool;
+
+//localhost
