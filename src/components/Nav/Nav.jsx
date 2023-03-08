@@ -5,16 +5,16 @@ import './Nav.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Menu, MenuItem, Grid, Typography } from '@mui/material'
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
-import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
+import {createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Nav() {
 
   const theme = createTheme();
 
   theme.typography.h1 = {
-    fontSize: '1.5rem',
+    fontSize: '2rem',
     '@media (min-width:600px)': {
-      fontSize: '2rem',
+      fontSize: '2.5rem',
     },
     [theme.breakpoints.up('md')]: {
       fontSize: '3rem',
@@ -24,10 +24,10 @@ function Nav() {
   theme.typography.h2 = {
     fontSize: '1rem',
     '@media(min-width: 600px)': {
-      fontSize: '1.6rem',
+      fontSize: '1.5rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '2.5rem',
+      fontSize: '3rem',
     }
   }
 
@@ -82,12 +82,10 @@ function Nav() {
 
           <Grid item xs={12} md={2}
             sx={{
-              [theme.breakpoints.down('sm')]: {
+              [theme.breakpoints.up('xs')]: {
                 textAlign: 'center',
               },
             }}>
-
-
 
             <Link to="/home">
               <Typography variant={'h1'} className="nav-title">CraftRat</Typography>
@@ -95,8 +93,7 @@ function Nav() {
 
           </Grid>
 
-
-          <Grid item md={9} sx={{ textAlign: 'center' }}>
+          <Grid item xs={12} md={9} sx={{ textAlign: 'center' }}>
 
             {user.username ?
               <Typography variant='h2' className='nav-title'>Welcome, {user.username}!</Typography>
@@ -105,7 +102,20 @@ function Nav() {
 
           </Grid>
 
-          <Grid item md={1} mt={1} sx={{ textAlign: 'right' }}>
+          <Grid item xs={12} md={1} 
+          sx={{
+            [theme.breakpoints.up('xs')]: {
+              textAlign: 'center',
+            },
+            [theme.breakpoints.up('md')]:{
+              textAlign: 'right',
+              marginTop: 1,
+            }
+          }}
+          
+          
+          
+          >
             <Button
               id="basic-button"
               aria-controls={open ? 'basic-menu' : undefined}
