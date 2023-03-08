@@ -119,7 +119,6 @@ function AddSuppliesForm() {
 
     const clearFields =()=>{
 
-        
     }
 
     return (
