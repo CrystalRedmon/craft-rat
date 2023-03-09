@@ -11,7 +11,7 @@ In order to help users and developers understand the structure and user interfac
 
 https://docs.google.com/document/d/16tx1KOCC5M4ubbyNx87Amh12FKjGpQFPg_mamOIzCyg/edit?usp=sharing 
 
-## Screen Shot
+## Screen Shots
 
 ![Homepage View](./public/images/craftrathomepage.png)
 
