@@ -7,7 +7,7 @@ CraftRat is the inventory tool for multi-crafters. It allows users to track inve
 
 ## Scoping Documentation
 
-https://docs.google.com/document/d/16tx1KOCC5M4ubbyNx87Amh12FKjGpQFPg_mamOIzCyg/edit?usp=sharing
+https://docs.google.com/document/d/16tx1KOCC5M4ubbyNx87Amh12FKjGpQFPg_mamOIzCyg/edit?usp=sharing 
 
 ## Screen Shot
 
