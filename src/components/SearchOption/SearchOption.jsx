@@ -1,4 +1,4 @@
-import { Box, TextField, Select, MenuItem, InputLabel, FormControl, FormGroup, Switch, TextareaAutosize, Stack, Input, Button, ButtonGroup, InputAdornment, Checkbox } from '@mui/material';
+import { Box, TextField, Select, MenuItem, InputLabel, FormControl, FormGroup, Switch, TextareaAutosize, Stack, Input, Button, ButtonGroup, InputAdornment, Checkbox, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom'
@@ -70,6 +70,7 @@ function SearchOption() {
                         direction={{ xs: 'column', sm: 'row' }}
                         spacing={{ xs: 1, sm: 2, md: 4 }}>
                         <label>Description: </label>
+                      
                         <Input
                             onChange={(event) => setSearch(event.target.value)}
                             sx={{ width: '65%', margin: 'auto', backgroundColor: 'white' }}
@@ -83,6 +84,7 @@ function SearchOption() {
                             color={'secondary'}
                             size='small'>Search
                         </Button>
+                      
                     </Stack>
                 </form>
 

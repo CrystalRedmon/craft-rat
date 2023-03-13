@@ -1,12 +1,15 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 /// MUI IMPORTS
-import { Button, Box, InputLabel, Switch, Stack, ButtonGroup, Typography} from '@mui/material';
+import { Button, Box, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
 
 function SuppliesDetails() {
+    const theme = createTheme();
+
+
     const dispatch = useDispatch();
     const params = useParams();
     const history = useHistory();
@@ -51,7 +54,14 @@ function SuppliesDetails() {
 
 
     return (
-        <Box sx={{backgroundColor: '#DCDCDC', width: '60%', boxShadow: '10px 10px 5px gray', margin: 'auto', borderRadius: '10px'}}>
+        <Box sx={{
+            backgroundColor: '#DCDCDC', boxShadow: '10px 10px 5px gray', borderRadius: '10px', margin: 'auto',
+            [theme.breakpoints.up('md')]:
+                { width: '60%', },
+
+            [theme.breakpoints.down('md')]:
+                { width: '90%', padding: .5, }
+        }}>
 
 
 
@@ -65,11 +75,10 @@ function SuppliesDetails() {
 
                 <Stack
                     id='left-inner-container'
-                    pr={3}
+
                     sx={{
-                        justifyContent: 'center',
                         alignItems: 'center',
-                        borderRadius: '3em'
+                        borderRadius: '3em',
                     }}>
 
                     <Box
@@ -80,9 +89,16 @@ function SuppliesDetails() {
                         <img src={currentItem.image} alt="" />
                     </Box>
 
-                    <Box mt={'2.5em'}>
+                    <Box mt={'2.5em'} pl={'1em'}>
                         <InputLabel>Item Details</InputLabel>
-                        <Box sx={{ width: 325, height: 75, border: 'gray solid 1px', borderRadius: '5px', p: '5px' }}>
+                        <Box sx={{
+
+                            width: 325, height: 75, border: 'gray solid 1px', borderRadius: '5px', p: '5px',
+                            [theme.breakpoints.down('md')]:
+                            {
+                                width: '90%',
+                            }
+                        }}>
 
                             {currentItem.product_details}
                         </Box>
@@ -116,9 +132,16 @@ function SuppliesDetails() {
                         }
                     </Box>
 
-                    <Box mt={'6em'}>
+                    <Box
+                        sx={{
+                            marginTop: '6em',
+                            [theme.breakpoints.down('md')]:
+                                { marginTop: '1em' }
+                        }}
+
+                    >
                         <InputLabel>Notes</InputLabel>
-                        <Box sx={{ width: 325, height: 75, border: 'gray solid 1px', borderRadius: '5px', p: '5px' }} >
+                        <Box sx={{ width: '90%', height: 75, border: 'gray solid 1px', borderRadius: '5px', p: '5px' }} >
                             <Typography>
                                 {currentItem.notes}
                             </Typography>
@@ -136,14 +159,14 @@ function SuppliesDetails() {
                     alignItems: 'center',
                 }}>
 
-                    <ButtonGroup
-                        variant='contained'
-                        color={'secondary'}
-                        size='medium'>
-                        <Button onClick={() => history.push('/')}>Back To List</Button>
-                        <Button onClick={() => history.push(`/details/${params.id}/edit`)}>Edit</Button>
-                        <Button onClick={handleDeleteItem}>Delete</Button>
-                    </ButtonGroup>
+                <ButtonGroup
+                    variant='contained'
+                    color={'secondary'}
+                    size='medium'>
+                    <Button onClick={() => history.push('/')}>Back To List</Button>
+                    <Button onClick={() => history.push(`/details/${params.id}/edit`)}>Edit</Button>
+                    <Button onClick={handleDeleteItem}>Delete</Button>
+                </ButtonGroup>
             </Box>
         </Box >
     );
