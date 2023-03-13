@@ -5,8 +5,13 @@ _Durationn: 2 weeks_
 ## Description
 CraftRat is the inventory tool for multi-crafters. It allows users to track inventory from different craft categories such as crochet, sewing, and paper. CraftRat allows users to keep track of what's on hand so they can continue to create by hand.  
 
+## Scoping Documentation
 
-## Screen Shot
+In order to help users and developers understand the structure and user interface of the application, the link to the scoping documentation has been provided below. The scoping documentation includes the project wireframes and database design.  
+
+https://docs.google.com/document/d/16tx1KOCC5M4ubbyNx87Amh12FKjGpQFPg_mamOIzCyg/edit?usp=sharing 
+
+## Screen Shots
 
 ![Homepage View](./public/images/craftrathomepage.png)
 
