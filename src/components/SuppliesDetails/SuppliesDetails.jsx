@@ -2,6 +2,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Theme from '../../hooks/Theme';
 
 /// MUI IMPORTS
 import { Button, Box, InputLabel, Switch, Stack, ButtonGroup, Typography } from '@mui/material';
@@ -14,8 +15,6 @@ function SuppliesDetails() {
     const params = useParams();
     const history = useHistory();
     const [updateBtn, setUpdateBtn] = useState(false)
-
-
 
     const currentItem = useSelector(store => store.supplies.currentSupplies);
     const currentCategory = useSelector(store => store.categories.currentCategory);
@@ -82,6 +81,7 @@ function SuppliesDetails() {
                     }}>
 
                     <Box
+                        m={'auto'}
                         sx={{
                             width: 300,
                             height: 300,
@@ -92,14 +92,12 @@ function SuppliesDetails() {
                     <Box mt={'2.5em'} pl={'1em'}>
                         <InputLabel>Item Details</InputLabel>
                         <Box sx={{
-
-                            width: 325, height: 75, border: 'gray solid 1px', borderRadius: '5px', p: '5px',
+                            width: 325, height: 100, border: 'gray solid 1px', borderRadius: '5px', p: '5px',
                             [theme.breakpoints.down('md')]:
                             {
                                 width: '90%',
                             }
                         }}>
-
                             {currentItem.product_details}
                         </Box>
                     </Box>
@@ -122,8 +120,6 @@ function SuppliesDetails() {
                     <p>Item: {currentItem.name}</p>
                     <p>Quantity/Unit: {currentItem.quantity}</p>
 
-
-
                     <Box>
                         Scraps: {currentItem.scraps ?
                             <Switch checked size='medium'></Switch>
@@ -137,9 +133,7 @@ function SuppliesDetails() {
                             marginTop: '6em',
                             [theme.breakpoints.down('md')]:
                                 { marginTop: '1em' }
-                        }}
-
-                    >
+                        }}>
                         <InputLabel>Notes</InputLabel>
                         <Box sx={{ width: '90%', height: 75, border: 'gray solid 1px', borderRadius: '5px', p: '5px' }} >
                             <Typography>

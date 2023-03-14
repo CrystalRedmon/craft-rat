@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -13,6 +14,8 @@ import { Box, InputLabel, Switch, TextareaAutosize, Stack, Input, ButtonGroup, }
 
 
 function EditSupplies() {
+    const theme = createTheme();
+
     const params = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -21,12 +24,7 @@ function EditSupplies() {
     const currentItem = useSelector(store => store.supplies.currentSupplies);
     const [scraps, setScraps] = useState(currentItem.scraps);
 
-
-
     /// THIS IS THE OBJECT THAT WILL CONTAIN ALL OF THE INPUT INFO. ONCE THE FORM IS COMPLETE A DISPATCH TO ADD_ITEM SHOULD BE COMPLETED
-
-
-
 
     useEffect(() => {
         // GET CURRENT ITEM FROM THE SERVER. ALLOWS INFO TO REMAIN POPULATED EVEN ON PAGE RELOAD.
@@ -56,12 +54,16 @@ function EditSupplies() {
 
     }
 
-
-    /////REMEMBER TO ADD THE FORM BACK IN!!!!!!!!
-
     return (
         //grid for the entire page
-        <Box sx={{backgroundColor: '#DCDCDC', width: '60%', boxShadow: '10px 10px 5px gray', margin: 'auto'}}>
+        <Box sx={{
+            backgroundColor: '#DCDCDC', boxShadow: '10px 10px 5px gray', borderRadius: '10px', margin: 'auto',
+            [theme.breakpoints.up('md')]:
+                { width: '60%', },
+
+            [theme.breakpoints.down('md')]:
+                { width: '90%', padding: .5, }
+        }}>
 
             <form onSubmit={handleOnSubmit}>
 
@@ -74,12 +76,8 @@ function EditSupplies() {
                 >
 
                     <Stack
-                        id='left-inner-container'
-                        pr={3}
-                        
-                        
+                        id='left-inner-container'  
                         sx={{
-                            justifyContent: 'center',
                             alignItems: 'center',
                             borderRadius: '3em'
                         }}>
@@ -95,19 +93,19 @@ function EditSupplies() {
                             <img src={currentItem.image} alt="" />
                         </Box>
 
-                        <Box mt={'2.5em'}>
+                        <Box mt={'2.5em'} pl={'1em'}>
                             <InputLabel>Item Details</InputLabel>
                             <Box sx={{
-                                width: 325, height: 75,
-                                border: 'gray solid 1px', borderRadius: '5px', p: '5px'
+                                 width: 325, height: 100, border: 'gray solid 1px', borderRadius: '5px', p: '5px',
+                                 [theme.breakpoints.down('md')]:
+                                 {
+                                    width: '90%',
+                                 }
                             }}>
                                 {currentItem.product_details}
                             </Box>
                         </Box>
                     </Stack>
-
-
-
 
 
                     <Stack
@@ -122,7 +120,6 @@ function EditSupplies() {
                         <p>Category: {category} </p>
                         <p>Color: {color}</p>
                         <p>Item: {currentItem.name}</p>
-
                         <p>Quantity/Unit: <input
                             value={currentItem.quantity}
                             onChange={(evt) => dispatch({
@@ -131,7 +128,6 @@ function EditSupplies() {
                             })}
                             variant='filled'
                             sx={{ width: '50%', backgroundColor: 'white' }} /></p>
-
 
                         <Box>
                             Scraps: {currentItem.scraps === true ?
@@ -153,15 +149,18 @@ function EditSupplies() {
                             }
                         </Box>
 
-                        <Box mt={'5em'}>
+                        <Box sx={{
+                            marginTop: '5em',
+                            [theme.breakpoints.down('md')]:
+                                { marginTop: '1em' }
+                        }}>
                             <InputLabel>Notes</InputLabel>
                             <TextareaAutosize
                                 sx={{
-                                    width: 325, height: 100,
                                     border: 'gray solid 1px', borderRadius: '5px', p: '5px'
                                 }}
-                                minRows={5}
-                                style={{ width: 325 }}
+                                minRows={6.5}
+                                style={{ width: '90%'}}
 
                                 value={currentItem.notes}
                                 onChange={(evt) => dispatch({

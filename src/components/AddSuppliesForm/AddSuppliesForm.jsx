@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -13,6 +14,7 @@ import InsertPhotoTwoToneIcon from '@mui/icons-material/InsertPhotoTwoTone';
 
 
 function AddSuppliesForm() {
+    const theme = createTheme();
     const history = useHistory();
     const dispatch = useDispatch();
     const categories = useSelector(store => store.categories.allCategories);
@@ -123,7 +125,14 @@ function AddSuppliesForm() {
 
     return (
 
-        <Box sx={{backgroundColor: '#DCDCDC', width: '60%', boxShadow: '10px 10px 5px gray', margin: 'auto', borderRadius: '10px'}}>
+        <Box sx={{
+            backgroundColor: '#DCDCDC', boxShadow: '10px 10px 5px gray', borderRadius: '10px', margin: 'auto',
+            [theme.breakpoints.up('md')]:
+                { width: '60%', },
+
+            [theme.breakpoints.down('md')]:
+                { width: '90%', padding: .5, }
+        }}>
 
             <form onSubmit={handleOnSubmit}>
 
@@ -226,7 +235,11 @@ function AddSuppliesForm() {
                         </p>
 
 
-                        <Box mt={7}>
+                        <Box sx={{
+                            marginTop: '4em',
+                            [theme.breakpoints.down('md')]:
+                                { marginTop: '1em' }
+                        }}>
                             <InputLabel>Notes</InputLabel>
                             <TextareaAutosize onChange={handleNotesInput} minRows={5} style={{ width: 325 }} />
 
